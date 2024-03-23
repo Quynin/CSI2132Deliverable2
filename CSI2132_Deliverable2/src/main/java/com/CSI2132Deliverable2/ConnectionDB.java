@@ -5,6 +5,7 @@ public class ConnectionDB {
     /*
      * VARIABLES
      */
+	 //SEE TUTORIAL AND LAB 6
 
     /*
      * CONSTRUCTORS
