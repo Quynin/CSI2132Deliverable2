@@ -15,11 +15,6 @@ public class HotelRoom {
     private String problemsOrDamages;
 
     /*
-     * ASSOCIATIONS //NOT SURE IF WE'RE USING THESE ASSOCIATIONS AS WELL
-     */
-    private Hotel hotel;
-
-    /*
      * CONSTRUCTORS
      */
 

@@ -15,12 +15,6 @@ public class Hotel {
     private int managerID;
 
     /*
-     * ASSOCIATIONS //NOT SURE IF WE'RE USING THESE ASSOCIATIONS AS WELL
-     */
-    private HotelChain hotelChain;
-    private Employee manager;
-
-    /*
      * CONSTRUCTORS
      */
 
