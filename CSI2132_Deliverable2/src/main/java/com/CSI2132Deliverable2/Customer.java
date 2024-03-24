@@ -1,18 +1,18 @@
 package com.CSI2132Deliverable2;
 
-import java.util.*;//CAN IMPORT THIS BUT NOT java.util.GregorianCalendar?
+import java.util.*;//CAN IMPORT THIS BUT NOT java.util.Date?
 
 public class Customer extends Person {
 
     /*
      * VARIABLES
      */
-    private GregorianCalendar registrationDate; //FIND Date LIBRARY
+    private Date registrationDate; //FIND Date LIBRARY
 
     /*
      * CONSTRUCTORS
      */
-    public Customer(String id, String idType, String name, String address, GregorianCalendar rDate) {
+    public Customer(String id, String idType, String name, String address, Date rDate) {
         super(id, idType, name, address);
         setRegistrationDate(rDate);
     }
@@ -20,8 +20,8 @@ public class Customer extends Person {
     /*
      * ACCESSORS & MODIFIERS
      */
-    public GregorianCalendar getRegistrationDate() {return this.registrationDate;}
-    public void setRegistrationDate(GregorianCalendar rDate) {this.registrationDate = rDate;}
+    public Date getRegistrationDate() {return this.registrationDate;}
+    public void setRegistrationDate(Date rDate) {this.registrationDate = rDate;}
 
     /*
      * METHODS

@@ -8,7 +8,7 @@ public class Hotel {
     private int hotelID;
     private String hotelChainID;
     private int rating;
-    private String address;
+    private String hotelAddress;
     private int numberOfRooms;
     private int emailAddressID;
     private int phoneNumberID;
@@ -21,7 +21,7 @@ public class Hotel {
         setHotelID(hID);
         setHotelChainID(hcID);
         setRating(rating);
-        setAddress(address);
+        setHotelAddress(address);
         setNumberOfRooms(nOR);
         setEmailAddressID(eaID);
         setPhoneNumberID(pnID);
@@ -40,8 +40,8 @@ public class Hotel {
     public int getRating() {return this.rating;}
     public void setRating(int rating) {this.rating = rating;}
 
-    public String getAddress() {return this.address;}
-    public void setAddress(String address) {this.address = address;}
+    public String getHotelAddress() {return this.hotelAddress;}
+    public void setHotelAddress(String address) {this.hotelAddress = address;}
 
     public int getNumberOfRooms() {return this.numberOfRooms;}
     public void setNumberOfRooms(int nOR) {this.numberOfRooms = nOR;}
@@ -63,7 +63,7 @@ public class Hotel {
                 + "<li>hotel= " + this.getHotelID() + "</li>"
                 + "<li>hotel= " + this.getHotelChainID() + "</li>"
                 + "<li>hotel= " + this.getRating() + "</li>"
-                + "<li>hotel= " + this.getAddress() + "</li>"
+                + "<li>hotel= " + this.getHotelAddress() + "</li>"
                 + "<li>hotel= " + this.getNumberOfRooms() + "</li>"
                 + "<li>hotel= " + this.getEmailAddressID() + "</li>"
                 + "<li>hotel= " + this.getPhoneNumberID() + "</li>"

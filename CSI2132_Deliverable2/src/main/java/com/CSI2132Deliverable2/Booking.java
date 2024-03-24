@@ -1,6 +1,6 @@
 package com.CSI2132Deliverable2;
 
-import java.util.*;//CAN IMPORT THIS BUT NOT java.util.GregorianCalendar?
+import java.util.*;//CAN IMPORT THIS BUT NOT java.util.Date?
 
 public class Booking {
 
@@ -10,15 +10,15 @@ public class Booking {
     private int bookingID;
     private int roomID;
     private String customerID;
-    private GregorianCalendar startDate;
-    private GregorianCalendar endDate;
+    private Date startDate;
+    private Date endDate;
     private double cost;
-    private BookingStatus status;
+    private BookingStatus bookingStatus;
 
     /*
      * CONSTRUCTORS
      */
-	public Booking(int bID, int rID, String cID, GregorianCalendar sDate, GregorianCalendar eDate, double cost, BookingStatus status) {
+	public Booking(int bID, int rID, String cID, Date sDate, Date eDate, double cost, BookingStatus status) {
 		setBookingID(bID);
 		setRoomID(rID);
 		setCustomerID(cID);
@@ -40,17 +40,17 @@ public class Booking {
 	public String getCustomerID() {return this.customerID;}
 	public void setCustomerID(String cID) {this.customerID = cID;}
 	
-	public GregorianCalendar getStartDate() {return this.startDate;}
-	public void setStartDate(GregorianCalendar sDate) {this.startDate = sDate;}
+	public Date getStartDate() {return this.startDate;}
+	public void setStartDate(Date sDate) {this.startDate = sDate;}
 	
-	public GregorianCalendar getEndDate() {return this.endDate;}
-	public void setEndDate(GregorianCalendar eDate) {this.endDate = eDate;}
+	public Date getEndDate() {return this.endDate;}
+	public void setEndDate(Date eDate) {this.endDate = eDate;}
 	
 	public double getCost() {return this.cost;}
 	public void setCost(double cost) {this.cost = cost;}
 	
-	public BookingStatus getBookingStatus() {return this.status;}
-	public void setBookingStatus(BookingStatus status) {this.status = status;}
+	public BookingStatus getBookingStatus() {return this.bookingStatus;}
+	public void setBookingStatus(BookingStatus status) {this.bookingStatus = status;}
 
     /*
      * METHODS
