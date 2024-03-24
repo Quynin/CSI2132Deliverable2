@@ -23,7 +23,7 @@ public class EmailAddress {
 
     public void setEmailAddressID(int eaID) {this.emailAddressID = eaID;}
 
-    public int getEmailAddressString() {return emailAddressString;}
+    public String getEmailAddressString() {return emailAddressString;}
     public void setEmailAddressString(String eaS) {this.emailAddressString = eaS;}
 
     /*

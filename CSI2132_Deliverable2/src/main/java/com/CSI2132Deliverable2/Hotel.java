@@ -54,7 +54,7 @@ public class Hotel {
 
     public String getManagerID() {return this.managerID;}
     public void setManagerID(String mID) {this.managerID = mID;}
-    
+
     /*
      * METHODS
      */
