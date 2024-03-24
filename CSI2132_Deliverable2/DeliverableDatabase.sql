@@ -17,17 +17,16 @@ CREATE TABLE HotelChain (
 CREATE TABLE Hotel (
     hotelID non_neg, PRIMARY KEY(hotelID),
     hotelChainID VARCHAR(50), FOREIGN KEY(hotelChainID) REFERENCES HotelChain(hotelChainID),
-    rating INT check(1 <= rating <= 10),
+    rating INT check((1 <= rating) and (rating <= 10)),
     hotelAddress VARCHAR(50),
     numberOfRooms non_neg DEFAULT 0,
     emailAddressID non_neg, FOREIGN KEY(emailAddressID) REFERENCES EmailAddress(emailAddressID),
     phoneNumberID non_neg, FOREIGN KEY(phoneNumberID) REFERENCES PhoneNumber(phoneNumberID),
-    managerID VARCHAR(20), FOREIGN KEY(managerID) REFERENCES Person(personID),
-);
+    managerID VARCHAR(20), FOREIGN KEY(managerID) REFERENCES Person(personID));
 
 CREATE TABLE HotelRoom (
-    hotelID non_neg,
-    roomID non_neg, PRIMARY KEY(hotelID, roomID),
+	roomID non_neg UNIQUE,
+    hotelID non_neg, PRIMARY KEY(hotelID, roomID), FOREIGN KEY(hotelID) REFERENCES Hotel(hotelID),
     price non_neg_double NOT NULL, 
     amenities VARCHAR(200),
     capacityOfRoom non_neg NOT NULL,
@@ -49,10 +48,10 @@ CREATE TABLE PhoneNumber (
 CREATE TABLE Booking (
     bookingID non_neg, PRIMARY KEY(bookingID),
     roomID non_neg, FOREIGN KEY(roomID) REFERENCES HotelRoom(roomID),
-    customerID VARCHAR(20), FOREIGN KEY(customerID) REFERENCES Customer(customerID),
+    customerID VARCHAR(20), FOREIGN KEY(customerID) REFERENCES Person(personID),
     startDate DATE check(startDate < endDate),
     endDate DATE check(endDate > startDate),
-    cost non_neg_double NOT NULL, 
+    bookingCost non_neg_double NOT NULL, 
     bookingStatus VARCHAR(20) check (bookingStatus IN ('Booking', 'Renting', 'Archived')) 
 );
 
@@ -70,6 +69,6 @@ CREATE TABLE Customer (
 
 CREATE TABLE Employee (
     employeeID VARCHAR(20), PRIMARY KEY(employeeID), FOREIGN KEY(employeeID) REFERENCES Person(personID),
-    hotelID non_neg FOREIGN KEY(hotelID) REFERENCES Hotel(hotelID),
+    hotelID non_neg, FOREIGN KEY(hotelID) REFERENCES Hotel(hotelID),
     employeeRole VARCHAR(20)
 );
