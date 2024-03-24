@@ -12,7 +12,7 @@ public class ConnectionDB {
 	private final String dbServerPort = "5432";
 	private final String dbName = "postgres";
 	private final String dbUsername = "postgres";
-	private final String dpPassword = "admin";
+	private final String dbPassword = "admin";
 	 
 	//DB connection
 	private Connection con = null;
@@ -44,7 +44,7 @@ public class ConnectionDB {
 	public void close() throws Exception {
 		try {
 			if (con != null) {
-				cpn.close();
+				con.close();
 			}
 		} catch (SQLException e) {
 			throw new SQLException("Could not close connection with the Database Server: "

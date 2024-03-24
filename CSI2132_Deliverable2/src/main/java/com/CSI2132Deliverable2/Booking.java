@@ -18,7 +18,7 @@ public class Booking {
     /*
      * CONSTRUCTORS
      */
-	Booking(int bID, int rID, String cID, GregorianCalendar sDate, GregorianCalendar eDate, double cost, BookingStatus status) {
+	public Booking(int bID, int rID, String cID, GregorianCalendar sDate, GregorianCalendar eDate, double cost, BookingStatus status) {
 		setBookingID(bID);
 		setRoomID(rID);
 		setCustomerID(cID);
@@ -50,20 +50,20 @@ public class Booking {
 	public void setCost(double cost) {this.cost = cost;}
 	
 	public BookingStatus getBookingStatus() {return this.status;}
-	public void setBookingStatus(BookingStatus status) {this.status = status}
+	public void setBookingStatus(BookingStatus status) {this.status = status;}
 
     /*
      * METHODS
      */
 	public String toString() {
 		return "<ul>"
-			+ "<li>booking= " + this.getBookingID() + "</li>"
-			+ "<li>booking= " + this.getRoomID() + "</li>"
-			+ "<li>booking= " + this.getCustomerID() + "</li>"
-			+ "<li>booking= " + this.getStartDate().toString() + "</li>"
-			+ "<li>booking= " + this.getEndDate().toString() + "</li>"
-			+ "<li>booking= " + this.getCost() + "</li>"
-			+ "<li>booking= " + this.getBookingStatus().name() + "</li>";
+				+ "<li>booking= " + this.getBookingID() + "</li>"
+				+ "<li>booking= " + this.getRoomID() + "</li>"
+				+ "<li>booking= " + this.getCustomerID() + "</li>"
+				+ "<li>booking= " + this.getStartDate().toString() + "</li>"
+				+ "<li>booking= " + this.getEndDate().toString() + "</li>"
+				+ "<li>booking= " + this.getCost() + "</li>"
+				+ "<li>booking= " + this.getBookingStatus().name() + "</li>";
 	}
 
 }
