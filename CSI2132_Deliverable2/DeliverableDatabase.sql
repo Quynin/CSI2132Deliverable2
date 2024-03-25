@@ -6,6 +6,23 @@ create domain non_neg_double NUMERIC(8, 2)
 constraint non_neg_payment
 check(value >= 0);
 
+CREATE TABLE EmailAddress (
+    emailAddressID non_neg, PRIMARY KEY(emailAddressID),
+    emailAddressString VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE PhoneNumber (
+    phoneNumberID non_neg, PRIMARY KEY(phoneNumberID),
+    phoneNumberString VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Person (
+    personID VARCHAR(20), PRIMARY KEY(personID),
+    personIDType VARCHAR(20) NOT NULL,
+    personFullName VARCHAR(40) NOT NULL,
+    personAddress VARCHAR(50)
+);
+
 CREATE TABLE HotelChain (
     hotelChainID VARCHAR(50), PRIMARY KEY(hotelChainID),
     addressOfCentralOffices VARCHAR(50),
@@ -35,16 +52,6 @@ CREATE TABLE HotelRoom (
     problemsOrDamages VARCHAR(200)
 );
 
-CREATE TABLE EmailAddress (
-    emailAddressID non_neg, PRIMARY KEY(emailAddressID),
-    emailAddressString VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE PhoneNumber (
-    phoneNumberID non_neg, PRIMARY KEY(phoneNumberID),
-    phoneNumberString VARCHAR(20) NOT NULL
-);
-
 CREATE TABLE Booking (
     bookingID non_neg, PRIMARY KEY(bookingID),
     roomID non_neg, FOREIGN KEY(roomID) REFERENCES HotelRoom(roomID),
@@ -53,13 +60,6 @@ CREATE TABLE Booking (
     endDate DATE check(endDate > startDate),
     bookingCost non_neg_double NOT NULL, 
     bookingStatus VARCHAR(20) check (bookingStatus IN ('Booking', 'Renting', 'Archived')) 
-);
-
-CREATE TABLE Person (
-    personID VARCHAR(20), PRIMARY KEY(personID),
-    personIDType VARCHAR(20) NOT NULL,
-    personFullName VARCHAR(40) NOT NULL,
-    personAddress VARCHAR(50)
 );
 
 CREATE TABLE Customer (
