@@ -20,7 +20,7 @@ public class BookingService {
     public List<Booking> getBookings() throws Exception {
 
         //SQL query
-        String sql = "SELECT * FROM Bookings";
+        String sql = "SELECT * FROM Booking";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
         //Data structure to return all objects generated from database
@@ -76,7 +76,7 @@ public class BookingService {
     public String createBooking(Booking booking) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO Bookings (bookingID, roomID, customerID, startDate, endDate, cost, bookingStatus)"
+        String sql = "INSERT INTO Booking (bookingID, roomID, customerID, startDate, endDate, cost, bookingStatus)"
                         + " VALUES (?, ?, ?, ?, ?, ?, ?)";
         //Connection to database
         Connection con = null;
@@ -106,7 +106,7 @@ public class BookingService {
 
             //Execute query
             int output = st.executeUpdate();
-            System.out.println("INSERT: " + output);
+            System.out.println("Insert: " + output);
 
             //Close the statement
             st.close();
@@ -128,7 +128,7 @@ public class BookingService {
     }
 
     /**
-     * Method to get create a Booking in the database
+     * Method to get update a Booking in the database
      *
      * @param Booking booking to be created
      * @return String returned that states if the Booking was created or not
@@ -137,7 +137,7 @@ public class BookingService {
     public String updateBooking(Booking booking) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE Bookings"
+        String sql = "UPDATE Booking"
                         + "SET roomID=?, customerID=?, startDate=?, endDate=?, cost=?, bookingStatus=?"
                         + "WHERE bookingID=?";
         //Connection to database
@@ -148,7 +148,7 @@ public class BookingService {
         String message = "";
 
         //Print Booking to console
-        System.out.println("UPDATE: " + booking);
+        System.out.println("Update: " + booking);
 
         //Try to connect to the database; catch any exceptions
         try {
@@ -198,7 +198,7 @@ public class BookingService {
     public String deleteBooking(int id) throws Exception {
 
         //SQL query with placeholder id
-        String sql = "DELETE FROM Bookings WHERE id = ?";
+        String sql = "DELETE FROM Booking WHERE bookingID = ?";
         //Connection to database
         Connection con = null;
         //Database connection object
