@@ -15,8 +15,7 @@ CREATE TABLE Person (
 
 CREATE TABLE HotelChain (
 	hotelChainID VARCHAR(50), PRIMARY KEY(hotelChainID),
-    addressOfCentralOffices VARCHAR(50),
-    numberOfHotels non_neg DEFAULT 0
+    addressOfCentralOffices VARCHAR(50)
 );
 
 CREATE TABLE Hotel (
@@ -85,11 +84,11 @@ CREATE TABLE HotelChainPhoneNumber (
 
 INSERT INTO HotelChain
 VALUES
-('TestHotels', '123 Small Road', 8),
-('AnotherHotelChain', '124 Small Road', 9),
-('GenericHotelChain', '125 Small Road', 10),
-('Fancy Hotels', '1 Rich Drive', 8),
-('ThisHotelChainDoesNotUseEmail', '0 The Road', 8);
+('TestHotels', '123 Small Road'),
+('AnotherHotelChain', '124 Small Road'),
+('GenericHotelChain', '125 Small Road'),
+('Fancy Hotels', '1 Rich Drive'),
+('ThisHotelChainDoesNotUseEmail', '0 The Road');
 
 
 INSERT INTO HotelChainEmailAddress
@@ -172,7 +171,7 @@ VALUES
 ('Fancy Hotels', 3, '42 Honte des Riches', 5, null),
 ('Fancy Hotels', 4, '41 Dilapidated Path', 5, null),
 
---ThisHotelChainDoesNotUSeEmail hotels
+--ThisHotelChainDoesNotUseEmail hotels
 ('ThisHotelChainDoesNotUseEmail', 5, '1 WhatRoadIsThis Road', 35, null),
 ('ThisHotelChainDoesNotUseEmail', 1, '10 WhatRoadIsThis Road', 5, null),
 ('ThisHotelChainDoesNotUseEmail', 1, '100 WhatRoadIsThis Road', 5, null),
@@ -732,5 +731,3 @@ VALUES
 ('111-111-195', 42, ' Clerk'),
 ('111-111-196', 43, ' Clerk')
 ;
-
-SELECT * FROM HotelChain

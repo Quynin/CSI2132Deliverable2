@@ -19,7 +19,12 @@ public class HotelService {
     public List<Hotel> getHotels() throws Exception {
 
         //SQL query
-        String sql = "SELECT * FROM Hotel";
+        String sql = "SELECT h.hotelID, h.hotelChainID, h.rating, h.hotelAddress, numberOfRooms, h.managerID\n" +
+                "                FROM Hotel h,\n" +
+                "                LATERAL(\n" +
+                "                SELECT COUNT(*) AS numberOfRooms\n" +
+                "                FROM HotelRoom hR\n" +
+                "                WHERE h.hotelID = hR.hotelID);";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
         //Data structure to return all objects generated from database
@@ -73,8 +78,8 @@ public class HotelService {
     public String createHotel(Hotel hotel) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO Hotel (hotelID, hotelChainID, rating, hotelAddress, numberOfRooms, managerID)"
-                + " VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Hotel (hotelID, hotelChainID, rating, hotelAddress, managerID)"
+                + " VALUES (?, ?, ?, ?, ?)";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -97,8 +102,7 @@ public class HotelService {
             st.setString(2, hotel.getHotelChainID());
             st.setInt(3, hotel.getRating());
             st.setString(4, hotel.getHotelAddress());
-            st.setInt(5, hotel.getNumberOfRooms());
-            st.setString(6, hotel.getManagerID());
+            st.setString(5, hotel.getManagerID());
 
             //Execute query
             int output = st.executeUpdate();
@@ -134,7 +138,7 @@ public class HotelService {
 
         //SQL query with placeholder of all attributes
         String sql = "UPDATE Hotel"
-                + "SET hotelChainID=?, ratin=?, hotelAddress=?, numberOfRooms=?, managerID=?"
+                + "SET hotelChainID=?, ratin=?, hotelAddress=?, managerID=?"
                 + "WHERE hotelID=?";
         //Connection to database
         Connection con = null;
@@ -157,9 +161,8 @@ public class HotelService {
             st.setString(1, hotel.getHotelChainID());
             st.setInt(2, hotel.getRating());
             st.setString(3, hotel.getHotelAddress());
-            st.setInt(4, hotel.getNumberOfRooms());
-            st.setString(5, hotel.getManagerID());
-            st.setInt(6, hotel.getHotelID());
+            st.setString(4, hotel.getManagerID());
+            st.setInt(5, hotel.getHotelID());
 
 
             //Execute query

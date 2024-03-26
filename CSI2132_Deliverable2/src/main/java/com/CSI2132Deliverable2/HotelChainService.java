@@ -22,7 +22,7 @@ public class HotelChainService {
         String sql = "SELECT hC.hotelChainID, hC.addressOfCentralOffices, numberOfHotels\n" +
                 "FROM HotelChain hC,\n" +
                 "LATERAL(\n" +
-                "\tSELECT COUNT(*) AS numberOfHotelsTEST\n" +
+                "\tSELECT COUNT(*) AS numberOfHotels\n" +
                 "\tFROM Hotel h\n" +
                 "\tWHERE hC.hotelChainID = h.hotelChainID);";
         //Database connection object
@@ -75,8 +75,8 @@ public class HotelChainService {
     public String createHotelChain(HotelChain hotelChain) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO HotelChain (hotelChainID, addressOfCentralOffices, numberOfHotels)"
-                + " VALUES (?, ?, ?)";
+        String sql = "INSERT INTO HotelChain (hotelChainID, addressOfCentralOffices)"
+                + " VALUES (?, ?)";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -97,7 +97,7 @@ public class HotelChainService {
             //Fill placeholders ? of statement
             st.setString(1, hotelChain.getHotelChainID());
             st.setString(2, hotelChain.getAddressOfCentralOffices());
-            st.setInt(3, hotelChain.getNumberOfHotels());
+
 
             //Execute query
             int output = st.executeUpdate();
@@ -133,7 +133,7 @@ public class HotelChainService {
 
         //SQL query with placeholder of all attributes
         String sql = "UPDATE HotelChain"
-                + "SET addressOfCentralOffices=?, numberOfHotels=?"
+                + "SET addressOfCentralOffices=?"
                 + "WHERE hotelChainID=?";
         //Connection to database
         Connection con = null;
@@ -154,8 +154,7 @@ public class HotelChainService {
 
             //Fill placeholders ? of statement
             st.setString(1, hotelChain.getAddressOfCentralOffices());
-            st.setInt(2, hotelChain.getNumberOfHotels());
-            st.setString(5, hotelChain.getHotelChainID());
+            st.setString(2, hotelChain.getHotelChainID());
 
             //Execute query
             st.executeUpdate();
@@ -227,17 +226,5 @@ public class HotelChainService {
 
         //Return message
         return message;
-    }
-
-    public static void main (String args []) {
-        HotelChainService hcs = new HotelChainService();
-        try {
-            List<HotelChain> l = hcs.getHotelChains();
-            for (HotelChain hC : l) {
-                System.out.println(hC);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
