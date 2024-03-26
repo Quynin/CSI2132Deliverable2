@@ -19,7 +19,12 @@ public class HotelChainService {
     public List<HotelChain> getHotelChains() throws Exception {
 
         //SQL query
-        String sql = "SELECT * FROM HotelChain";
+        String sql = "SELECT hC.hotelChainID, hC.addressOfCentralOffices, numberOfHotels\n" +
+                "FROM HotelChain hC,\n" +
+                "LATERAL(\n" +
+                "\tSELECT COUNT(*) AS numberOfHotelsTEST\n" +
+                "\tFROM Hotel h\n" +
+                "\tWHERE hC.hotelChainID = h.hotelChainID);";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
         //Data structure to return all objects generated from database

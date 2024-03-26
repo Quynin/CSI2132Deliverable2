@@ -89,7 +89,7 @@ VALUES
 ('AnotherHotelChain', '124 Small Road', 9),
 ('GenericHotelChain', '125 Small Road', 10),
 ('Fancy Hotels', '1 Rich Drive', 8),
-('ThisHotelChainDoesNotUseEmail', '999 Old Street', 8);
+('ThisHotelChainDoesNotUseEmail', '0 The Road', 8);
 
 
 INSERT INTO HotelChainEmailAddress
@@ -732,3 +732,5 @@ VALUES
 ('111-111-195', 42, ' Clerk'),
 ('111-111-196', 43, ' Clerk')
 ;
+
+SELECT * FROM HotelChain
