@@ -3,9 +3,6 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### ConnectionDB ###
-CSI2132Deliverable2/CSI2132_Deliverable2/src/main/java/com/CSI2132Deliverable2/ConnectionDB.java
-
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
