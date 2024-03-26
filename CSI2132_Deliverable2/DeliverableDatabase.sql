@@ -23,8 +23,8 @@ CREATE TABLE Hotel (
     hotelChainID VARCHAR(50), FOREIGN KEY(hotelChainID) REFERENCES HotelChain(hotelChainID),
     rating INT check((1 <= rating) and (rating <= 10)),
     hotelAddress VARCHAR(50),
-    numberOfRooms non_neg DEFAULT 0,
-    managerID VARCHAR(20), FOREIGN KEY(managerID) REFERENCES Person(personID));
+    managerID VARCHAR(20), FOREIGN KEY(managerID) REFERENCES Person(personID)
+);
 
 CREATE TABLE HotelRoom (
 	roomID SERIAL UNIQUE,
@@ -126,60 +126,60 @@ VALUES
 ;
 
 
-INSERT INTO Hotel (hotelChainID, rating, hotelAddress, numberOfRooms, managerID)
+INSERT INTO Hotel (hotelChainID, rating, hotelAddress, managerID)
 VALUES
 --TestHotels hotels
-('TestHotels', 1, '1 Locale Drive', 6, null),
-('TestHotels', 2, '2 Locale Drive', 6, null),
-('TestHotels', 3, '351 Laurier Avenue', 6, null),
-('TestHotels', 4, '2 Rideau Street', 6, null),
-('TestHotels', 5, '35 Road Road', 6, null),
-('TestHotels', 3, '2 London Avenue', 6, null),
-('TestHotels', 3, '77 London Avenue', 6, null),
-('TestHotels', 1, '44 London Avenue', 6, null),
+('TestHotels', 1, '1 Locale Drive', null),
+('TestHotels', 2, '2 Locale Drive', null),
+('TestHotels', 3, '351 Laurier Avenue', null),
+('TestHotels', 4, '2 Rideau Street', null),
+('TestHotels', 5, '35 Road Road', null),
+('TestHotels', 3, '2 London Avenue', null),
+('TestHotels', 3, '77 London Avenue', null),
+('TestHotels', 1, '44 London Avenue', null),
 
 --AnotherHotelChain hotels
-('AnotherHotelChain', 5, '3 Princess Street', 5, null),
-('AnotherHotelChain', 4, '3 King Street', 5, null),
-('AnotherHotelChain', 3, '3 Queen Street', 5, null),
-('AnotherHotelChain', 4, '3 Bay Street', 5, null),
-('AnotherHotelChain', 5, '3 Bloor Street', 5, null),
-('AnotherHotelChain', 4, '3 Bank Street', 5, null),
-('AnotherHotelChain', 3, '3 Albert Street', 5, null),
-('AnotherHotelChain', 5, '3 King Street', 5, null),
-('AnotherHotelChain', 4, '3 Bytown Street', 5, null),
+('AnotherHotelChain', 5, '3 Princess Street', null),
+('AnotherHotelChain', 4, '3 King Street', null),
+('AnotherHotelChain', 3, '3 Queen Street', null),
+('AnotherHotelChain', 4, '3 Bay Street', null),
+('AnotherHotelChain', 5, '3 Bloor Street', null),
+('AnotherHotelChain', 4, '3 Bank Street', null),
+('AnotherHotelChain', 3, '3 Albert Street', null),
+('AnotherHotelChain', 5, '3 King Street', null),
+('AnotherHotelChain', 4, '3 Bytown Street', null),
 
 --GenericHotelChain hotels
-('GenericHotelChain', 1, '5 Princess Street', 5, null),
-('GenericHotelChain', 2, '4 Princess Street', 5, null),
-('GenericHotelChain', 3, '6 Dreary Lane', 5, null),
-('GenericHotelChain', 1, '8 Road Lane', 5, null),
-('GenericHotelChain', 2, '8888 Dreary Lane', 5, null),
-('GenericHotelChain', 4, '1234 Rich Drive', 5, null),
-('GenericHotelChain', 2, '3433 Rich Drive', 5, null),
-('GenericHotelChain', 1, '332 Lancaster Drive', 5, null),
-('GenericHotelChain', 3, '23 Blair Street', 5, null),
-('GenericHotelChain', 2, '27 Pont du Lyon', 5, null),
+('GenericHotelChain', 1, '5 Princess Street', null),
+('GenericHotelChain', 2, '4 Princess Street', null),
+('GenericHotelChain', 3, '6 Dreary Lane', null),
+('GenericHotelChain', 1, '8 Road Lane', null),
+('GenericHotelChain', 2, '8888 Dreary Lane', null),
+('GenericHotelChain', 4, '1234 Rich Drive', null),
+('GenericHotelChain', 2, '3433 Rich Drive', null),
+('GenericHotelChain', 1, '332 Lancaster Drive', null),
+('GenericHotelChain', 3, '23 Blair Street', null),
+('GenericHotelChain', 2, '27 Pont du Lyon', null),
 
 --Fancy Hotels hotels
-('Fancy Hotels', 5, '42 Pont Rue', 5, null),
-('Fancy Hotels', 5, '42 Rich Road', 5, null),
-('Fancy Hotels', 5, '42 Snobbery Lane', 5, null),
-('Fancy Hotels', 5, '42 Tomcat Crescent', 5, null),
-('Fancy Hotels', 5, '42 Caitlyn Crescent', 5, null),
-('Fancy Hotels', 5, '42 Pont Rue', 5, null),
-('Fancy Hotels', 3, '42 Honte des Riches', 5, null),
-('Fancy Hotels', 4, '41 Dilapidated Path', 5, null),
+('Fancy Hotels', 5, '42 Pont Rue', null),
+('Fancy Hotels', 5, '42 Rich Road', null),
+('Fancy Hotels', 5, '42 Snobbery Lane', null),
+('Fancy Hotels', 5, '42 Tomcat Crescent', null),
+('Fancy Hotels', 5, '42 Caitlyn Crescent', null),
+('Fancy Hotels', 5, '42 Pont Rue', null),
+('Fancy Hotels', 3, '42 Honte des Riches', null),
+('Fancy Hotels', 4, '41 Dilapidated Path', null),
 
 --ThisHotelChainDoesNotUseEmail hotels
-('ThisHotelChainDoesNotUseEmail', 5, '1 WhatRoadIsThis Road', 35, null),
-('ThisHotelChainDoesNotUseEmail', 1, '10 WhatRoadIsThis Road', 5, null),
-('ThisHotelChainDoesNotUseEmail', 1, '100 WhatRoadIsThis Road', 5, null),
-('ThisHotelChainDoesNotUseEmail', 1, '1000 WhatRoadIsThis Road', 5, null),
-('ThisHotelChainDoesNotUseEmail', 1, '10000 WhatRoadIsThis Road', 5, null),
-('ThisHotelChainDoesNotUseEmail', 1, '100000 WhatRoadIsThis Road', 5, null),
-('ThisHotelChainDoesNotUseEmail', 1, '1000000 WhatRoadIsThis Road', 5, null),
-('ThisHotelChainDoesNotUseEmail', 1, '10000000 WhatRoadIsThis Road', 5, null);
+('ThisHotelChainDoesNotUseEmail', 5, '1 WhatRoadIsThis Road', null),
+('ThisHotelChainDoesNotUseEmail', 1, '10 WhatRoadIsThis Road', null),
+('ThisHotelChainDoesNotUseEmail', 1, '100 WhatRoadIsThis Road', null),
+('ThisHotelChainDoesNotUseEmail', 1, '1000 WhatRoadIsThis Road', null),
+('ThisHotelChainDoesNotUseEmail', 1, '10000 WhatRoadIsThis Road', null),
+('ThisHotelChainDoesNotUseEmail', 1, '100000 WhatRoadIsThis Road', null),
+('ThisHotelChainDoesNotUseEmail', 1, '1000000 WhatRoadIsThis Road', null),
+('ThisHotelChainDoesNotUseEmail', 1, '10000000 WhatRoadIsThis Road', null);
 
 INSERT INTO HotelEmailAddress
 VALUES
