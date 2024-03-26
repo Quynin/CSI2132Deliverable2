@@ -19,7 +19,7 @@ public class CustomerService {
     public List<Customer> getCustomers() throws Exception {
 
         //SQL query
-        String sql = "SELECT * FROM Customer NATURAL JOIN customerID = personID Person";
+        String sql = "SELECT * FROM Person p JOIN Customer c ON p.personID = c.customerID;";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
         //Data structure to return all objects generated from database

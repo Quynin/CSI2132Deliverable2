@@ -19,7 +19,7 @@ public class EmployeeService {
     public List<Employee> getEmployees() throws Exception {
 
         //SQL query
-        String sql = "SELECT * FROM Employee NATURAL JOIN employeeID = personID Person";
+        String sql = "SELECT * FROM Person p JOIN Employee e ON p.personID = e.employeeID;";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
         //Data structure to return all objects generated from database

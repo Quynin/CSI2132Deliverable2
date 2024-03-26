@@ -72,3 +72,38 @@ CREATE TABLE Employee (
     hotelID non_neg, FOREIGN KEY(hotelID) REFERENCES Hotel(hotelID),
     employeeRole VARCHAR(20)
 );
+
+/*
+INSERT INTO EmailAddress
+VALUES
+(001, 'quinn.slavish@gmail.com');
+
+INSERT INTO PhoneNumber
+VALUES
+(001, '613-276-8648');
+
+INSERT INTO HotelChain
+VALUES
+('TestHotels', 'Street 123', 5, 001, 001);
+
+SELECT * FROM HotelChain;
+
+INSERT INTO PERSON
+VALUES
+('123987654','SIN', 'First Lastname', '456 Street'),
+('1234', 'SSN', 'Lastfirst Name', '457 Street');
+SELECT * FROM Person;
+
+INSERT INTO Customer
+VALUES
+('123987654', '2024-3-25');
+
+INSERT INTO Employee
+VALUES
+('1234', null, 'FIRED');
+
+SELECT * FROM Customer;
+
+SELECT * FROM Person p JOIN Customer c ON p.personID = c.customerID;
+SELECT * FROM Person p JOIN Employee e ON p.personID = e.employeeID;
+*/

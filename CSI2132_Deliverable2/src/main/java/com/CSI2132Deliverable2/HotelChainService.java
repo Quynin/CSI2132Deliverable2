@@ -229,4 +229,16 @@ public class HotelChainService {
         //Return message
         return message;
     }
+
+    public static void main (String args []) {
+        HotelChainService hcs = new HotelChainService();
+        try {
+            List<HotelChain> l = hcs.getHotelChains();
+            for (HotelChain hC : l) {
+                System.out.println(hC);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
