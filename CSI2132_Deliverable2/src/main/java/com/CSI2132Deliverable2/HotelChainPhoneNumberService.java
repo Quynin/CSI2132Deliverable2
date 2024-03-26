@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
-public class HotelChainService {
+public class HotelChainPhoneNumberService {
 
     /*
      * METHODS
      */
 
     /**
-     * Method to get all HotelChains from the database
+     * Method to get all PhoneNumbers from the database
      *
-     * @return list of HotelChains from database
+     * @return list of PhoneNumbers from database
      * @throws Exception when trying to connect to database
      */
-    public List<HotelChain> getHotelChains() throws Exception {
+    public List<HotelChainPhoneNumber> getPhoneNumbers() throws Exception {
 
         //SQL query
-        String sql = "SELECT * FROM HotelChain";
+        String sql = "SELECT * FROM HotelChainPhoneNumber";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
         //Data structure to return all objects generated from database
-        List<HotelChain> hotelChains = new ArrayList<HotelChain>();
+        List<HotelChainPhoneNumber> phoneNumbers = new ArrayList<HotelChainPhoneNumber>();
 
         //Try to connect to the database; catch any exceptions
         try (Connection con = db.getConnection()) {
@@ -32,15 +32,14 @@ public class HotelChainService {
             Statement st = con.createStatement();
             ResultSet rs =  st.executeQuery(sql);
 
-            //Create all the HotelChain objects from the result
+            //Create all the PhoneNumber objects from the result
             while(rs.next()) {
-                //Create new HotelChain object
-                HotelChain hC =  new HotelChain(
-                        rs.getString("hotelChainID"),
-                        rs.getString("addressOfCentralOffices"),
-                        rs.getInt("numberOfHotels")
+                //Create new PhoneNumber object
+                HotelChainPhoneNumber pN =  new HotelChainPhoneNumber(
+                        rs.getString("phoneNumberID"),
+                        rs.getString("phoneNumberString")
                 );
-                hotelChains.add(hC);
+                phoneNumbers.add(pN);
             }
 
             //Close the result set
@@ -51,7 +50,7 @@ public class HotelChainService {
             db.close();
 
             //Return constructed list
-            return hotelChains;
+            return phoneNumbers;
 
         } catch (Exception e) {
             //Throw the error that occurred
@@ -61,17 +60,17 @@ public class HotelChainService {
     }
 
     /**
-     * Method to get create a HotelChain in the database
+     * Method to get create a PhoneNumber in the database
      *
-     * @param HotelChain hotelChain to be created
-     * @return String returned that states if the HotelChain was created or not
+     * @param HotelChainPhoneNumber phone number to be created
+     * @return String returned that states if the PhoneNumber was created or not
      * @throws Exception when trying to connect to database
      */
-    public String createHotelChain(HotelChain hotelChain) throws Exception {
+    public String createPhoneNumber(HotelChainPhoneNumber phoneNumber) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO HotelChain (hotelChainID, addressOfCentralOffices, numberOfHotels)"
-                + " VALUES (?, ?, ?)";
+        String sql = "INSERT INTO HotelChainPhoneNumber (phoneNumberID, phoneNumberString)"
+                + " VALUES (?, ?)";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -79,8 +78,8 @@ public class HotelChainService {
         //String to return
         String message = "";
 
-        //Print HotelChain to console
-        System.out.println(hotelChain);
+        //Print PhoneNumber to console
+        System.out.println(phoneNumber);
 
         //Try to connect to the database; catch any exceptions
         try {
@@ -90,9 +89,8 @@ public class HotelChainService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholders ? of statement
-            st.setString(1, hotelChain.getHotelChainID());
-            st.setString(2, hotelChain.getAddressOfCentralOffices());
-            st.setInt(3, hotelChain.getNumberOfHotels());
+            st.setString(1, phoneNumber.getPhoneNumberID());
+            st.setString(2, phoneNumber.getPhoneNumberString());
 
             //Execute query
             int output = st.executeUpdate();
@@ -105,12 +103,12 @@ public class HotelChainService {
 
         } catch (Exception e) {
             //Update the message if there was an error
-            message = "Error while inserting hotel chain: " + e.getMessage();
+            message = "Error while inserting phone number: " + e.getMessage();
         } finally {
             //Close con if it is still open
             if (con != null) con.close();
             //Update the message if delete was successful
-            if (message.equals("")) message = "Hotel chain successfully inserted!";
+            if (message.equals("")) message = "Phone number successfully inserted!";
         }
 
         //Return message
@@ -118,18 +116,19 @@ public class HotelChainService {
     }
 
     /**
-     * Method to get update a HotelChain in the database
+     * Method to get update a PhoneNumber in the database
      *
-     * @param HotelChain hotel chain to be created
-     * @return String returned that states if the HotelChain was created or not
+     * @param HotelChainPhoneNumber phone number to be updated
+     * @param oldPhoneNumber old phone number to identify the phone number to update
+     * @return String returned that states if the PhoneNumber was updated or not
      * @throws Exception when trying to connect to database
      */
-    public String updateHotelChain(HotelChain hotelChain) throws Exception {
+    public String updatePhoneNumber(HotelChainPhoneNumber phoneNumber, String oldPhoneNumber) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE HotelChain"
-                + "SET addressOfCentralOffices=?, numberOfHotels=?"
-                + "WHERE hotelChainID=?";
+        String sql = "UPDATE HotelChainPhoneNumber"
+                + "SET phoneNumberString=?"
+                + "WHERE phoneNumberID=? AND phoneNumberString=?";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -138,7 +137,7 @@ public class HotelChainService {
         String message = "";
 
         //Print Booking to console
-        System.out.println("Update: " + hotelChain);
+        System.out.println("UPDATE: " + phoneNumber);
 
         //Try to connect to the database; catch any exceptions
         try {
@@ -148,9 +147,9 @@ public class HotelChainService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholders ? of statement
-            st.setString(1, hotelChain.getAddressOfCentralOffices());
-            st.setInt(2, hotelChain.getNumberOfHotels());
-            st.setString(5, hotelChain.getHotelChainID());
+            st.setString(1, phoneNumber.getPhoneNumberString());
+            st.setString(2, phoneNumber.getPhoneNumberID());
+            st.setString(3, oldPhoneNumber);
 
             //Execute query
             st.executeUpdate();
@@ -162,12 +161,12 @@ public class HotelChainService {
 
         } catch (Exception e) {
             //Update the message if there was an error
-            message = "Error while updating hotel chain: " + e.getMessage();
+            message = "Error while updating phone number: " + e.getMessage();
         } finally {
             //Close con if it is still open
             if (con != null) con.close();
             //Update the message if delete was successful
-            if (message.equals("")) message = "Hotel chain successfully updated!";
+            if (message.equals("")) message = "Phone number successfully updated!";
         }
 
         //Return message
@@ -175,16 +174,16 @@ public class HotelChainService {
     }
 
     /**
-     * Method to delete a HotelChain from the database by its hotelChainID
+     * Method to delete a HotelChainPhoneNumber from the database by its phoneNumberString
      *
-     * @param id hotelChainID of the HotelChain to delete from the database
-     * @return String that states if the HotelChain was deleted or not
+     * @param str phoneNumberString of the PhoneNumber to delete from the database
+     * @return String that states if the PhoneNumber was deleted or not
      * @throws Exception when trying to connect to database
      */
-    public String deleteHotelChain(String id) throws Exception {
+    public String deletePhoneNumber(String id) throws Exception {
 
         //SQL query with placeholder id
-        String sql = "DELETE FROM HotelChain WHERE hotelChainID = ?";
+        String sql = "DELETE FROM HotelChainPhoneNumber WHERE phoneNumberString = ?";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -212,27 +211,16 @@ public class HotelChainService {
 
         } catch (Exception e) {
             //Update the message if there was an error
-            message = "Error while deleting hotel chain: " + e.getMessage();
+            message = "Error while deleting phone number: " + e.getMessage();
         } finally {
             //Close con if it is still open
             if (con != null) con.close();
             //Update the message if delete was successful
-            if (message.equals("")) message = "Hotel chain successfully deleted!";
+            if (message.equals("")) message = "Phone number successfully deleted!";
         }
 
         //Return message
         return message;
     }
 
-    public static void main (String args []) {
-        HotelChainService hcs = new HotelChainService();
-        try {
-            List<HotelChain> l = hcs.getHotelChains();
-            for (HotelChain hC : l) {
-                System.out.println(hC);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

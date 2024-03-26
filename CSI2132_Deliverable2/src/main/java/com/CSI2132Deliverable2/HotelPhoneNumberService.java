@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
-public class PhoneNumberService {
+public class HotelPhoneNumberService {
 
     /*
      * METHODS
@@ -16,14 +16,14 @@ public class PhoneNumberService {
      * @return list of PhoneNumbers from database
      * @throws Exception when trying to connect to database
      */
-    public List<PhoneNumber> getPhoneNumbers() throws Exception {
+    public List<HotelPhoneNumber> getPhoneNumbers() throws Exception {
 
         //SQL query
-        String sql = "SELECT * FROM PhoneNumber";
+        String sql = "SELECT * FROM HotelPhoneNumber";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
         //Data structure to return all objects generated from database
-        List<PhoneNumber> phoneNumbers = new ArrayList<PhoneNumber>();
+        List<HotelPhoneNumber> phoneNumbers = new ArrayList<HotelPhoneNumber>();
 
         //Try to connect to the database; catch any exceptions
         try (Connection con = db.getConnection()) {
@@ -35,7 +35,7 @@ public class PhoneNumberService {
             //Create all the PhoneNumber objects from the result
             while(rs.next()) {
                 //Create new PhoneNumber object
-                PhoneNumber pN =  new PhoneNumber(
+                HotelPhoneNumber pN =  new HotelPhoneNumber(
                         rs.getInt("phoneNumberID"),
                         rs.getString("phoneNumberString")
                 );
@@ -62,14 +62,14 @@ public class PhoneNumberService {
     /**
      * Method to get create a PhoneNumber in the database
      *
-     * @param PhoneNumber phone number to be created
+     * @param HotelPhoneNumber phone number to be created
      * @return String returned that states if the PhoneNumber was created or not
      * @throws Exception when trying to connect to database
      */
-    public String createPhoneNumber(PhoneNumber phoneNumber) throws Exception {
+    public String createPhoneNumber(HotelPhoneNumber phoneNumber) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO PhoneNumber (phoneNumberID, phoneNumberString)"
+        String sql = "INSERT INTO HotelPhoneNumber (phoneNumberID, phoneNumberString)"
                 + " VALUES (?, ?)";
         //Connection to database
         Connection con = null;
@@ -118,16 +118,17 @@ public class PhoneNumberService {
     /**
      * Method to get update a PhoneNumber in the database
      *
-     * @param PhoneNumber phone number to be created
-     * @return String returned that states if the PhoneNumber was created or not
+     * @param HotelPhoneNumber phone number to be updated
+     * @param oldPhoneNumber old phone number to identify the phone number to update
+     * @return String returned that states if the PhoneNumber was updated or not
      * @throws Exception when trying to connect to database
      */
-    public String updatePhoneNumber(PhoneNumber phoneNumber) throws Exception {
+    public String updatePhoneNumber(HotelPhoneNumber phoneNumber, String oldPhoneNumber) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE PhoneNumber"
+        String sql = "UPDATE HotelPhoneNumber"
                 + "SET phoneNumberString=?"
-                + "WHERE phoneNumberID=?";
+                + "WHERE phoneNumberID=? AND phoneNumberString=?";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -148,6 +149,7 @@ public class PhoneNumberService {
             //Fill placeholders ? of statement
             st.setString(1, phoneNumber.getPhoneNumberString());
             st.setInt(2, phoneNumber.getPhoneNumberID());
+            st.setString(3, oldPhoneNumber);
 
             //Execute query
             st.executeUpdate();
@@ -172,16 +174,16 @@ public class PhoneNumberService {
     }
 
     /**
-     * Method to delete a PhoneNumber from the database by its phoneNumberID
+     * Method to delete a HotelPhoneNumber from the database by its phoneNumberString
      *
-     * @param id phoneNumberID of the PhoneNumber to delete from the database
+     * @param str phoneNumberString of the PhoneNumber to delete from the database
      * @return String that states if the PhoneNumber was deleted or not
      * @throws Exception when trying to connect to database
      */
-    public String deletePhoneNumber(int id) throws Exception {
+    public String deletePhoneNumber(String id) throws Exception {
 
         //SQL query with placeholder id
-        String sql = "DELETE FROM PhoneNumber WHERE personID = ?";
+        String sql = "DELETE FROM HotelPhoneNumber WHERE phoneNumberString = ?";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -197,7 +199,7 @@ public class PhoneNumberService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholder ? of statement
-            st.setInt(1, id);
+            st.setString(1, id);
 
             //Execute query
             st.executeQuery();

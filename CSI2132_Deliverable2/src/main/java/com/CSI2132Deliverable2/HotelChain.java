@@ -8,18 +8,14 @@ public class HotelChain {
     private String hotelChainID;
     private String addressOfCentralOffices;
     private int numberOfHotels;
-    private int emailAddressID;
-    private int phoneNumberID;
 
     /*
     * CONSTRUCTORS
      */
-    public HotelChain(String hcID, String aOCO, int nOH, int eaID, int pnID) {
+    public HotelChain(String hcID, String aOCO, int nOH) {
         setHotelChainID(hcID);
         setAddressOfCentralOffices(aOCO);
         setNumberOfHotels(nOH);
-        setEmailAddressID(eaID);
-        setPhoneNumberID(pnID);
     }
 
     /*
@@ -34,12 +30,6 @@ public class HotelChain {
     public int getNumberOfHotels() {return this.numberOfHotels;}
     public void setNumberOfHotels(int nOH) {this.numberOfHotels = nOH;}
 
-    public int getEmailAddressID() {return this.emailAddressID;}
-    public void setEmailAddressID(int eaID) {this.emailAddressID = eaID;}
-
-    public int getPhoneNumberID() {return this.phoneNumberID;}
-    public void setPhoneNumberID(int pnID) {this.phoneNumberID = pnID;}
-
     /*
      * METHODS
      */
@@ -47,9 +37,7 @@ public class HotelChain {
         return "<ul>"
                 + "<li>hotelChain= " + this.getHotelChainID() + "</li>"
                 + "<li>hotelChain= " + this.getAddressOfCentralOffices() + "</li>"
-                + "<li>hotelChain= " + this.getNumberOfHotels() + "</li>"
-                + "<li>hotelChain= " + this.getEmailAddressID() + "</li>"
-                + "<li>hotelChain= " + this.getPhoneNumberID() + "</li>";
+                + "<li>hotelChain= " + this.getNumberOfHotels() + "</li>";
     }
 
 }

@@ -10,21 +10,17 @@ public class Hotel {
     private int rating;
     private String hotelAddress;
     private int numberOfRooms;
-    private int emailAddressID;
-    private int phoneNumberID;
     private String managerID;
 
     /*
      * CONSTRUCTORS
      */
-    public Hotel(int hID, String hcID, int rating, String address, int nOR, int eaID, int pnID, String mID) {
+    public Hotel(int hID, String hcID, int rating, String address, int nOR, String mID) {
         setHotelID(hID);
         setHotelChainID(hcID);
         setRating(rating);
         setHotelAddress(address);
         setNumberOfRooms(nOR);
-        setEmailAddressID(eaID);
-        setPhoneNumberID(pnID);
         setManagerID(mID);
     }
 
@@ -46,12 +42,6 @@ public class Hotel {
     public int getNumberOfRooms() {return this.numberOfRooms;}
     public void setNumberOfRooms(int nOR) {this.numberOfRooms = nOR;}
 
-    public int getEmailAddressID() {return this.emailAddressID;}
-    public void setEmailAddressID(int eaID) {this.emailAddressID = eaID;}
-
-    public int getPhoneNumberID() {return this.phoneNumberID;}
-    public void setPhoneNumberID(int pnID) {this.phoneNumberID = pnID;}
-
     public String getManagerID() {return this.managerID;}
     public void setManagerID(String mID) {this.managerID = mID;}
 
@@ -65,8 +55,6 @@ public class Hotel {
                 + "<li>hotel= " + this.getRating() + "</li>"
                 + "<li>hotel= " + this.getHotelAddress() + "</li>"
                 + "<li>hotel= " + this.getNumberOfRooms() + "</li>"
-                + "<li>hotel= " + this.getEmailAddressID() + "</li>"
-                + "<li>hotel= " + this.getPhoneNumberID() + "</li>"
                 + "<li>hotel= " + this.getManagerID() + "</li>";
     }
 

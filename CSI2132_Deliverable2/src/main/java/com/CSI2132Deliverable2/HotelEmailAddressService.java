@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
-public class EmailAddressService {
+public class HotelEmailAddressService {
 
     /*
      * METHODS
@@ -13,17 +13,17 @@ public class EmailAddressService {
     /**
      * Method to get all EmailAddresses from the database
      *
-     * @return list of EmailAddresses from database
+     * @return list of HotelEmailAddresses from database
      * @throws Exception when trying to connect to database
      */
-    public List<EmailAddress> getEmailAddresses() throws Exception {
+    public List<HotelEmailAddress> getEmailAddresses() throws Exception {
 
         //SQL query
-        String sql = "SELECT * FROM EmailAddress";
+        String sql = "SELECT * FROM HotelEmailAddress";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
         //Data structure to return all objects generated from database
-        List<EmailAddress> emailAddresses = new ArrayList<EmailAddress>();
+        List<HotelEmailAddress> emailAddresses = new ArrayList<HotelEmailAddress>();
 
         //Try to connect to the database; catch any exceptions
         try (Connection con = db.getConnection()) {
@@ -35,7 +35,7 @@ public class EmailAddressService {
             //Create all the EmailAddress objects from the result
             while(rs.next()) {
                 //Create new EmailAddress object
-                EmailAddress eA =  new EmailAddress(
+                HotelEmailAddress eA =  new HotelEmailAddress(
                         rs.getInt("emailAddressID"),
                         rs.getString("emailAddressString")
                 );
@@ -62,14 +62,14 @@ public class EmailAddressService {
     /**
      * Method to get create a EmailAddress in the database
      *
-     * @param EmailAddress email address to be created
+     * @param HotelEmailAddress email address to be created
      * @return String returned that states if the EmailAddress was created or not
      * @throws Exception when trying to connect to database
      */
-    public String createEmailAddress(EmailAddress emailAddress) throws Exception {
+    public String createEmailAddress(HotelEmailAddress emailAddress) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO EmailAddress (emailAddressID, emailAddressString)"
+        String sql = "INSERT INTO HotelEmailAddress (emailAddressID, emailAddressString)"
                 + " VALUES (?, ?)";
         //Connection to database
         Connection con = null;
@@ -118,16 +118,17 @@ public class EmailAddressService {
     /**
      * Method to get update a EmailAddress in the database
      *
-     * @param EmailAddress email address to be created
+     * @param HotelEmailAddress email address to be created
+     * @param oldEmailAddress email address to find HotelEmailAddress to update
      * @return String returned that states if the EmailAddress was created or not
      * @throws Exception when trying to connect to database
      */
-    public String updateEmailAddress(EmailAddress emailAddress) throws Exception {
+    public String updateEmailAddress(HotelEmailAddress emailAddress, String oldEmailAddress) throws Exception {
 
         //SQL query with placeholder of all attributes
         String sql = "UPDATE EmailAddress"
                 + "SET emailAddressString=?"
-                + "WHERE emailAddressID=?";
+                + "WHERE emailAddressID=? AND emailAddressStrng=?";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -172,16 +173,16 @@ public class EmailAddressService {
     }
 
     /**
-     * Method to delete a EmailAddress from the database by its emailAddressID
+     * Method to delete a HotelEmailAddress from the database by its emailAddressString
      *
-     * @param id emailAddressID of the EmailAddress to delete from the database
+     * @param id emailAddressString of the EmailAddress to delete from the database
      * @return String that states if the EmailAddress was deleted or not
      * @throws Exception when trying to connect to database
      */
-    public String deleteEmailAddress(int id) throws Exception {
+    public String deleteEmailAddress(String id) throws Exception {
 
         //SQL query with placeholder id
-        String sql = "DELETE FROM EmailAddress WHERE emailAddressID = ?";
+        String sql = "DELETE FROM HotelEmailAddress WHERE emailAddressString = ?";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -197,7 +198,7 @@ public class EmailAddressService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholder ? of statement
-            st.setInt(1, id);
+            st.setString(1, id);
 
             //Execute query
             st.executeQuery();

@@ -41,8 +41,6 @@ public class HotelService {
                         rs.getInt("rating"),
                         rs.getString("hotelAddress"),
                         rs.getInt("numberOfRooms"),
-                        rs.getInt("emailAddressID"),
-                        rs.getInt("phoneNumberID"),
                         rs.getString("managerID")
                 );
                 hotels.add(h);
@@ -75,8 +73,8 @@ public class HotelService {
     public String createHotel(Hotel hotel) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO Hotel (hotelID, hotelChainID, rating, hotelAddress, numberOfRooms, emailAddressID, phoneNumberID, managerID)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ? , ?)";
+        String sql = "INSERT INTO Hotel (hotelID, hotelChainID, rating, hotelAddress, numberOfRooms, managerID)"
+                + " VALUES (?, ?, ?, ?, ?, ?)";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -100,9 +98,7 @@ public class HotelService {
             st.setInt(3, hotel.getRating());
             st.setString(4, hotel.getHotelAddress());
             st.setInt(5, hotel.getNumberOfRooms());
-            st.setInt(6, hotel.getEmailAddressID());
-            st.setInt(7, hotel.getPhoneNumberID());
-            st.setString(8, hotel.getManagerID());
+            st.setString(6, hotel.getManagerID());
 
             //Execute query
             int output = st.executeUpdate();
@@ -138,7 +134,7 @@ public class HotelService {
 
         //SQL query with placeholder of all attributes
         String sql = "UPDATE Hotel"
-                + "SET hotelChainID=?, ratin=?, hotelAddress=?, numberOfRooms=?, emailAddressID=?, phoneNumberID=?, managerID=?"
+                + "SET hotelChainID=?, ratin=?, hotelAddress=?, numberOfRooms=?, managerID=?"
                 + "WHERE hotelID=?";
         //Connection to database
         Connection con = null;
@@ -162,10 +158,8 @@ public class HotelService {
             st.setInt(2, hotel.getRating());
             st.setString(3, hotel.getHotelAddress());
             st.setInt(4, hotel.getNumberOfRooms());
-            st.setInt(5, hotel.getEmailAddressID());
-            st.setInt(6, hotel.getPhoneNumberID());
-            st.setString(7, hotel.getManagerID());
-            st.setInt(8, hotel.getHotelID());
+            st.setString(5, hotel.getManagerID());
+            st.setInt(6, hotel.getHotelID());
 
 
             //Execute query

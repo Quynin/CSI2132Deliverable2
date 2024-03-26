@@ -1,17 +1,17 @@
 package com.CSI2132Deliverable2;
 
-public class EmailAddress {
+public class HotelChainEmailAddress {
 
     /*
      * VARIABLES
      */
-    private int emailAddressID;
+    private String emailAddressID;
     private String emailAddressString;
 
     /*
      * CONSTRUCTORS
      */
-    public EmailAddress(int eaID, String eaS) {
+    public HotelChainEmailAddress(String eaID, String eaS) {
         setEmailAddressID(eaID);
         setEmailAddressString(eaS);
     }
@@ -19,9 +19,8 @@ public class EmailAddress {
     /*
      * ACCESSORS & MODIFIERS
      */
-    public int getEmailAddressID() {return emailAddressID;}
-
-    public void setEmailAddressID(int eaID) {this.emailAddressID = eaID;}
+    public String getEmailAddressID() {return emailAddressID;}
+    public void setEmailAddressID(String eaID) {this.emailAddressID = eaID;}
 
     public String getEmailAddressString() {return emailAddressString;}
     public void setEmailAddressString(String eaS) {this.emailAddressString = eaS;}

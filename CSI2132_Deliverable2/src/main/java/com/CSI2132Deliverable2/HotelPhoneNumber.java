@@ -1,6 +1,6 @@
 package com.CSI2132Deliverable2;
 
-public class PhoneNumber {
+public class HotelPhoneNumber {
 
     /*
      * VARIABLES
@@ -11,7 +11,7 @@ public class PhoneNumber {
     /*
      * CONSTRUCTORS
      */
-    public PhoneNumber(int pnID, String pnS) {
+    public HotelPhoneNumber(int pnID, String pnS) {
         setPhoneNumberID(pnID);
         setPhoneNumberString(pnS);
     }
