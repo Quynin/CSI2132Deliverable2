@@ -80,51 +80,36 @@
 
 <body>
 
-    <div class="container">
+    <jsp:include page="navbar.jsp"/>
+
+    <input type="hidden" name="message" id="message" value='<%=msgField%>' >
+
+    <div class="container" id="row-container">
         <div class="row" id="row">
-            <div class="col-md-12">
-                <div class="card" id="card-container">
+            <div class="col-md-4">
+                <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
-                        <% if (hCList.size() == 0) { %>
-                        <h1 style="margin-top: 5rem;">No HotelChains found!</h1>
-                        <% } else { %>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Hotel Name</th>
-                                    <th>Central Office Address</th>
-                                    <th>Number of Hotels</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <%
-                                for (HotelChain hC : hCList) { %>
-                                <tr>
-                                    <td><%= hC.getHotelChainID() %></td>
-                                    <td><%= hC.getAddressOfCentralOffices() %></td>
-                                    <td><%= hC.getNumberOfHotels() %></td>
-                                    <td>
-                                        <a type="button" onclick="setModalFields(this)"
-                                           data-toggle="modal" data-id="<%= hC.getHotelChainID() %>"
-                                           data-name="<%= hC.getAddressOfCentralOffices() %>"
-                                           data-email="<%= hC.getNumberOfHotels() %>"
-                                           data-target="#editModal">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <% } %>
-                                </tbody>
-                            </table>
-                        </div>
-                        <% } %>
+                        <h4 class="card-title">View Customers</h4>
+                        <p class="card-text" id="paragraph">Simple Query to database to show all customers</p>
+                        <a class="btn btn-primary" id="show-btn" href="customers.jsp">Show</a>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card" id="card-container-layout">
+                    <div class="card-body" id="card">
+                        <h4 class="card-title">Create Customer</h4>
+                        <p class="card-text" id="paragraph">Enter a new customer into the database<br></p>
+                        <a class="btn btn-primary" id="show-btn" href="insert-customer.jsp">Create</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
 

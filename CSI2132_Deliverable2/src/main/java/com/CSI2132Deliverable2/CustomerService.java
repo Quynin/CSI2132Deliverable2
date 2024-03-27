@@ -81,8 +81,6 @@ public class CustomerService {
         //String to return
         String message = "";
 
-        //Print Customer to console
-        System.out.println(customer);
 
         //Try to connect to the database; catch any exceptions
         try {
