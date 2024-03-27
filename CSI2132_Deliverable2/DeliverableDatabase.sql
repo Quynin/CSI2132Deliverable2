@@ -6,6 +6,45 @@ create domain non_neg_double NUMERIC(8, 2)
 constraint non_neg_payment
 check(value >= 0);
 
+--Function for trigger to check if attempting to delete hotel chains with existing hotels
+CREATE FUNCTION check_hotelChain_has_hotels ()
+	RETURNS trigger AS
+	$BODY$
+	BEGIN
+	--Check if there exist hotels of the hotelChain
+	IF (SELECT COUNT (hotelID) FROM Hotel WHERE Hotel.hotelChainID = OLD.hotelChainID) > 0 THEN
+		RAISE EXCEPTION 'Cannot delete HotelChain with existing Hotels.';
+	END IF;
+	
+RETURN NEW;
+END
+$BODY$ LANGUAGE plpgsql;
+--Trigger for checking HotelChain before delete
+CREATE TRIGGER check_hotelChain_before_delete
+BEFORE DELETE ON HotelChain
+FOR EACH ROW
+EXECUTE PROCEDURE check_hotelChain_has_hotels();
+
+--Function for trigger to check if attempting to delete hotels with existing hotel rooms
+CREATE FUNCTION check_hotel_has_rooms ()
+	RETURNS trigger AS
+	$BODY$
+	BEGIN
+	--Check if there exist hotels of the hotelChain
+	IF (SELECT COUNT (roomID) FROM HotelRoom WHERE HotelRoom.hotelID = OLD.hotelID) > 0 THEN
+		RAISE EXCEPTION 'Cannot delete Hotel with existing Rooms.';
+	END IF;
+	
+RETURN NEW;
+END
+$BODY$ LANGUAGE plpgsql;
+--Trigger for checking Hotel before delete
+CREATE TRIGGER check_hotel_before_delete
+BEFORE DELETE ON Hotel
+FOR EACH ROW
+EXECUTE PROCEDURE check_hotel_has_rooms();
+
+
 CREATE TABLE Person (
     personID VARCHAR(20), PRIMARY KEY(personID),
     personIDType VARCHAR(20) NOT NULL,
@@ -14,13 +53,13 @@ CREATE TABLE Person (
 );
 
 CREATE TABLE HotelChain (
-	hotelChainID VARCHAR(50), PRIMARY KEY(hotelChainID),
+	hotelChainID VARCHAR(50), PRIMARY KEY(hotelChainID), 
     addressOfCentralOffices VARCHAR(50)
 );
 
 CREATE TABLE Hotel (
     hotelID SERIAL, PRIMARY KEY(hotelID),
-    hotelChainID VARCHAR(50), FOREIGN KEY(hotelChainID) REFERENCES HotelChain(hotelChainID),
+    hotelChainID VARCHAR(50), FOREIGN KEY(hotelChainID) REFERENCES HotelChain(hotelChainID) ON UPDATE CASCADE,
     rating INT check((1 <= rating) and (rating <= 10)),
     hotelAddress VARCHAR(50),
     managerID VARCHAR(20), FOREIGN KEY(managerID) REFERENCES Person(personID)
@@ -28,7 +67,7 @@ CREATE TABLE Hotel (
 
 CREATE TABLE HotelRoom (
 	roomID SERIAL UNIQUE,
-    hotelID non_neg, PRIMARY KEY(hotelID, roomID), FOREIGN KEY(hotelID) REFERENCES Hotel(hotelID),
+    hotelID non_neg, PRIMARY KEY(hotelID, roomID), FOREIGN KEY(hotelID) REFERENCES Hotel(hotelID) ON UPDATE CASCADE,
     price non_neg_double NOT NULL, 
     amenities VARCHAR(200),
     capacityOfRoom non_neg NOT NULL,
@@ -39,8 +78,8 @@ CREATE TABLE HotelRoom (
 
 CREATE TABLE Booking (
     bookingID SERIAL, PRIMARY KEY(bookingID),
-    roomID non_neg, FOREIGN KEY(roomID) REFERENCES HotelRoom(roomID),
-    customerID VARCHAR(20), FOREIGN KEY(customerID) REFERENCES Person(personID),
+    roomID non_neg, FOREIGN KEY(roomID) REFERENCES HotelRoom(roomID) ON DELETE SET NULL,
+    customerID VARCHAR(20), FOREIGN KEY(customerID) REFERENCES Person(personID) ON UPDATE CASCADE ON DELETE SET NULL,
     startDate DATE check(startDate < endDate),
     endDate DATE check(endDate > startDate),
     bookingCost non_neg_double NOT NULL, 
@@ -48,34 +87,34 @@ CREATE TABLE Booking (
 );
 
 CREATE TABLE Customer (
-    customerID VARCHAR(20), PRIMARY KEY(customerID), FOREIGN KEY(customerID) REFERENCES Person(personID),
+    customerID VARCHAR(20), PRIMARY KEY(customerID), FOREIGN KEY(customerID) REFERENCES Person(personID) ON UPDATE CASCADE ON DELETE CASCADE,
     registrationDate DATE NOT NULL
 );
 
 CREATE TABLE Employee (
-    employeeID VARCHAR(20), PRIMARY KEY(employeeID), FOREIGN KEY(employeeID) REFERENCES Person(personID),
+    employeeID VARCHAR(20), PRIMARY KEY(employeeID), FOREIGN KEY(employeeID) REFERENCES Person(personID) ON UPDATE CASCADE ON DELETE CASCADE,
     hotelID non_neg, FOREIGN KEY(hotelID) REFERENCES Hotel(hotelID),
     employeeRole VARCHAR(20)
 );
 
 CREATE TABLE HotelEmailAddress (
-    emailAddressID non_neg, FOREIGN KEY(emailAddressID) REFERENCES Hotel(hotelID),
+    emailAddressID non_neg, FOREIGN KEY(emailAddressID) REFERENCES Hotel(hotelID) ON UPDATE CASCADE ON DELETE CASCADE,
     emailAddressString VARCHAR(50),
     PRIMARY KEY(emailAddressID, emailAddressString)
 );
 CREATE TABLE HotelChainEmailAddress (
-    emailAddressID VARCHAR(50), FOREIGN KEY(emailAddressID) REFERENCES HotelChain(hotelChainID),
+    emailAddressID VARCHAR(50), FOREIGN KEY(emailAddressID) REFERENCES HotelChain(hotelChainID) ON UPDATE CASCADE ON DELETE CASCADE,
     emailAddressString VARCHAR(50),
     PRIMARY KEY(emailAddressID, emailAddressString)
 );
 
 CREATE TABLE HotelPhoneNumber (
-    phoneNumberID non_neg, FOREIGN KEY(phoneNumberID) REFERENCES Hotel(HotelID),
+    phoneNumberID non_neg, FOREIGN KEY(phoneNumberID) REFERENCES Hotel(HotelID) ON UPDATE CASCADE ON DELETE CASCADE,
     phoneNumberString VARCHAR(20),
     PRIMARY KEY(phoneNumberID, phoneNumberString)
 );
 CREATE TABLE HotelChainPhoneNumber (
-	phoneNumberID VARCHAR(50), FOREIGN KEY(phoneNumberID) REFERENCES HotelChain(hotelChainID),
+	phoneNumberID VARCHAR(50), FOREIGN KEY(phoneNumberID) REFERENCES HotelChain(hotelChainID) ON UPDATE CASCADE ON DELETE CASCADE,
 	phoneNumberString VARCHAR(50),
 	PRIMARY KEY(phoneNumberID, phoneNumberString)
 );
@@ -104,7 +143,7 @@ VALUES
 ('Fancy Hotels', 'centralOffices1@fancyHotels.be'),
 ('Fancy Hotels', 'centralOffices2@fancyHotels.be'),
 ('Fancy Hotels', 'legal@fancyHotels.be')
---ThisHotelChainDoesNotUSeEmails emails
+--ThisHotelChainDoesNotUSeEmail emails
 --These do not exist
 ;
 INSERT INTO HotelChainPhoneNumber
