@@ -12,6 +12,28 @@ public class Customer extends Person {
     /*
      * CONSTRUCTORS
      */
+
+    /**
+     * Constructor for without rDate
+     *
+     * @param id String id of the Customer
+     * @param idType String type of the ID (e.g: SIN or SSN)
+     * @param name String name of the Customer
+     * @param address String address of the Customer
+     */
+    public Customer(String id, String idType, String name, String address) {
+        super(id, idType, name, address);
+    }
+
+    /**
+     * Constructor for with rDate
+     *
+     * @param id String id of the Customer
+     * @param idType String type of the ID (e.g: SIN or SSN)
+     * @param name String name of the Customer
+     * @param address String address of the Customer
+     * @param rDate Date of registration
+     */
     public Customer(String id, String idType, String name, String address, Date rDate) {
         super(id, idType, name, address);
         setRegistrationDate(rDate);
