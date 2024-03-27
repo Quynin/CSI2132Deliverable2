@@ -50,8 +50,12 @@ public class Customer extends Person {
      */
     @Override
     public String toString() {
-        return super.toString()
-                + "<li>customer= " + this.getRegistrationDate().toString() + "</li>";
+        if (this.getRegistrationDate() == null) { //If no registration date to print
+            return super.toString();
+        } else { //If there is a registration date to print
+            return super.toString()
+                    + "<li>customer= " + this.getRegistrationDate().toString() + "</li>";
+        }
     }
 
 }
