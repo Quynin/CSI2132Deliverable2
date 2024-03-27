@@ -73,7 +73,7 @@ public class CustomerService {
 
         //SQL query with placeholder of all attributes
         String sql = "INSERT INTO Customer (customerID, registrationDate)"
-                + " VALUES (?, ?)";
+                + " VALUES (?, NOW() )";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -93,7 +93,9 @@ public class CustomerService {
 
             //Fill placeholders ? of statement
             st.setString(1, customer.getID());
-            st.setDate(2, new java.sql.Date(customer.getRegistrationDate().getTime()));
+
+            //Customer registrationDate is handled by the SQL server as it inputs the Customer
+            //st.setDate(2, new java.sql.Date(customer.getRegistrationDate().getTime()));
 
             //Execute query
             int output = st.executeUpdate();
