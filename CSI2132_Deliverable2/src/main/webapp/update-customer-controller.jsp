@@ -4,19 +4,29 @@
 <%@ page import="com.CSI2132Deliverable2.Customer" %>
 <%@ page import="com.CSI2132Deliverable2.Message" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
-
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.ParseException" %>
+<%@ page import="java.util.List" %>
 <%
     // get customer info from the request
     String id = request.getParameter("id");
     String idType = request.getParameter("idType");
+
     String name = request.getParameter("name");
     String address = request.getParameter("address");
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat();
-    Date registrationDate = dateFormat.parse(request.getParameter("registrationDate"));
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+    Date registrationDate;
+
+
+    System.out.println(request.getParameter("registrationDate"));
+    registrationDate = formatter.parse(request.getParameter("registrationDate"));
+
+
     CustomerService customerService = new CustomerService();
+
     // create customer object
     Customer customer = new Customer(id, idType, name, address, registrationDate);
     Message msg;

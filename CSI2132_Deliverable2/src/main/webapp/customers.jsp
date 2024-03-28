@@ -113,8 +113,9 @@
                                     <td>
                                         <a type="button" onclick="setModalFields(this)"
                                            data-toggle="modal" data-id="<%= customer.getID() %>"
-                                           data-idType="<%= customer.getIDType() %>" data-name="<%= customer.getFullName() %>"
-                                           data-address="<%= customer.getAddress() %>" data-registrationDate="<%= customer.getRegistrationDate() %>"
+                                           data-idtype="<%= customer.getIDType() %>"
+                                           data-name="<%= customer.getFullName() %>"
+                                           data-address="<%= customer.getAddress() %>" data-registrationdate="<%= customer.getRegistrationDate() %>"
                                            data-target="#editModal">
                                             <i class="fa fa-edit"></i>
                                         </a>
@@ -134,10 +135,10 @@
     <script>
         function setModalFields(row) {
             document.getElementById("id").value = row.dataset.id;
-            document.getElementById("idType").value = row.dataset.idType;
+            document.getElementById("idType").value = row.dataset.idtype;
             document.getElementById("name").value = row.dataset.name;
             document.getElementById("address").value = row.dataset.address;
-            document.getElementById("registrationDate").value = row.dataset.registrationDate;
+            document.getElementById("registrationDate").value = row.dataset.registrationdate;
 
             document.getElementById("modal-form").action = "update-customer-controller.jsp";
             document.getElementById("modal-form").method = "POST";
