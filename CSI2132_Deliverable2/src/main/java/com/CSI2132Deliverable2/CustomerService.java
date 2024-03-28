@@ -159,8 +159,10 @@ public class CustomerService {
             //Prepare statement
             PreparedStatement st = con.prepareStatement(sql);
 
+            System.out.println("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             //Fill placeholders ? of statement
-            st.setDate(1, new java.sql.Date(customer.getRegistrationDate().getTime()));
+            st.setDate(1, (java.sql.Date) customer.getRegistrationDate());
+            System.out.println("SDFDSF");
             st.setString(2, customer.getID());
 
             //Execute query
