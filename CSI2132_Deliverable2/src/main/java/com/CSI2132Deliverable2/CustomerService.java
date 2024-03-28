@@ -71,6 +71,11 @@ public class CustomerService {
      */
     public String createCustomer(Customer customer) throws Exception {
 
+        //Create the Person in the database for Customer to build from
+        PersonService pS = new PersonService();
+        String result = pS.createPerson(customer);
+        System.out.println(result);
+
         //SQL query with placeholder of all attributes
         String sql = "INSERT INTO Customer (customerID, registrationDate)"
                 + " VALUES (?, NOW() )";
@@ -81,6 +86,8 @@ public class CustomerService {
         //String to return
         String message = "";
 
+        //Print Customer to console
+        System.out.println(customer);
 
         //Try to connect to the database; catch any exceptions
         try {
