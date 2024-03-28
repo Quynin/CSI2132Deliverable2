@@ -21,6 +21,8 @@
 
         String value = customerService.createCustomer(customer);
         System.out.println(value);
+
+        //if the value contains duplicate key then this is an error message
         // if the value contains error/Error then this is an error message
         if (value.contains("Error") || value.contains("error")) msg = new Message("error", value);
         // else the customer was successfully created
