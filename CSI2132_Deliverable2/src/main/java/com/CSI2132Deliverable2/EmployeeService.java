@@ -237,6 +237,11 @@ public class EmployeeService {
             if (message.equals("")) message = "Employee successfully deleted!";
         }
 
+        //Delete the Person in the database for Employee to be fully deleted
+        PersonService pS = new PersonService();
+        String result = pS.deletePerson(id);
+        System.out.println(result);
+
         //Return message
         return message;
     }

@@ -243,6 +243,11 @@ public class CustomerService {
             if (message.equals("")) message = "Customer successfully deleted!";
         }
 
+        //Delete the Person in the database for Customer to be fully deleted
+        PersonService pS = new PersonService();
+        String result = pS.deletePerson(id);
+        System.out.println(result);
+
         //Return message
         return message;
     }
