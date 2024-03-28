@@ -138,9 +138,14 @@ public class EmployeeService {
      */
     public String updateEmployee(Employee employee) throws Exception {
 
+        //Update the Person in the database for Employee to update with
+        PersonService pS = new PersonService();
+        String result = pS.updatePerson(employee);
+        System.out.println(result);
+
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE Employee"
-                + "SET hotelID=?, employeeRole=?"
+        String sql = "UPDATE Employee "
+                + "SET hotelID=?, employeeRole=? "
                 + "WHERE employeeID=?";
         //Connection to database
         Connection con = null;

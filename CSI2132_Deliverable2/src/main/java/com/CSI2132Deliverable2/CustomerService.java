@@ -138,10 +138,17 @@ public class CustomerService {
      */
     public String updateCustomer(Customer customer) throws Exception {
 
+        //Update the Person in the database for Customer to update with
+        PersonService pS = new PersonService();
+        String result = pS.updatePerson(customer);
+        System.out.println(result);
+
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE Customer"
-                + "SET registrationDate=?"
-                + "WHERE customerID=?";
+        String sql = "UPDATE Customer "
+                + "SET registrationDate=? "
+                + "WHERE customerID=?;";
+        //System.out.println(sql);
+
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -159,11 +166,14 @@ public class CustomerService {
             //Prepare statement
             PreparedStatement st = con.prepareStatement(sql);
 
-            System.out.println("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            java.sql.Date temp =  new java.sql.Date(customer.getRegistrationDate().getTime());
+            //System.out.println("SQL DATE: " + temp);
+
             //Fill placeholders ? of statement
-            st.setDate(1, (java.sql.Date) customer.getRegistrationDate());
-            System.out.println("SDFDSF");
+            st.setDate(1, temp);
             st.setString(2, customer.getID());
+
+            //System.out.println("QUERY TO PERFORM: " + st.toString());
 
             //Execute query
             st.executeUpdate();
@@ -197,7 +207,7 @@ public class CustomerService {
     public String deleteCustomer(String id) throws Exception {
 
         //SQL query with placeholder id
-        String sql = "DELETE FROM Customer WHERE customerID = ?";
+        String sql = "DELETE FROM Customer WHERE customerID = ?;";
         //Connection to database
         Connection con = null;
         //Database connection object
