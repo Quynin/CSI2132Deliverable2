@@ -129,8 +129,8 @@ public class PersonService {
     public String updatePerson(Person person) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE Person"
-                + "SET personIDType=?, personFullName=?, personAddress=?"
+        String sql = "UPDATE Person "
+                + "SET personIDType=?, personFullName=?, personAddress=? "
                 + "WHERE personID=?";
         //Connection to database
         Connection con = null;
