@@ -120,6 +120,12 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>
+                                    <form method="POST" action="delete-customer-controller.jsp">
+                                        <td>
+                                            <input type="hidden" value="<%= customer.getID() %>" name="id" />
+                                            <button style="all: unset; cursor: pointer;" type="submit"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </form>
                                 </tr>
                                 <% } %>
                                 </tbody>

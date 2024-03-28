@@ -20,8 +20,6 @@
 
     Date registrationDate;
 
-
-    System.out.println(request.getParameter("registrationDate"));
     registrationDate = formatter.parse(request.getParameter("registrationDate"));
 
 
