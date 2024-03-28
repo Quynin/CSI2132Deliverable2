@@ -72,6 +72,15 @@ public class EmployeeService {
      */
     public String createEmployee(Employee employee) throws Exception {
 
+        //Create the Person in the database for Employee to build from
+        PersonService pS = new PersonService();
+        String result = pS.createPerson(employee);
+
+        //If the createPerson found an already-existing person
+        if (result.contains("duplicate key value")) {
+            return "Person already exists in the database.";
+        }
+
         //SQL query with placeholder of all attributes
         String sql = "INSERT INTO Employee (employeeID, hotelID, employeeRole)"
                 + " VALUES (?, ?, ?)";
