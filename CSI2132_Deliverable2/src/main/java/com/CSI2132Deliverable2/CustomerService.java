@@ -11,6 +11,65 @@ public class CustomerService {
      */
 
     /**
+     * Method to get queried Customer from the database
+     *
+     * @param id the id of the Customer to be found
+     * @return queried Customer from database or null if the customer was unable to be found
+     * @throws Exception when trying to connect to database
+     */
+    public Customer getCustomer(String id) throws Exception {
+
+        //SQL query
+        String sql = "SELECT * FROM Person p JOIN Customer c ON p.personID = c.customerID AND c.customerID = ?;";
+        //Database connection object
+        ConnectionDB db = new ConnectionDB();
+        //Data structure to return object generated from database
+        Customer result = null;
+
+        //Try to connect to the database; catch any exceptions
+        try (Connection con = db.getConnection()) {
+
+            //Create result set
+            PreparedStatement st = con.prepareStatement(sql);
+
+            //Fill placeholders ? of statement
+            st.setString(1, id);
+
+            //Execute query
+            ResultSet rs =  st.executeQuery();
+
+            //Create Customer object from result
+            while(rs.next()) {
+                //Create new Customer object
+                result = new Customer(
+                        rs.getString("customerID"), //POSSIBLY REPLACE WITH "personID"?
+                        rs.getString("personIDType"),
+                        rs.getString("personFullName"),
+                        rs.getString("personAddress"),
+                        rs.getDate("registrationDate")
+                );
+
+            }
+
+            //Close the result set
+            rs.close();
+            //Close the statement
+            st.close();
+            con.close();
+            db.close();
+
+            //Return customer
+            return result;
+
+        } catch (Exception e) {
+            //Throw the error that occurred
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
+
+    /**
      * Method to get all Customers from the database
      *
      * @return list of Customers from database

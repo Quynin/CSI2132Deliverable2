@@ -19,11 +19,11 @@ public class HotelService {
     public List<Hotel> getHotels() throws Exception {
 
         //SQL query
-        String sql = "SELECT h.hotelID, h.hotelChainID, h.rating, h.hotelAddress, numberOfRooms, h.managerID\n" +
-                "                FROM Hotel h,\n" +
-                "                LATERAL(\n" +
-                "                SELECT COUNT(*) AS numberOfRooms\n" +
-                "                FROM HotelRoom hR\n" +
+        String sql = "SELECT h.hotelID, h.hotelChainID, h.rating, h.hotelAddress, numberOfRooms, h.managerID" +
+                "                FROM Hotel h" +
+                "                LATERAL(" +
+                "                SELECT COUNT(*) AS numberOfRooms" +
+                "                FROM HotelRoom hR" +
                 "                WHERE h.hotelID = hR.hotelID);";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
@@ -137,8 +137,8 @@ public class HotelService {
     public String updateHotel(Hotel hotel) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE Hotel"
-                + "SET hotelChainID=?, ratin=?, hotelAddress=?, managerID=?"
+        String sql = "UPDATE Hotel "
+                + "SET hotelChainID=?, rating=?, hotelAddress=?, managerID=? "
                 + "WHERE hotelID=?";
         //Connection to database
         Connection con = null;

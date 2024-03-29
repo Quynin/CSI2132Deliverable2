@@ -137,8 +137,8 @@ public class HotelRoomService {
     public String updateHotelRoom(HotelRoom hotelRoom) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE HotelRoom"
-                + "SET price=?, amenities=?, capacityOfRoom=?, viewFromRoom=?, isExtendable=?, problemsOrDamages=?"
+        String sql = "UPDATE HotelRoom "
+                + "SET price=?, amenities=?, capacityOfRoom=?, viewFromRoom=?, isExtendable=?, problemsOrDamages=? "
                 + "WHERE roomID=? AND hotelID=?";
         //Connection to database
         Connection con = null;

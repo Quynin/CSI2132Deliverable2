@@ -11,6 +11,65 @@ public class EmployeeService {
      */
 
     /**
+     * Method to get queried Employee from the database
+     *
+     * @param id the id of the Employee to be found
+     * @return queried Employee from database or null if the employee was unable to be found
+     * @throws Exception when trying to connect to database
+     */
+    public Employee getEmployee(String id) throws Exception {
+
+        //SQL query
+        String sql = "SELECT * FROM Person p JOIN Employee e ON p.personID = e.employeeID AND e.employeeID = ?;";
+        //Database connection object
+        ConnectionDB db = new ConnectionDB();
+        //Data structure to return object generated from database
+        Employee result = null;
+
+        //Try to connect to the database; catch any exceptions
+        try (Connection con = db.getConnection()) {
+
+            //Create result set
+            PreparedStatement st = con.prepareStatement(sql);
+
+            //Fill placeholders ? of statement
+            st.setString(1, id);
+
+            //Execute query
+            ResultSet rs =  st.executeQuery();
+
+            //Create Employee object from result
+            while(rs.next()) {
+                //Create new Employee object
+                result =  new Employee(
+                        rs.getString("employeeID"), //POSSIBLY REPLACE WITH "personID"?
+                        rs.getString("personIDType"),
+                        rs.getString("personFullName"),
+                        rs.getString("personAddress"),
+                        rs.getInt("hotelID"),
+                        rs.getString("employeeRole")
+                );
+
+            }
+
+            //Close the result set
+            rs.close();
+            //Close the statement
+            st.close();
+            con.close();
+            db.close();
+
+            //Return employee
+            return result;
+
+        } catch (Exception e) {
+            //Throw the error that occurred
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
+    /**
      * Method to get all Employees from the database
      *
      * @return list of Employees from database

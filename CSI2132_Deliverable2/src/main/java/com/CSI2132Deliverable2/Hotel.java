@@ -33,6 +33,8 @@ public class Hotel {
     public String getHotelChainID() {return this.hotelChainID;}
     public void setHotelChainID(String hcID) {this.hotelChainID = hcID;}
 
+    public String getHotelName() {return this.getHotelChainID() + " on " + this.getHotelAddress();}
+
     public int getRating() {return this.rating;}
     public void setRating(int rating) {this.rating = rating;}
 
@@ -52,6 +54,7 @@ public class Hotel {
         return "<ul>"
                 + "<li>hotel= " + this.getHotelID() + "</li>"
                 + "<li>hotel= " + this.getHotelChainID() + "</li>"
+                + "<li>hotel= " + this.getHotelName() + "</li>"
                 + "<li>hotel= " + this.getRating() + "</li>"
                 + "<li>hotel= " + this.getHotelAddress() + "</li>"
                 + "<li>hotel= " + this.getNumberOfRooms() + "</li>"

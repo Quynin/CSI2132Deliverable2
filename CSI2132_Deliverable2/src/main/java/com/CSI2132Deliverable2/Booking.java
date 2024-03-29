@@ -14,11 +14,13 @@ public class Booking {
     private Date endDate;
     private double cost;
     private BookingStatus bookingStatus;
+	private String paymentMethod;
+	private boolean isPaid;
 
     /*
      * CONSTRUCTORS
      */
-	public Booking(int bID, int rID, String cID, Date sDate, Date eDate, double cost, BookingStatus status) {
+	public Booking(int bID, int rID, String cID, Date sDate, Date eDate, double cost, BookingStatus status, String method, boolean iP) {
 		setBookingID(bID);
 		setRoomID(rID);
 		setCustomerID(cID);
@@ -26,6 +28,8 @@ public class Booking {
 		setEndDate(eDate);
 		setCost(cost);
 		setBookingStatus(status);
+		setPaymentMethod(method);
+		setIsPaid(iP);
 	}
 
     /*
@@ -52,6 +56,12 @@ public class Booking {
 	public BookingStatus getBookingStatus() {return this.bookingStatus;}
 	public void setBookingStatus(BookingStatus status) {this.bookingStatus = status;}
 
+	public String getPaymentMethod() {return this.paymentMethod;}
+	public void setPaymentMethod(String method) {this.paymentMethod = method;}
+
+	public boolean getIsPaid() {return this.isPaid;}
+	public void setIsPaid(boolean iP) {this.isPaid = iP;}
+
     /*
      * METHODS
      */
@@ -63,7 +73,9 @@ public class Booking {
 				+ "<li>booking= " + this.getStartDate().toString() + "</li>"
 				+ "<li>booking= " + this.getEndDate().toString() + "</li>"
 				+ "<li>booking= " + this.getCost() + "</li>"
-				+ "<li>booking= " + this.getBookingStatus().name() + "</li>";
+				+ "<li>booking= " + this.getBookingStatus().name() + "</li>"
+				+ "<li>booking= " + this.getPaymentMethod() + "</li>"
+				+ "<li>booking= " + this.getIsPaid() + "</li>";
 	}
 
 }

@@ -126,8 +126,8 @@ public class HotelChainEmailAddressService {
     public String updateEmailAddress(HotelChainEmailAddress emailAddress, String oldEmailAddress) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE EmailAddress"
-                + "SET emailAddressString=?"
+        String sql = "UPDATE EmailAddress "
+                + "SET emailAddressString=? "
                 + "WHERE emailAddressID=? AND emailAddressString=?";
         //Connection to database
         Connection con = null;

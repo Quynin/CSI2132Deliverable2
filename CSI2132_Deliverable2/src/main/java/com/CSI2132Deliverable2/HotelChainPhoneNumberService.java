@@ -126,8 +126,8 @@ public class HotelChainPhoneNumberService {
     public String updatePhoneNumber(HotelChainPhoneNumber phoneNumber, String oldPhoneNumber) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE HotelChainPhoneNumber"
-                + "SET phoneNumberString=?"
+        String sql = "UPDATE HotelChainPhoneNumber "
+                + "SET phoneNumberString=? "
                 + "WHERE phoneNumberID=? AND phoneNumberString=?";
         //Connection to database
         Connection con = null;
