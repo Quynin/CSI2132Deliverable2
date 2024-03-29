@@ -1,5 +1,10 @@
 <%@ page import="com.CSI2132Deliverable2.Message" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.CSI2132Deliverable2.Employee" %>
+<%@ page import="com.CSI2132Deliverable2.EmployeeService" %>
+<%@ page import="com.CSI2132Deliverable2.Customer" %>
+<%@ page import="com.CSI2132Deliverable2.CustomerService" %>
 
 <%
     ArrayList<Message> messages;
@@ -20,15 +25,24 @@
     // empty session messages
     session.setAttribute("messages", new ArrayList<Message>());
 
-    /*
-    // get all customers from database
+
+    // get all employees from database
+    EmployeeService employeeService = new EmployeeService();
+    List<Employee> employees = null;
+    try {
+        employees = employeeService.getEmployees();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    //get all customers from database
     CustomerService customerService = new CustomerService();
     List<Customer> customers = null;
     try {
         customers = customerService.getCustomers();
     } catch (Exception e) {
         e.printStackTrace();
-    }*/
+    }
 %>
 
 <!DOCTYPE html>
@@ -59,38 +73,18 @@
                          <h4 class="card-title">Login Now!!</h4>
                          <form id="modal-form">
                              <div style="text-align: center;">
-                                 <input type="text" class="form-control" name="id" placeholder="Enter ID value">
+                                 <input type="text" class="form-control" name="id" id="idIn" placeholder="Enter ID value">
+                                 <p id="error-message"></p>
                              </div>
                          </form>
                          </br>
-                         <a class="btn btn-primary" id="show-btn" onclick="loginEmpOrCustomer(id)">Submit</a>
+
+                         <a class="btn btn-primary" id="show-btn" href="customer-homepage.jsp">Submit</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script>
-            function loginEmpOrCustomer(id) {
-                <%
-                    Employee e;
-                    EmployeeService eS;
-                    Customer c;
-                    CustomerService cS;
-
-                    if ((e = eS.getEmployee(id)) != null) {
-                        //Do employee redirect
-                    } else if ((c = cS.getCustomer(id) != null) {
-                        //Do customer redirect
-                    } else {
-                        //Tell user they have bad credentials?
-                        }
-
-
-                %>
-            }
-        </script>
 
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
