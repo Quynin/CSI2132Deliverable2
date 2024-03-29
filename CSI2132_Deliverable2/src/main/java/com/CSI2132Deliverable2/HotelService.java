@@ -20,7 +20,7 @@ public class HotelService {
 
         //SQL query
         String sql = "SELECT h.hotelID, h.hotelChainID, h.rating, h.hotelAddress, numberOfRooms, h.managerID" +
-                "                FROM Hotel h" +
+                "                FROM Hotel h," +
                 "                LATERAL(" +
                 "                SELECT COUNT(*) AS numberOfRooms" +
                 "                FROM HotelRoom hR" +
@@ -67,6 +67,66 @@ public class HotelService {
         }
 
     }
+
+    /**
+     * Method to get all Hotels with available rooms from the database
+     *
+     * @param addressFilter string of possible filter
+     * @return list of Hotels from database
+     * @throws Exception when trying to connect to database
+     */
+    public List<Hotel> getAvailableHotels(String addressFilter) throws Exception {
+
+        //SQL query
+        String sql = "SELECT * FROM hotelsWithAvailableRooms;";
+        //If there is a filter to use
+        if (!addressFilter.equals("")) {
+            sql = "SELECT * FROM hotelsWithAvailableRooms WHERE REGEXP_LIKE(hotelAddress, '[A-z]+\\s*[A-z]*');";
+        }
+
+        //Database connection object
+        ConnectionDB db = new ConnectionDB();
+        //Data structure to return all objects generated from database
+        List<Hotel> hotels = new ArrayList<Hotel>();
+
+        //Try to connect to the database; catch any exceptions
+        try (Connection con = db.getConnection()) {
+
+            //Create result set
+            Statement st = con.createStatement();
+            ResultSet rs =  st.executeQuery(sql);
+
+            //Create all the Hotel objects from the result
+            while(rs.next()) {
+                //Create new Hotel object
+                Hotel h =  new Hotel(
+                        rs.getInt("hotelID"),
+                        rs.getString("hotelChainID"),
+                        rs.getInt("rating"),
+                        rs.getString("hotelAddress"),
+                        rs.getInt("numberOfRooms"),
+                        rs.getString("managerID")
+                );
+                hotels.add(h);
+            }
+
+            //Close the result set
+            rs.close();
+            //Close the statement
+            st.close();
+            con.close();
+            db.close();
+
+            //Return constructed list
+            return hotels;
+
+        } catch (Exception e) {
+            //Throw the error that occurred
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
 
     /**
      * Method to get create a Hotel in the database

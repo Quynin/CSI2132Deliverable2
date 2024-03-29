@@ -45,7 +45,7 @@ CREATE TABLE Booking (
     endDate DATE check(endDate > startDate),
     bookingCost non_neg_double NOT NULL, 
     bookingStatus VARCHAR(20) check (bookingStatus IN ('Booking', 'Renting', 'Archived')),
-    paymentMethod VARCHAR(20) check (paymentMethod IN ('Credit Card', 'Debit Card', 'Pay In-Person')),
+    paymentMethod VARCHAR(20) check (paymentMethod IN ('Credit Card', 'Debit Card', 'In-Person')),
     isPaid BOOLEAN 
 );
 
@@ -190,3 +190,23 @@ FROM Hotel NATURAL JOIN HotelRoom
 GROUP BY hotelID 
 ORDER BY hotelCapacity DESC;
 
+--VIEW 3
+--View provides a list of the hotels with available rooms
+--This query can be further filtered with a WHERE clause to search by area/street
+CREATE VIEW hotelsWithAvailableRooms AS
+SELECT h.hotelID, h.hotelChainID, h.rating, h.hotelAddress, numberOfAvailableRooms, h.managerID
+FROM Hotel h,
+LATERAL(
+   	SELECT COUNT(*) AS numberOfAvailableRooms
+	FROM (
+		SELECT *
+		FROM HotelRoom
+		WHERE roomID NOT IN(
+			SELECT roomID
+			FROM Booking
+			WHERE Booking.bookingStatus != 'Archived'
+		)
+	) hR
+	WHERE h.hotelID = hR.hotelID
+)
+WHERE numberOfAvailableRooms > 0;
