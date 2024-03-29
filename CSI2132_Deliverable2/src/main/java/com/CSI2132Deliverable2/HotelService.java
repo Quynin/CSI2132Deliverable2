@@ -79,9 +79,9 @@ public class HotelService {
 
         //SQL query
         String sql = "SELECT * FROM hotelsWithAvailableRooms;";
-        //If there is a filter to use
+        //If there is a filter to use, filter the results by hotelAddress and the filter
         if (!addressFilter.equals("")) {
-            sql = "SELECT * FROM hotelsWithAvailableRooms WHERE REGEXP_LIKE(hotelAddress, '[A-z]+\\s*[A-z]*');";
+            sql = "SELECT * FROM hotelsWithAvailableRooms WHERE REGEXP_LIKE( REGEXP_SUBSTR( hotelAddress , '[A-z]+\\s*[A-z]*' ) , ?);";
         }
 
         //Database connection object
@@ -93,8 +93,13 @@ public class HotelService {
         try (Connection con = db.getConnection()) {
 
             //Create result set
-            Statement st = con.createStatement();
-            ResultSet rs =  st.executeQuery(sql);
+            PreparedStatement st = con.prepareStatement(sql);
+
+            //Fill placeholders ? of statement
+            st.setString(1, addressFilter);
+
+            //Execute query
+            ResultSet rs =  st.executeQuery();
 
             //Create all the Hotel objects from the result
             while(rs.next()) {

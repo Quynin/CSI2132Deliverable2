@@ -66,6 +66,75 @@ public class HotelRoomService {
     }
 
     /**
+     * Method to get all available (no associated bookings in "Booking" or "Renting")
+     * HotelRooms of a Hotel from the database
+     *
+     * @param hotelID id of the hotel to find available rooms of
+     * @return list of HotelRooms from database
+     * @throws Exception when trying to connect to database
+     */
+    public List<HotelRoom> getAvailableRoomsOfHotel(int hotelID) throws Exception {
+
+        //SQL query
+        String sql = "SELECT * " +
+                "FROM HotelRoom " +
+                "WHERE hotelID=? " +
+                "AND roomID NOT IN( " +
+                "SELECT roomID " +
+                "FROM Booking " +
+                "WHERE Booking.bookingStatus != 'Archived' " +
+                ");";
+        //Database connection object
+        ConnectionDB db = new ConnectionDB();
+        //Data structure to return all objects generated from database
+        List<HotelRoom> hotelRooms = new ArrayList<HotelRoom>();
+
+        //Try to connect to the database; catch any exceptions
+        try (Connection con = db.getConnection()) {
+
+            //Create result set
+            PreparedStatement st = con.prepareStatement(sql);
+
+            //Fill placeholders ? of statement
+            st.setInt(1, hotelID);
+
+            //Execute query
+            ResultSet rs =  st.executeQuery();
+
+            //Create all the HotelRoom objects from the result
+            while(rs.next()) {
+                //Create new HotelRoom object
+                HotelRoom hR =  new HotelRoom(
+                        rs.getInt("roomID"),
+                        rs.getInt("hotelID"),
+                        rs.getDouble("price"),
+                        rs.getString("amenities"),
+                        rs.getInt("capacityOfRoom"),
+                        rs.getString("viewFromRoom"),
+                        rs.getBoolean("isExtendable"),
+                        rs.getString("problemsOrDamages")
+                );
+                hotelRooms.add(hR);
+            }
+
+            //Close the result set
+            rs.close();
+            //Close the statement
+            st.close();
+            con.close();
+            db.close();
+
+            //Return constructed list
+            return hotelRooms;
+
+        } catch (Exception e) {
+            //Throw the error that occurred
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
+    /**
      * Method to get create a HotelRoom in the database
      *
      * @param HotelRoom HotelRoom to be created
