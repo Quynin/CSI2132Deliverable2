@@ -113,7 +113,10 @@ public class HotelService {
                         rs.getString("managerID")
                 );
                 hotels.add(h);
+                System.out.println(hotels.size());
             }
+
+
 
             //Close the result set
             rs.close();
