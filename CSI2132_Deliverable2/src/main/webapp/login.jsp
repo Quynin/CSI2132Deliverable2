@@ -1,27 +1,34 @@
 <%@ page import="com.CSI2132Deliverable2.Message" %>
 <%@ page import="java.util.ArrayList" %>
 
-<%@ page contentType="text/html; cha=UTF-8" language="java" %>
-
 <%
     ArrayList<Message> messages;
 
-    //Get any incoming messages from session attribute named messages
-    //If nothing exists, then messages is empty
-    if ((ArrayList<Message>) session.getAttribute("messages") == null)
-        messages = new ArrayList<>();
-    else //Else get the messages
-        messages = (ArrayList<Message>) session.getAttribute("messages");
+    // get any incoming messages from session attribute named messages
+    // if nothing exists then messages is an empty arraylist
+    if ((ArrayList<Message>) session.getAttribute("messages") == null) messages = new ArrayList<>();
+        // else get that value
+    else messages = (ArrayList<Message>) session.getAttribute("messages");
 
     String msgField = "";
 
-    //Create the object in the form of a stringified json
+    // create the object in the form of a stringified json
     for (Message m : messages) {
         msgField += "{\"type\":\"" + m.type + "\",\"value\":\"" + m.value.replaceAll("['\"]+", "") + "\"},";
     }
 
-    //Empty the sessions messages
+    // empty session messages
     session.setAttribute("messages", new ArrayList<Message>());
+
+    /*
+    // get all customers from database
+    CustomerService customerService = new CustomerService();
+    List<Customer> customers = null;
+    try {
+        customers = customerService.getCustomers();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }*/
 %>
 
 <!DOCTYPE html>
@@ -31,7 +38,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title> Home Page of Deliverable </title>
+    <title> Login Page </title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -44,53 +51,46 @@
 
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
-
-    <div class="col-md-4">
-        <div class="row" id="row" style="text-align: center;">
-        <h4 class="card-title">Welcome to Hotel Trevago Bookings!!! Explore the wondrous hotel locations from all around the globe. </h4>
-        </div>
-
-        <div class="row" id="row2">
-         <a class="btn btn-primary" id="login-btn" href="login.jsp">Login</a>
-         <a class="btn btn-primary" id="signup-btn" href="sign-up.jsp">Signup</a>
-        </div>
-    </div>
-
-    <!--
     <div class="container" id="row-container">
-        <div class="row" id="row">
-            <div class="col-md-4">
+        <div class="row align-items-center" id="row">
+            <div class="col">
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
-                        <h4 class="card-title">View Customers</h4>
-                        <p class="card-text" id="paragraph">Simple Query to database to show all customers</p>
-                        <a class="btn btn-primary" id="show-btn" href="customers.jsp">Show</a>
+                         <h4 class="card-title">Login Now!!</h4>
+                         <form id="modal-form">
+                             <div style="text-align: center;">
+                                 <input type="text" class="form-control" name="id" placeholder="Enter ID value">
+                             </div>
+                         </form>
+                         </br>
+                         <a class="btn btn-primary" id="show-btn" onclick="loginEmpOrCustomer(id)">Submit</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card" id="card-container-layout">
-                    <div class="card-body" id="card">
-                        <h4 class="card-title">Create Customer</h4>
-                        <p class="card-text" id="paragraph">Enter a new customer into the database<br></p>
-                        <a class="btn btn-primary" id="show-btn" href="insert-customer.jsp">Create</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card" id="card-container-layout">
-                    <div class="card-body" id="card">
-                        <h4 class="card-title">View Hotel Chains</h4>
-                        <p class="card-text" id="paragraph">Simple Query to database to show all hotelChains<br></p>
-                        <a class="btn btn-primary" id="show-btn" href="hotel-chains.jsp">Show</a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-    -->
 
+
+    <script>
+            function loginEmpOrCustomer(id) {
+                <%
+                    Employee e;
+                    EmployeeService eS;
+                    Customer c;
+                    CustomerService cS;
+
+                    if ((e = eS.getEmployee(id)) != null) {
+                        //Do employee redirect
+                    } else if ((c = cS.getCustomer(id) != null) {
+                        //Do customer redirect
+                    } else {
+                        //Tell user they have bad credentials?
+                        }
+
+
+                %>
+            }
+        </script>
 
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
