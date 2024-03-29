@@ -122,16 +122,16 @@ BEFORE DELETE ON Hotel
 FOR EACH ROW
 EXECUTE PROCEDURE check_hotel_has_rooms();
 
-/*
+
 --TRIGGER 3
 --Function for trigger to check if a booking is attempting to book an currently used room
 CREATE FUNCTION check_booking_creates_conflict ()
 	RETURNS trigger AS
 	$BODY$
 	BEGIN
-	--If the new Booking would overlap in time with another booking
-	IF EXISTS (SELECT * FROM Booking b WHERE b.roomID = NEW.roomID AND b.endDate < NEW.startDate) THEN
-		RAISE EXCEPTION 'Booking attempting to be inserted would create a conflict.';
+	--Check if the new Booking would overlap in time with another Booking
+	IF (SELECT COUNT (bookingID) FROM Booking b WHERE b.roomID = NEW.roomID AND '2024-04-11' BETWEEN '1970-01-01' AND b.endDate) > 0 THEN
+		RAISE EXCEPTION 'Booking attempting to be inserted would book the same room at the same time as another Booking.';
 	END IF;
 	
 RETURN NEW;
@@ -140,23 +140,8 @@ $BODY$ LANGUAGE plpgsql;
 --Trigger for checking Booked hotel rooms before delete
 CREATE TRIGGER check_booking_creates_conflict
 BEFORE INSERT ON Booking
-FOR EACH STATEMENT
+FOR EACH ROW
 EXECUTE PROCEDURE check_booking_creates_conflict();
-
-
-
---DROP TRIGGER check_booking_creates_conflict ON Booking;
-DROP FUNCTION check_booking_creates_conflict;
-
-INSERT INTO Booking (roomID, customerID, startDate, endDate, bookingCost, bookingStatus)
-VALUES
-(251, null, '2023-01-19', '2023-01-26', 99.99, 'Booking');
-
-SELECT * FROM Booking;
-
---SCRAP ROOM
-SELECT 
-*/
 
 
 
@@ -164,7 +149,7 @@ SELECT
 
 --VIEW 1
 --VIEW provides the number of available rooms per area/street
-CREATE VIEW numberOfHotelRoomsOnSameStreet AS
+CREATE VIEW numberOfAvailableHotelRoomsOnSameStreet AS
 SELECT REGEXP_SUBSTR(h.hotelAddress, '[A-z]+\s*[A-z]*') AS area, SUM(numberOfRooms) AS numberOfAvailableRooms
 	FROM Hotel h,
     LATERAL(
