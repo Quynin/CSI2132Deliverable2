@@ -109,7 +109,7 @@ public class HotelService {
                         rs.getString("hotelChainID"),
                         rs.getInt("rating"),
                         rs.getString("hotelAddress"),
-                        rs.getInt("numberOfRooms"),
+                        rs.getInt("numberOfAvailableRooms"),
                         rs.getString("managerID")
                 );
                 hotels.add(h);
