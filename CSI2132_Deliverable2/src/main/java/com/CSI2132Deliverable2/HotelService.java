@@ -92,17 +92,11 @@ public class HotelService {
             //Create result set
             PreparedStatement st = con.prepareStatement(sql);
 
-            System.out.println("prefill");
-
             //Fill placeholders ? of statement
             st.setString(1, addressFilter);
 
-            System.out.println("preexecute");
-
             //Execute query
             ResultSet rs =  st.executeQuery();
-
-            System.out.println("postexecute");
 
             //Create all the Hotel objects from the result
             while(rs.next()) {
@@ -116,7 +110,6 @@ public class HotelService {
                         rs.getString("managerID")
                 );
                 hotels.add(h);
-                System.out.println(hotels.size());
             }
 
 
