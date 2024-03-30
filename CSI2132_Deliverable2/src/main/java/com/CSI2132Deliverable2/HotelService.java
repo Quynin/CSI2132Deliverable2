@@ -78,7 +78,7 @@ public class HotelService {
     public List<Hotel> getAvailableHotels(String addressFilter) throws Exception {
 
         //SQL query
-        String sql = "SELECT * FROM hotelsWithAvailableRooms WHERE REGEXP_LIKE( REGEXP_SUBSTR( hotelAddress , '[A-z]+\\s*[A-z]*' ) , ?);";
+        String sql = "SELECT * FROM hotelsWithAvailableRooms WHERE REGEXP_LIKE( UPPER( REGEXP_SUBSTR( hotelAddress , '[A-z]+\\s*[A-z]*' ) ) , UPPER( ? ) );";
 
 
         //Database connection object
