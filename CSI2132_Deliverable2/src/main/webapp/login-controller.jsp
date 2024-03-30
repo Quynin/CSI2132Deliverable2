@@ -22,7 +22,7 @@
              response.sendRedirect("customer-homepage.jsp");
              }
          else if(employee!= null){
-
+            request.getSession().setAttribute("createdEmployee", employee);
             response.sendRedirect("employee-homepage.jsp");
          }
          else{

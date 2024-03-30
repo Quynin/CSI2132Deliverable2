@@ -1,4 +1,6 @@
 <%@ page import="com.CSI2132Deliverable2.Message" %>
+<%@ page import="com.CSI2132Deliverable2.Employee" %>
+
 <%@ page import="java.util.ArrayList" %>
 
 <%@ page contentType="text/html; cha=UTF-8" language="java" %>
@@ -22,6 +24,11 @@
 
     //Empty the sessions messages
     session.setAttribute("messages", new ArrayList<Message>());
+
+
+    //Get the employee from the sesseion
+    Employee employee = (Employee) request.getSession().getAttribute("createdEmployee");
+
 %>
 
 <!DOCTYPE html>
@@ -47,9 +54,90 @@
 
     <div class="col-md-4">
         <div class="row" id="row" style="text-align: center;">
-        <h4 class="card-title">Employee page!! </h4>
+        <h4 class="card-title">Welcome, <%= employee.getFullName() %> </h4>
         </div>
     </div>
+
+    <div class="container" id="row-container">
+            <div class="row" id="row">
+
+                <div class="col-md-4">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                            <h4 class="card-title">View Hotel Rooms</h4>
+                            <p class="card-text" id="paragraph">Simple Query to database to show all Hotel Rooms<br></p>
+                            <a class="btn btn-primary" id="show-btn" href="employee-hotel-rooms.jsp">Show</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                            <h4 class="card-title">View Bookings</h4>
+                            <p class="card-text" id="paragraph">Simple Query to database to show all customer Bookings<br></p>
+                            <a class="btn btn-primary" id="show-btn" href="employee-bookings.jsp">Show</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                <div class="col-md-4">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                            <h4 class="card-title">Create Customer</h4>
+                            <p class="card-text" id="paragraph">Enter a new customer into the database<br></p>
+                            <a class="btn btn-primary" id="show-btn" href="insert-customer.jsp">Create</a>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+                <% if (employee.getRole().replace(" ", "").equals("Manager")) {%>
+
+                <div class="col-md-4">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                            <h4 class="card-title">View Customers</h4>
+                            <p class="card-text" id="paragraph">Simple Query to database to show all customers</p>
+                            <a class="btn btn-primary" id="show-btn" href="customers.jsp">Show</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                            <h4 class="card-title">View Employees</h4>
+                            <p class="card-text" id="paragraph">Simple Query to database to show all employees</p>
+                            <a class="btn btn-primary" id="show-btn" href="employees.jsp">Show</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                            <h4 class="card-title">View Hotels</h4>
+                            <p class="card-text" id="paragraph">Simple Query to database to show all Hotels<br></p>
+                            <a class="btn btn-primary" id="show-btn" href="employee-hotels.jsp">Show</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                            <h4 class="card-title">View Hotel Chains</h4>
+                            <p class="card-text" id="paragraph">Simple Query to database to show all Hotel Chains<br></p>
+                            <a class="btn btn-primary" id="show-btn" href="employee-hotel-chains.jsp">Show</a>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+            </div>
+        </div>
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/jquery.min.js"></script>
