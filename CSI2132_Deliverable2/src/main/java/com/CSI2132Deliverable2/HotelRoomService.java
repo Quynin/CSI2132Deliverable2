@@ -11,6 +11,67 @@ public class HotelRoomService {
      */
 
     /**
+     * Method to get queried HotelRoom from the database
+     *
+     * @param id the id of the HotelRoom to be found
+     * @return queried HotelRoom from database or null if the hotel room was unable to be found
+     * @throws Exception when trying to connect to database
+     */
+    public HotelRoom getHotelRoom(int roomID) throws Exception {
+
+        //SQL query
+        String sql = "SELECT * FROM HotelRoom WHERE roomID=?";
+        //Database connection object
+        ConnectionDB db = new ConnectionDB();
+        //Data structure to return all objects generated from database
+        HotelRoom result = null;
+
+        //Try to connect to the database; catch any exceptions
+        try (Connection con = db.getConnection()) {
+
+            //Create result set
+            PreparedStatement st = con.prepareStatement(sql);
+
+            //Fill placeholders ? of statement
+            st.setInt(1, roomID);
+
+            //Execute query
+            ResultSet rs =  st.executeQuery();
+
+            //Create all the HotelRoom objects from the result
+            while(rs.next()) {
+                //Create new HotelRoom object
+                result =  new HotelRoom(
+                        rs.getInt("roomID"),
+                        rs.getInt("hotelID"),
+                        rs.getDouble("price"),
+                        rs.getString("amenities"),
+                        rs.getInt("capacityOfRoom"),
+                        rs.getString("viewFromRoom"),
+                        rs.getBoolean("isExtendable"),
+                        rs.getString("problemsOrDamages")
+                );
+
+            }
+
+            //Close the result set
+            rs.close();
+            //Close the statement
+            st.close();
+            con.close();
+            db.close();
+
+            //Return constructed list
+            return result;
+
+        } catch (Exception e) {
+            //Throw the error that occurred
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
+    /**
      * Method to get all HotelRooms from the database
      *
      * @return list of HotelRooms from database
