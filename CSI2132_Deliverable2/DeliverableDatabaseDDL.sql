@@ -21,7 +21,7 @@ CREATE TABLE HotelChain (
 CREATE TABLE Hotel (
     hotelID SERIAL, PRIMARY KEY(hotelID),
     hotelChainID VARCHAR(50), FOREIGN KEY(hotelChainID) REFERENCES HotelChain(hotelChainID) ON UPDATE CASCADE,
-    rating INT check((1 <= rating) and (rating <= 10)),
+    rating INT check((1 <= rating) and (rating <= 5)),
     hotelAddress VARCHAR(50),
     managerID VARCHAR(20), FOREIGN KEY(managerID) REFERENCES Person(personID)
 );
