@@ -55,8 +55,8 @@ public class CurrentBookingService {
                         //If the below methods do not work, try: new java.util.Date(rs.getDate("startDate").getTime())
                         rs.getDate("startDate"),
                         rs.getDate("endDate"),
-                        rs.getDouble("cost"),
-                        BookingStatus.valueOf(rs.getString("bookingStatus")),
+                        rs.getDouble("bookingCost"),
+                        BookingStatus.valueOf(rs.getString("bookingStatus").toUpperCase()),
                         rs.getString("PaymentMethod"),
                         rs.getBoolean("isPaid"),
                         rs.getString("amenities"),

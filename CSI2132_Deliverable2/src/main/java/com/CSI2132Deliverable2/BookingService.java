@@ -44,7 +44,7 @@ public class BookingService {
                         rs.getDate("startDate"),
                         rs.getDate("endDate"),
                         rs.getDouble("cost"),
-                        BookingStatus.valueOf(rs.getString("bookingStatus")),
+                        BookingStatus.valueOf(rs.getString("bookingStatus").toUpperCase()),
                         rs.getString("PaymentMethod"),
                         rs.getBoolean("isPaid")
                 );

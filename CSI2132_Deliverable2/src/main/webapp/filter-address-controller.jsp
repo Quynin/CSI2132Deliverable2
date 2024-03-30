@@ -12,6 +12,8 @@
     HotelService hotelService = new HotelService();
     List<Hotel> availableHotels = hotelService.getAvailableHotels(filter);
 
+    System.out.println("Filter: " + filter);
+
      // check where to redirect
      try {
          request.getSession().setAttribute("filteredHotels", availableHotels);

@@ -78,21 +78,19 @@
 
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
-    <form class="modal-content" method="POST" action="filter-address-controller.jsp">
+    <form id="modal-form" method="POST" action="filter-address-controller.jsp">
         <div class="modal-header">
             <h4 class="modal-title">Filter Address</h4>
         </div>
         <div class="modal-body">
-            <form id="modal-form">
-                <div style="text-align: center;">
-                    <input type="text" name="street-address" id="address"></br>
-                </div>
-            </form>
+            <div style="text-align: center;">
+                <input type="text" name="address" id="address"></br>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="submit" form="modal-form" class="btn btn-success" >Update</button>
         </div>
-    </div>
+    </form>
 
 
 
