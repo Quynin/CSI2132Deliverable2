@@ -5,6 +5,7 @@
 <%@page import="com.CSI2132Deliverable2.CurrentBookingService" %>
 <%@page import="com.CSI2132Deliverable2.HotelService" %>
 <%@page import="com.CSI2132Deliverable2.Hotel" %>
+<%@page import="com.CSI2132Deliverable2.Customer" %>
 
 <%@ page contentType="text/html; cha=UTF-8" language="java" %>
 
@@ -27,6 +28,9 @@
 
     //Empty the sessions messages
     session.setAttribute("messages", new ArrayList<Message>());
+
+    Customer custID = (Customer) request.getSession().getAttribute("createdCustomer");
+
 
     // get all current bookings from database
     CurrentBookingService currentBookingService = new CurrentBookingService();
