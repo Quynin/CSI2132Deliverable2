@@ -42,7 +42,7 @@
 
 <body>
 
-    <jsp:include page="navbar.jsp"/>
+    <jsp:include page="pre-login-navbar.jsp"/>
 
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 

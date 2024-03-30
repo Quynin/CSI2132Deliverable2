@@ -121,9 +121,9 @@
                                     <td><%= hotel.getRating() %></td>
                                     <td><%= hotel.getHotelAddress() %></td>
                                     <td><%= hotel.getNumberOfRooms() %></td>
-                                    <form method="POST" action="room-select.jsp">
+                                    <form method="POST" action="customer-homepage-controller.jsp">
                                         <td>
-                                             <input type="hidden" value="<%= hotel.getHotelID() %>" name="id" />
+                                             <input type="hidden" value="<%= hotel.getHotelID() %>" name="hotel" id="hotelid" />
                                              <button style="all: unset; cursor: pointer; color: #0000EE; text-decoration: none;" type="submit" id="select-hotel-btn" >Select Hotel</button>
                                         </td>
                                     </form>

@@ -25,6 +25,12 @@
 
     // empty session messages
     session.setAttribute("messages", new ArrayList<Message>());
+
+    //get transferred values
+     Customer customer = (Customer) request.getSession().getAttribute("createdCustomer");
+     Hotel hotel = (Hotel) request.getSession().getAttribute("sendHotelToRoomPage");
+
+     System.out.println(hotel.getHotelName());
 %>
 
 <!DOCTYPE html>
@@ -47,26 +53,6 @@
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
     <h4 class="card-title">Room Select Page!!!</h4>
-
-
-    <script>
-     //Test values from local storage
-        const hotelID =   localStorage.getItem('hotel-id-from-customer-homepage') ;
-        const hotelChainID =  localStorage.getItem('hotel-chain-id-from-customer-homepage');
-        const hotelName =  localStorage.getItem('hotel-name-from-customer-homepage');
-        const rating =  localStorage.getItem('hotel-rating-from-customer-homepage');
-        const address =  localStorage.getItem('hotel-address-from-customer-homepage');
-        const numberOfRooms =  localStorage.getItem('hotel-number-of-rooms-from-customer-homepage');
-        const managerID =  localStorage.getItem('hotel-manager-id-from-customer-homepage') ;
-
-        console.log(hotelID);
-        console.log(hotelChainID);
-        console.log(hotelName);
-        console.log(rating);
-        console.log(address);
-        console.log(numberOfRooms);
-        console.log(managerID);
-     </script>
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
