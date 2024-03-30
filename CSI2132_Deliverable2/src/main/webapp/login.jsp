@@ -5,7 +5,7 @@
 <%@ page import="com.CSI2132Deliverable2.EmployeeService" %>
 <%@ page import="com.CSI2132Deliverable2.Customer" %>
 <%@ page import="com.CSI2132Deliverable2.CustomerService" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     ArrayList<Message> messages;
 
@@ -24,25 +24,6 @@
 
     // empty session messages
     session.setAttribute("messages", new ArrayList<Message>());
-
-
-    // get all employees from database
-    EmployeeService employeeService = new EmployeeService();
-    List<Employee> employees = null;
-    try {
-        employees = employeeService.getEmployees();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-
-    //get all customers from database
-    CustomerService customerService = new CustomerService();
-    List<Customer> customers = null;
-    try {
-        customers = customerService.getCustomers();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
 %>
 
 <!DOCTYPE html>
@@ -71,15 +52,13 @@
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
                          <h4 class="card-title">Login Now!!</h4>
-                         <form id="modal-form">
+                         <form id="modal-form" method="POST" action="login-controller.jsp">
                              <div style="text-align: center;">
                                  <input type="text" class="form-control" name="id" id="idIn" placeholder="Enter ID value">
-                                 <p id="error-message"></p>
+                                 </br>
+                                 <button class="btn btn-primary" id="show-btn">Submit</button>
                              </div>
                          </form>
-                         </br>
-
-                         <a class="btn btn-primary" id="show-btn" href="customer-homepage.jsp">Submit</a>
                     </div>
                 </div>
             </div>
