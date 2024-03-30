@@ -1,7 +1,11 @@
 <%@ page import="com.CSI2132Deliverable2.Message" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.CSI2132Deliverable2.Employee" %>
+<%@ page import="com.CSI2132Deliverable2.EmployeeService" %>
+<%@ page import="com.CSI2132Deliverable2.Customer" %>
+<%@ page import="com.CSI2132Deliverable2.CustomerService" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     ArrayList<Message> messages;
 
@@ -21,15 +25,18 @@
     // empty session messages
     session.setAttribute("messages", new ArrayList<Message>());
 %>
+
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title> Signup Page </title>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <title> Sign Up Page </title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 
@@ -44,14 +51,14 @@
             <div class="col">
                 <div class="card" id="card-container-layout">
                     <div class="card-body" id="card">
-                         <h4 class="card-title">Sign up Now!!</h4>
+                         <h4 class="card-title">Signup Today!!!</h4>
                          <form id="modal-form" method="POST" action="signup-controller.jsp">
                              <div style="text-align: center;">
                                  <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID value">
                                  </br>
                                  <input type="text" class="form-control" name="id-type" id="id-type" placeholder="Enter ID Type">
                                  </br>
-                                 <input type="text" class="form-control" name="full-name" id="full-name" placeholder="Enter full name">
+                                 <input type="text" class="form-control" name="full-name" id="full-name" placeholder="Enter Full Name">
                                  </br>
                                  <input type="text" class="form-control" name="address" id="address" placeholder="Enter address">
                                  </br>
@@ -64,11 +71,12 @@
         </div>
     </div>
 
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-         <script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
             $(document).ready(function() {
                 toastr.options = {
                     "closeButton": true,
@@ -102,7 +110,9 @@
                     }
                 });
             })
-         </script>
+    </script>
+
+
 </body>
 
 </html>

@@ -33,7 +33,6 @@
 
     Customer customer = (Customer) request.getSession().getAttribute("createdCustomer");
 
-
     // get all current bookings from database
     CurrentBookingService currentBookingService = new CurrentBookingService();
     List<CurrentBooking> currentBookings = null;
@@ -126,11 +125,11 @@
                                     <td><%= hotel.getHotelAddress() %></td>
                                     <td><%= hotel.getNumberOfRooms() %></td>
                                     <td>
-                                        <ul>
+                                        <ul> <div style="width:100px">
                                             <% for (HotelPhoneNumber pn : hotel.getHotelPhoneNumberList()) { %>
                                                 <li> <%= pn.getPhoneNumberString() %> </li>
                                             <% } %>
-                                        </ul>
+                                        </div> </ul>
                                     </td>
                                     <td>
                                         <ul>
@@ -141,7 +140,7 @@
                                     </td>
                                     <form method="POST" action="customer-homepage-controller.jsp">
                                         <td>
-                                             <input type="hidden" value="<%= hotel.getHotelID() %>" name="hotel" id="hotelid" />
+                                             <input type="hidden" value="<%= hotel.getHotelID() %>" name="hotelid" id="hotelid" />
                                              <button style="all: unset; cursor: pointer; color: #0000EE; text-decoration: none;" type="submit" id="select-hotel-btn" >Select Hotel</button>
                                         </td>
                                     </form>

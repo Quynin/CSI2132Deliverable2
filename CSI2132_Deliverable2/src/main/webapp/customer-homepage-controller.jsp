@@ -7,14 +7,13 @@
 <%
     // get customer info from the request
     int id = Integer.parseInt(request.getParameter("hotelid"));
-    System.out.println(request.getParameter("hotelid"));
 
     HotelService hotelService = new HotelService();
     Hotel hotel = hotelService.getHotel(id);
 
      // check where to redirect
      try {
-         request.getSession().setAttribute("sendHotelToRoomPage", hotel);
+         request.getSession().setAttribute("chosenHotel", hotel);
          response.sendRedirect("room-select.jsp");
      } catch (Exception e) {
          e.printStackTrace();

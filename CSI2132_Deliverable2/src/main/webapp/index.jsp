@@ -52,7 +52,7 @@
 
         <div class="row" id="row2">
          <a class="btn btn-primary" id="login-btn" href="login.jsp">Login</a>
-         <a class="btn btn-primary" id="signup-btn" href="sign-up.jsp">Signup</a>
+         <a class="btn btn-primary" id="signup-btn" href="signup.jsp">Signup</a>
         </div>
     </div>
 
