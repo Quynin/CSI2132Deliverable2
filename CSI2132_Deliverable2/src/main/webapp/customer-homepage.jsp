@@ -46,7 +46,6 @@
     List<Hotel> availableHotels = null;
     try {
         //default situation. no address filter: all hotel with available rooms
-        System.out.println("something");
         if(request.getSession().getAttribute("filteredHotels") != null){
             availableHotels = (List<Hotel>) request.getSession().getAttribute("filteredHotels");
         }
@@ -88,6 +87,7 @@
             </div>
         </div>
         <div class="modal-footer">
+            <p style="font-size:1.25vw">  Click update again to get the full list!  </p>
             <button type="submit" form="modal-form" class="btn btn-success" >Update</button>
         </div>
     </form>
@@ -106,13 +106,10 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Hotel ID</th>
-                                    <th>Hotel Chain ID</th>
                                     <th>Hotel Name</th>
                                     <th>Rating</th>
                                     <th>Hotel Address</th>
                                     <th>Number Of Rooms</th>
-                                    <th>Manager ID</th>
                                     <th>Choose Hotel</th>
                                 </tr>
                                 </thead>
@@ -120,17 +117,14 @@
                                 <%
                                 for (Hotel hotel : availableHotels) { %>
                                 <tr>
-                                    <td><%= hotel.getHotelID() %></td>
-                                    <td><%= hotel.getHotelChainID() %></td>
                                     <td><%= hotel.getHotelName() %></td>
                                     <td><%= hotel.getRating() %></td>
                                     <td><%= hotel.getHotelAddress() %></td>
                                     <td><%= hotel.getNumberOfRooms() %></td>
-                                    <td><%= hotel.getManagerID() %></td>
                                     <form method="POST" action="room-select.jsp">
                                         <td>
                                              <input type="hidden" value="<%= hotel.getHotelID() %>" name="id" />
-                                             <button style="all: unset; cursor: pointer;" type="submit">Select Hotel</button>
+                                             <button style="all: unset; cursor: pointer; color: #0000EE; text-decoration: none;" type="submit" id="select-hotel-btn" >Select Hotel</button>
                                         </td>
                                     </form>
                                 </tr>
@@ -141,6 +135,7 @@
                         <% } %>
                     </div>
                     <div class="card-body" id="card">
+                        <h1 style="font-size:3vw"> <u> Your Current Bookings </u> </h1>
                         <% if (currentBookings.size() == 0) { %>
                         <h1 style="margin-top: 5rem;">No Current Bookings found!</h1>
                         <% } else { %>
@@ -189,7 +184,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/jquery.min.js"></script>
