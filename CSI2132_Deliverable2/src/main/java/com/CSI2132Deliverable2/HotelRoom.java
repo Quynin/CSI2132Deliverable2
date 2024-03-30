@@ -5,8 +5,8 @@ public class HotelRoom {
     /*
      * VARIABLES
      */
-    private int hotelID;
     private int roomID;
+    private int hotelID;
     private double price;
     private String amenities;
     private int capacityOfRoom;
@@ -17,9 +17,9 @@ public class HotelRoom {
     /*
      * CONSTRUCTORS
      */
-    public HotelRoom(int hID, int rID, double price, String amenities, int cOR, String vFR, boolean iE, String pOD) {
-        setHotelID(hID);
+    public HotelRoom(int rID, int hID, double price, String amenities, int cOR, String vFR, boolean iE, String pOD) {
         setRoomID(rID);
+        setHotelID(hID);
         setPrice(price);
         setAmenties(amenities);
         setCapacityOfRoom(cOR);
@@ -60,8 +60,8 @@ public class HotelRoom {
      */
     public String toString() {
         return "<ul>"
-                + "<li>hotelRoom= " + this.getHotelID() + "</li>"
                 + "<li>hotelRoom= " + this.getRoomID() + "</li>"
+                + "<li>hotelRoom= " + this.getHotelID() + "</li>"
                 + "<li>hotelRoom= " + this.getPrice() + "</li>"
                 + "<li>hotelRoom= " + this.getAmenities() + "</li>"
                 + "<li>hotelRoom= " + this.getCapacityOfRoom() + "</li>"
