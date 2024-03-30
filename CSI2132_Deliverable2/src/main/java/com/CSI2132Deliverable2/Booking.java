@@ -20,6 +20,17 @@ public class Booking {
     /*
      * CONSTRUCTORS
      */
+	public Booking( int rID, String cID, Date sDate, Date eDate, double cost, BookingStatus status, String method, boolean iP) {
+		setRoomID(rID);
+		setCustomerID(cID);
+		setStartDate(sDate);
+		setEndDate(eDate);
+		setCost(cost);
+		setBookingStatus(status);
+		setPaymentMethod(method);
+		setIsPaid(iP);
+	}
+
 	public Booking(int bID, int rID, String cID, Date sDate, Date eDate, double cost, BookingStatus status, String method, boolean iP) {
 		setBookingID(bID);
 		setRoomID(rID);
