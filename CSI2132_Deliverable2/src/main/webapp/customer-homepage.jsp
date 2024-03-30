@@ -6,6 +6,8 @@
 <%@page import="com.CSI2132Deliverable2.HotelService" %>
 <%@page import="com.CSI2132Deliverable2.Hotel" %>
 <%@page import="com.CSI2132Deliverable2.Customer" %>
+<%@page import="com.CSI2132Deliverable2.HotelPhoneNumber" %>
+<%@page import="com.CSI2132Deliverable2.HotelEmailAddress" %>
 
 <%@ page contentType="text/html; cha=UTF-8" language="java" %>
 
@@ -110,6 +112,8 @@
                                     <th>Rating</th>
                                     <th>Hotel Address</th>
                                     <th>Number Of Rooms</th>
+                                    <th>Phone Numbers</th>
+                                    <th>Email Address</th>
                                     <th>Choose Hotel</th>
                                 </tr>
                                 </thead>
@@ -121,6 +125,20 @@
                                     <td><%= hotel.getRating() %></td>
                                     <td><%= hotel.getHotelAddress() %></td>
                                     <td><%= hotel.getNumberOfRooms() %></td>
+                                    <td>
+                                        <ul>
+                                            <% for (HotelPhoneNumber pn : hotel.getHotelPhoneNumberList()) { %>
+                                                <li> <%= pn.getPhoneNumberString() %> </li>
+                                            <% } %>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <% for (HotelEmailAddress ea : hotel.getHotelEmailAddressList()) { %>
+                                                <li> <%= ea.getEmailAddressString() %> </li>
+                                            <% } %>
+                                        </ul>
+                                    </td>
                                     <form method="POST" action="customer-homepage-controller.jsp">
                                         <td>
                                              <input type="hidden" value="<%= hotel.getHotelID() %>" name="hotel" id="hotelid" />
