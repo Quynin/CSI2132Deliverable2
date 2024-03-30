@@ -12,7 +12,7 @@
     <div id="navbar-div" class="container-fluid">
         <a class="navbar-brand" id="nav-bar-text" href="#">Hotel Trevago Dot Com</a>
         <a id="navbar-items" href="<%=request.getContextPath()%>">
-            <i class="fa fa-home "></i> Landing
+            <i class="fa fa-home "></i> Logout
         </a>
     </div>
 </nav>

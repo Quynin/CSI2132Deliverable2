@@ -29,14 +29,14 @@
     //Empty the sessions messages
     session.setAttribute("messages", new ArrayList<Message>());
 
-    Customer custID = (Customer) request.getSession().getAttribute("createdCustomer");
+    Customer customer = (Customer) request.getSession().getAttribute("createdCustomer");
 
 
     // get all current bookings from database
     CurrentBookingService currentBookingService = new CurrentBookingService();
     List<CurrentBooking> currentBookings = null;
     try {
-        currentBookings = currentBookingService.getCurrentBookings("112-111-121");
+        currentBookings = currentBookingService.getCurrentBookings(customer.getID());
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -44,10 +44,15 @@
     //get all available hotels from the database
     HotelService hotelService = new HotelService();
     List<Hotel> availableHotels = null;
-    System.out.println(hotelService.getAvailableHotels(""));
     try {
         //default situation. no address filter: all hotel with available rooms
-        availableHotels = hotelService.getAvailableHotels("");
+        System.out.println("something");
+        if(request.getSession().getAttribute("filteredHotels") != null){
+            availableHotels = (List<Hotel>) request.getSession().getAttribute("filteredHotels");
+        }
+        else{
+            availableHotels = hotelService.getAvailableHotels("");
+        }
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -73,7 +78,7 @@
 
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
-    <div class="modal-content">
+    <form class="modal-content" method="POST" action="filter-address-controller.jsp">
         <div class="modal-header">
             <h4 class="modal-title">Filter Address</h4>
         </div>
@@ -85,7 +90,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="submit" form="modal-form" class="btn btn-success">Update</button>
+            <button type="submit" form="modal-form" class="btn btn-success" >Update</button>
         </div>
     </div>
 
@@ -124,15 +129,12 @@
                                     <td><%= hotel.getHotelAddress() %></td>
                                     <td><%= hotel.getNumberOfRooms() %></td>
                                     <td><%= hotel.getManagerID() %></td>
-                                    <td>
-                                        <a type="button" id="select-hotel" href="room-select.jsp"
-                                        data-hotel-id="<%= hotel.getHotelID() %>" data-hotel-chain-id="<%= hotel.getHotelChainID() %>"
-                                        data-hotel-name="<%= hotel.getHotelName() %>" data-rating="<%= hotel.getRating() %>"
-                                        data-hotel-address="<%= hotel.getHotelAddress() %>" data-number-of-rooms="<%= hotel.getNumberOfRooms() %>"
-                                        data-manager-id="<%= hotel.getManagerID() %>"
-                                        onClick="sendToLocalStorage()"
-                                       >Select Hotel</a>
-                                    </td>
+                                    <form method="POST" action="room-select.jsp">
+                                        <td>
+                                             <input type="hidden" value="<%= hotel.getHotelID() %>" name="id" />
+                                             <button style="all: unset; cursor: pointer;" type="submit">Select Hotel</button>
+                                        </td>
+                                    </form>
                                 </tr>
                                 <% } %>
                                 </tbody>
@@ -189,20 +191,6 @@
             </div>
         </div>
     </div>
-
-
-    <script>
-        function sendToLocalStorage(){
-            var button = document.getElementById("select-hotel");
-            localStorage.setItem('hotel-id-from-customer-homepage', button.data-hotel-id);
-            localStorage.setItem('hotel-chain-id-from-customer-homepage', button.data-hotel-chain-id);
-            localStorage.setItem('hotel-name-from-customer-homepage', button.data-hotel-name);
-            localStorage.setItem('hotel-rating-from-customer-homepage', button.data-rating);
-            localStorage.setItem('hotel-address-from-customer-homepage', button.data-hotel-address);
-            localStorage.setItem('hotel-number-of-rooms-from-customer-homepage', button.data-number-of-rooms);
-            localStorage.setItem('hotel-manager-id-from-customer-homepage', button.data-manager-id;
-        }
-    </script>
 
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
