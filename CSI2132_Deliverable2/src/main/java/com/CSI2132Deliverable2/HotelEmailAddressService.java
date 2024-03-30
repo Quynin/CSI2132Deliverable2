@@ -128,7 +128,7 @@ public class HotelEmailAddressService {
         //SQL query with placeholder of all attributes
         String sql = "UPDATE EmailAddress "
                 + "SET emailAddressString=? "
-                + "WHERE emailAddressID=? AND emailAddressStrng=?";
+                + "WHERE emailAddressID=? AND emailAddressString=?";
         //Connection to database
         Connection con = null;
         //Database connection object

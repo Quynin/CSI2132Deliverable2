@@ -1,5 +1,7 @@
 package com.CSI2132Deliverable2;
 
+import java.util.List;
+
 public class Hotel {
 
     /*
@@ -11,17 +13,21 @@ public class Hotel {
     private String hotelAddress;
     private int numberOfRooms;
     private String managerID;
+    private List<HotelPhoneNumber> hotelPhoneNumberList;
+    private List<HotelEmailAddress> hotelEmailAddressList;
 
     /*
      * CONSTRUCTORS
      */
-    public Hotel(int hID, String hcID, int rating, String address, int nOR, String mID) {
+    public Hotel(int hID, String hcID, int rating, String address, int nOR, String mID, List<HotelPhoneNumber> hPNL, List<HotelEmailAddress> hEAL) {
         setHotelID(hID);
         setHotelChainID(hcID);
         setRating(rating);
         setHotelAddress(address);
         setNumberOfRooms(nOR);
         setManagerID(mID);
+        setHotelPhoneNumberList(hPNL);
+        setHotelEmailAddressList(hEAL);
     }
 
     /*
@@ -47,6 +53,12 @@ public class Hotel {
     public String getManagerID() {return this.managerID;}
     public void setManagerID(String mID) {this.managerID = mID;}
 
+    public List<HotelPhoneNumber> getHotelPhoneNumberList() {return this.hotelPhoneNumberList;}
+    public void setHotelPhoneNumberList(List<HotelPhoneNumber> list) {this.hotelPhoneNumberList = list;}
+
+    public List<HotelEmailAddress> getHotelEmailAddressList() {return this.hotelEmailAddressList;}
+    public void setHotelEmailAddressList(List<HotelEmailAddress> list) {this.hotelEmailAddressList = list;}
+
     /*
      * METHODS
      */
@@ -58,7 +70,9 @@ public class Hotel {
                 + "<li>hotel= " + this.getRating() + "</li>"
                 + "<li>hotel= " + this.getHotelAddress() + "</li>"
                 + "<li>hotel= " + this.getNumberOfRooms() + "</li>"
-                + "<li>hotel= " + this.getManagerID() + "</li>";
+                + "<li>hotel= " + this.getManagerID() + "</li>"
+                + "<li>hotel= " + this.getHotelPhoneNumberList() + "</li>"
+                + "<li>hotel= " + this.getHotelEmailAddressList() + "</li>";
     }
 
 }

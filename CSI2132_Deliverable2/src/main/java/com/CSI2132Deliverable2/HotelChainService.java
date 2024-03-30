@@ -30,6 +30,15 @@ public class HotelChainService {
         //Data structure to return all objects generated from database
         List<HotelChain> hotelChains = new ArrayList<HotelChain>();
 
+        //List of PhoneNumbers
+        HotelChainPhoneNumberService hCPNService = new HotelChainPhoneNumberService();
+        List<HotelChainPhoneNumber> phoneNumbers = hCPNService.getPhoneNumbers();
+
+        //List of EmailAddresses
+        HotelChainEmailAddressService hCEAService = new HotelChainEmailAddressService();
+        List<HotelChainEmailAddress> emailAddress = hCEAService.getEmailAddresses();
+
+
         //Try to connect to the database; catch any exceptions
         try (Connection con = db.getConnection()) {
 
@@ -39,11 +48,32 @@ public class HotelChainService {
 
             //Create all the HotelChain objects from the result
             while(rs.next()) {
+
+                String hotelChainID = rs.getString("hotelChainID");
+
+                //Create list of PhoneNumbers for Hotel
+                List<HotelChainPhoneNumber> filteredPhoneNumbers = new ArrayList<HotelChainPhoneNumber>();
+                for (HotelChainPhoneNumber hCPN : phoneNumbers) {
+                    if (hCPN.getPhoneNumberID().equals(hotelChainID)) {
+                        filteredPhoneNumbers.add(hCPN);
+                    }
+                }
+
+                //Create list of emailAddresses for Hotel
+                List<HotelChainEmailAddress> filteredEmailAddresses = new ArrayList<HotelChainEmailAddress>();
+                for (HotelChainEmailAddress hCEA : emailAddress) {
+                    if (hCEA.getEmailAddressID().equals(hotelChainID)) {
+                        filteredEmailAddresses.add(hCEA);
+                    }
+                }
+
                 //Create new HotelChain object
                 HotelChain hC =  new HotelChain(
                         rs.getString("hotelChainID"),
                         rs.getString("addressOfCentralOffices"),
-                        rs.getInt("numberOfHotels")
+                        rs.getInt("numberOfHotels"),
+                        filteredPhoneNumbers,
+                        filteredEmailAddresses
                 );
                 hotelChains.add(hC);
             }
