@@ -61,11 +61,19 @@
                              <h4 class="card-title">Fill Booking information</h4>
                              <form id="modal-form" method="POST" action="booking-information-controller.jsp">
                                  <div style="text-align: center;">
+                                     <script>
+                                       var now = new Date();
+                                       var datetime = now.toLocaleString();
+                                       document.getElementById("start-date").min = datetime;
+                                     </script>
                                      <label for="start-date">Choose Start Date:</label>
                                      <input type="date" id="start-date" name="start-date">
                                      </br>
+                                     <script>
+                                       document.getElementById("end-date").min = document.getElementById("start-date").value;
+                                     </script>
                                      <label for="end-date">Choose End Date:</label>
-                                     <input type="date" id="end-date" name="end-date">
+                                     <input type="date" min= id="end-date" name="end-date">
                                      </br>
                                      <p id="price" name="price"> Price: <%= hotelRoom.getPrice()%>$ </p>
                                      </br>
