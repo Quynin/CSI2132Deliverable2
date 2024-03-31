@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     // get customer info from the request
-    int id = Integer.parseInt(request.getParameter("hotel-room-id"));
+    int id = Integer.parseInt(request.getParameter("hotelroomid"));
 
     HotelRoomService hotelRoomService = new HotelRoomService();
     HotelRoom hotelRoom = hotelRoomService.getHotelRoom(id);

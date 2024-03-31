@@ -37,7 +37,7 @@
      HotelRoomService hotelRoomService = new HotelRoomService();
      List<HotelRoom> hotelRooms = null;
       try {
-          hotelRooms = hotelRoomService.getAvailableRoomsOfHotel(hotel.getHotelID);
+          hotelRooms = hotelRoomService.getAvailableRoomsOfHotel(hotel.getHotelID());
       } catch (Exception e) {
           e.printStackTrace();
       }
@@ -69,7 +69,8 @@
                 <div class="col-md-12">
                     <div class="card" id="card-container">
                         <div class="card-body" id="card">
-                            <% if (availableHotels.size() == 0) { %>
+                            <h1 style="font-size:2.5vw">  Hotel Rooms in <%= hotel.getHotelName()%> </h1>
+                            <% if (hotelRooms.size() == 0) { %>
                             <h1 style="margin-top: 5rem;">No Available Hotels found!</h1>
                             <% } else { %>
                             <div class="table-responsive">
@@ -83,6 +84,7 @@
                                         <th>View From Room</th>
                                         <th>Is Extendable</th>
                                         <th>Problems or Damages</th>
+                                        <th>Choose Hotel Room</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -90,15 +92,15 @@
                                     for (HotelRoom hotelRoom : hotelRooms) { %>
                                     <tr>
                                         <td><%= hotelRoom.getRoomID() %></td>
-                                        <td><%= hotel.getPrice() %></td>
-                                        <td><%= hotel.getAmenities() %></td>
-                                        <td><%= hotel.getCapacityOfRoom() %></td>
-                                        <td><%= hotel.getViewFromRoom() %></td>
-                                        <td><%= hotel.getIsExtendable() %></td>
-                                        <td><%= hotel.getProblemsOrDamages() %></td>
+                                        <td><%= hotelRoom.getPrice() %></td>
+                                        <td><%= hotelRoom.getAmenities() %></td>
+                                        <td><%= hotelRoom.getCapacityOfRoom() %></td>
+                                        <td><%= hotelRoom.getViewFromRoom() %></td>
+                                        <td><%= hotelRoom.getIsExtendable() %></td>
+                                        <td><%= hotelRoom.getProblemsOrDamages() %></td>
                                         <form method="POST" action="room-select-controller.jsp">
                                             <td>
-                                                 <input type="hidden" value="<%= hotelRoom.getRoomID() %>" name="hotel-room-id" id="hotel-room-id" />
+                                                 <input type="hidden" value="<%= hotelRoom.getRoomID() %>" name="hotelroomid" id="hotelroomid" />
                                                  <button style="all: unset; cursor: pointer; color: #0000EE; text-decoration: none;" type="submit" id="select-hotel-room-btn" >Select Hotel Room</button>
                                             </td>
                                         </form>

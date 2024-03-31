@@ -32,15 +32,7 @@
     //get transferred values
      Customer customer = (Customer) request.getSession().getAttribute("createdCustomer");
      Hotel hotel = (Hotel) request.getSession().getAttribute("chosenHotel");
-
-     //rooms in chosen hotel
-     HotelRoomService hotelRoomService = new HotelRoomService();
-     List<HotelRoom> hotelRooms = null;
-      try {
-          hotelRooms = hotelRoomService.getAvailableRoomsOfHotel(hotel.getHotelID);
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
+     HotelRoom hotelRoom = (HotelRoom) request.getSession().getAttribute("selectedRoom");
 
 %>
 
@@ -63,8 +55,32 @@
 
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
-
-    <h4 class="modal-title">Booking Page!</h4>
+    <div class="container" id="row-container" style="padding: 70px 0;">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                             <h4 class="card-title">Fill Booking information</h4>
+                             <form id="modal-form" method="POST" action="booking-information-controller.jsp">
+                                 <div style="text-align: center;">
+                                     <label for="start-date">Choose Start Date:</label>
+                                     <input type="date" id="start-date" name="start-date">
+                                     </br>
+                                     <label for="end-date">Choose End Date:</label>
+                                     <input type="date" id="end-date" name="end-date">
+                                     </br>
+                                     <p id="price" name="price"> Price: <%= hotelRoom.getPrice()%>$ </p>
+                                     </br>
+                                     <label for="payment-method">How would you like to pay? (Credit/Debit advance, cash In-Person):</label>
+                                     <select name="payment-method" id="payment-method">
+                                         <option value="Credit Card">Credit Card</option>
+                                         <option value="Debit Card">Debit Card</option>
+                                         <option value="In-Person">In Person</option>
+                                     </select>
+                                     <button class="btn btn-primary" id="show-btn">Confirm</button>
+                                 </div>
+                             </form>
+                        </div>
+                    </div>
+    </div>
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
