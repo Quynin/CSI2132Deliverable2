@@ -66,8 +66,8 @@
                 <div class="modal-body">
                     <form id="modal-form">
                         <div style="text-align: center;">
-                            <input type="text" name="id" id="id"></br>
-                            <input type="text" name="idType" id="idType"></br>
+                            <input type="text" name="id" id="id" readonly></br>
+                            <input type="text" name="idType" id="idType" readonly></br>
                             <input type="text" name="name" id="name"></br>
                             <input type="text" name="address" id="address"></br>
                             <input type="text" name="hotelID" id="hotelID"></br>

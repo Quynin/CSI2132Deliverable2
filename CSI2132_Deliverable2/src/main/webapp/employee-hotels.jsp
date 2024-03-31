@@ -124,6 +124,29 @@
         </div>
     </div>
 
+    <div id="editModalPhoneInsert" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Phone Number</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="modal-form-phone-insert">
+                            <div style="text-align: center;">
+                                <input type="hidden" name="phoneNumberID" id="phoneNumberID"></br>
+                                <input type="text" name="phoneNumberString" id="phoneNumberString"></br>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="modal-form-phone-insert" class="btn btn-success">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <div id="editModalEmail" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -209,6 +232,13 @@
                                                 </li>
                                             <% } %>
                                         </div>
+                                            <a type="button" onclick="setModalFieldsPhoneInsert(this)"
+                                               data-toggle="modal"
+                                               data-phonenumberid="<%= h.getHotelID() %>"
+                                               data-phonenumberstring="<%= new String() %>"
+                                               data-target="#editModalPhoneInsert">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
                                         </ul>
 
                                     </td>
@@ -287,6 +317,16 @@
 
                 document.getElementById("modal-form-phone").action = "update-hotel-phone-controller.jsp";
                 document.getElementById("modal-form-phone").method = "POST";
+            }
+    </script>
+
+    <script>
+            function setModalFieldsPhoneInsert(row) {
+                document.getElementById("phoneNumberID").value = row.dataset.phonenumberid;
+                document.getElementById("phoneNumberString").value = row.dataset.phonenumberstring;
+
+                document.getElementById("modal-form-phone-insert").action = "insert-hotel-phone-controller.jsp";
+                document.getElementById("modal-form-phone-insert").method = "POST";
             }
     </script>
 

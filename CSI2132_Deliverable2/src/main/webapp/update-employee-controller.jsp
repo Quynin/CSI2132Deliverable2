@@ -14,7 +14,7 @@
     String idType = request.getParameter("idType");
     String name = request.getParameter("name");
     String address = request.getParameter("address");
-    int hotelID = request.getParameter("hotelID");
+    int hotelID = Integer.parseInt(request.getParameter("hotelID"));
     String role = request.getParameter("role");
 
     EmployeeService employeeService = new EmployeeService();
@@ -26,7 +26,7 @@
     // try to update a employee
     try {
         String value = employeeService.updateEmployee(employee);
-        System.out.println(value);
+        System.out.println("HERE IS EMPLOYEE UPDATE VALUE: " +  value);
         // if the value contains error/Error then this is an error message
         if (value.contains("Error") || value.contains("error")) msg = new Message("error", value);
         // else the employee was successfully updated

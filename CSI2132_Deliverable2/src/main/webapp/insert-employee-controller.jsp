@@ -25,6 +25,7 @@
     try {
 
         String value = employeeService.createEmployee(employee);
+        System.out.println(value);
 
         //if the value contains duplicate key then this is an error message
         // if the value contains error/Error then this is an error message
