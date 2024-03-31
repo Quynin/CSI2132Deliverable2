@@ -110,7 +110,7 @@
                 <div class="modal-body">
                     <form id="modal-form">
                         <div style="text-align: center;">
-                            <input type="text" name="phoneNumberID" id="phoneNumberID"></br>
+                            <input type="hidden" name="phoneNumberID" id="phoneNumberID"></br>
                             <input type="text" name="phoneNumberString" id="phoneNumberString"></br>
                             <input type="hidden" name="oldPhoneNumber" id="oldPhoneNumber"></br>
                         </div>
@@ -135,7 +135,7 @@
                     <div class="modal-body">
                         <form id="modal-form">
                             <div style="text-align: center;">
-                                <input type="text" name="emailAddressID" id="emailAddressID"></br>
+                                <input type="hidden" name="emailAddressID" id="emailAddressID"></br>
                                 <input type="text" name="emailAddressString" id="emailAddressString"></br>
                                 <input type="hidden" name="oldEmailAddress" id="oldEmailAddress"></br>
                             </div>
@@ -195,9 +195,9 @@
                                                 <li> <%= pn.getPhoneNumberString() %>
                                                     <a type="button" onclick="setModalFieldsPhone(this)"
                                                        data-toggle="modal"
-                                                       data-phonenumberid="pn.getPhoneNumberID()"
-                                                       data-phonenumberstring="pn.getPhoneNumberString()"
-                                                       data-oldphonenubmer="pn.getPhoneNumberString()"
+                                                       data-phonenumberid="<%= pn.getPhoneNumberID() %>"
+                                                       data-phonenumberstring="<%= pn.getPhoneNumberString() %>"
+                                                       data-oldphonenumber="<%= pn.getPhoneNumberString() %>"
                                                        data-target="#editModalPhone">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
@@ -218,15 +218,15 @@
                                                 <li> <%= ea.getEmailAddressString() %>
                                                     <a type="button" onclick="setModalFieldsEmail(this)"
                                                        data-toggle="modal"
-                                                       data-emailaddressid="ea.getEmailAddressID()"
-                                                       data-emailaddressstring="ea.getEmailAddressString()"
-                                                       data-oldemailaddress="ea.getEmailAddressString()"
+                                                       data-emailaddressid="<%= ea.getEmailAddressID() %>"
+                                                       data-emailaddressstring="<%= ea.getEmailAddressString() %>"
+                                                       data-oldemailaddress="<%= ea.getEmailAddressString() %>"
                                                        data-target="#editModalEmail">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <form method="POST" action="delete-hotel-email-controller.jsp">
-                                                        <input type="hidden" value="<%= pn.getEmailAddressID() %>" name="id" />
-                                                        <input type="hidden" value="<%= pn.getEmailAddressString() %>" name="string" />
+                                                        <input type="hidden" value="<%= ea.getEmailAddressID() %>" name="id" />
+                                                        <input type="hidden" value="<%= ea.getEmailAddressString() %>" name="string" />
                                                         <button style="all: unset; cursor: pointer;" type="submit"><i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </li>
@@ -281,8 +281,9 @@
 
     <script>
             function setModalFieldsPhone(row) {
-                document.getElementById("id").value = row.dataset.id;
-                document.getElementById("string").value = row.dataset.string;
+                document.getElementById("phoneNumberID").value = row.dataset.phonenumberid;
+                document.getElementById("phoneNumberString").value = row.dataset.phonenumberstring;
+                document.getElementById("oldPhoneNumber").value = row.dataset.oldphonenumber;
 
                 document.getElementById("modal-form").action = "update-hotel-phone-controller.jsp";
                 document.getElementById("modal-form").method = "POST";
@@ -291,8 +292,9 @@
 
     <script>
             function setModalFieldsEmail(row) {
-                document.getElementById("id").value = row.dataset.id;
-                document.getElementById("string").value = row.dataset.string;
+                document.getElementById("emailAddressID").value = row.dataset.emailaddressid;
+                document.getElementById("emailAddressString").value = row.dataset.emaildaddressstring;
+                document.getElementById("oldEmailAddress").value = row.dataset.oldemailaddress;
 
                 document.getElementById("modal-form").action = "update-hotel-email-controller.jsp";
                 document.getElementById("modal-form").method = "POST";

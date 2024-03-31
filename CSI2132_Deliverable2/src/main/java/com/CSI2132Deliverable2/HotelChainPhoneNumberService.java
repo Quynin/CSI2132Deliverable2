@@ -176,14 +176,14 @@ public class HotelChainPhoneNumberService {
     /**
      * Method to delete a HotelChainPhoneNumber from the database by its phoneNumberString
      *
-     * @param str phoneNumberString of the PhoneNumber to delete from the database
+     * @param hCPN HotelChainPhoneNumber to delete from the database
      * @return String that states if the PhoneNumber was deleted or not
      * @throws Exception when trying to connect to database
      */
-    public String deletePhoneNumber(String id) throws Exception {
+    public String deletePhoneNumber(HotelChainPhoneNumber hCPN) throws Exception {
 
         //SQL query with placeholder id
-        String sql = "DELETE FROM HotelChainPhoneNumber WHERE phoneNumberString = ?";
+        String sql = "DELETE FROM HotelChainPhoneNumber WHERE phoneNumberID=? AND phoneNumberString=?";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -199,7 +199,8 @@ public class HotelChainPhoneNumberService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholder ? of statement
-            st.setString(1, id);
+            st.setString(1, hCPN.getPhoneNumberID());
+            st.setString(2, hCPN.getPhoneNumberString());
 
             //Execute query
             st.executeQuery();

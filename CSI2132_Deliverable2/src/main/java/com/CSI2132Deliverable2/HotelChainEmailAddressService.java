@@ -176,14 +176,14 @@ public class HotelChainEmailAddressService {
     /**
      * Method to delete a HotelChainEmailAddress from the database by its emailAddressString
      *
-     * @param id emailAddressString of the EmailAddress to delete from the database
+     * @param  hCEA HotelChainEmailAddress to delete from the database
      * @return String that states if the EmailAddress was deleted or not
      * @throws Exception when trying to connect to database
      */
-    public String deleteEmailAddress(String id) throws Exception {
+    public String deleteEmailAddress(HotelChainEmailAddress hCEA) throws Exception {
 
         //SQL query with placeholder id
-        String sql = "DELETE FROM HotelChainEmailAddress WHERE emailAddressString = ?";
+        String sql = "DELETE FROM HotelChainEmailAddress WHERE emailAddressID=? AND emailAddressString = ?";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -199,7 +199,8 @@ public class HotelChainEmailAddressService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholder ? of statement
-            st.setString(1, id);
+            st.setString(1, hCEA.getEmailAddressID());
+            st.setString(2, hCEA.getEmailAddressString());
 
             //Execute query
             st.executeQuery();

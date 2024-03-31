@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@ page import="com.CSI2132Deliverable2.HotelPhoneNumberService" %>
+<%@ page import="com.CSI2132Deliverable2.HotelPhoneNumber" %>
+<%@ page import="com.CSI2132Deliverable2.Message" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%
+    // get phone number info from the request
+    int phoneNumberID = Integer.parseInt(request.getParameter("phoneNumberID"));
+    String phoneNumberString = request.getParameter("phoneNumberString");
+
+    HotelPhoneNumberService service = new HotelPhoneNumberService();
+
+    // create HotelPhoneNumber object
+    HotelPhoneNumber obj = new HotelPhoneNumber(phoneNumberID, phoneNumberString);
+
+    Message msg;
+    // try to delete a hotelPhoneNumber
+    try {
+        String value = service.deletePhoneNumber(obj);
+        System.out.println(value);
+        // if the value contains error/Error then this is an error message
+        if (value.contains("Error") || value.contains("error")) msg = new Message("error", value);
+        // else the phone number was successfully deleted
+        else msg = new Message("success", value);
+    } catch (Exception e) {
+        e.printStackTrace();
+        msg = new Message("error", "Something went wrong!");
+    }
+
+    // create an arraylist of messages and append the new message
+    ArrayList<Message> messages = new ArrayList<>();
+    messages.add(msg);
+
+    // set session attribute named messages to messages value
+    session.setAttribute("messages", messages);
+    // redirect to employee-hotels page
+    response.sendRedirect("employee-hotels.jsp");
+%>
