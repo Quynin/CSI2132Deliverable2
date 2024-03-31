@@ -81,6 +81,26 @@
                     </div>
                 </div>
 
+                <div class="col-md-4">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                            <h4 class="card-title">View Rooms on Street</h4>
+                            <p class="card-text" id="paragraph">Simple Query to database to show all available rooms on a street<br></p>
+                            <a class="btn btn-primary" id="show-btn" href="employee-room-on-street.jsp">Show</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card" id="card-container-layout">
+                        <div class="card-body" id="card">
+                            <h4 class="card-title">View Total Capacity of Hotel</h4>
+                            <p class="card-text" id="paragraph">Simple Query to database to show the total capacity of people that can stay in a hotel<br></p>
+                            <a class="btn btn-primary" id="show-btn" href="employee-total-hotel-capacity.jsp">Show</a>
+                        </div>
+                    </div>
+                </div>
+
                 <!--
                 <div class="col-md-4">
                     <div class="card" id="card-container-layout">
