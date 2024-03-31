@@ -79,7 +79,7 @@
                     <h4 class="modal-title">Edit Hotel</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="modal-form">
+                    <form id="modal-form-hotel">
                         <div style="text-align: center;">
                             <input type="text" name="hotelID" id="hotelID"></br>
                             <input type="text" name="hotelChainID" id="hotelChainID"></br>
@@ -91,7 +91,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" form="modal-form" class="btn btn-success">Update</button>
+                    <button type="submit" form="modal-form-hotel" class="btn btn-success">Update</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -108,16 +108,16 @@
                     <h4 class="modal-title">Edit Phone Number</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="modal-form">
+                    <form id="modal-form-phone">
                         <div style="text-align: center;">
-                            <input type="text" name="phoneNumberID" id="phoneNumberID"></br>
+                            <input type="hidden" name="phoneNumberID" id="phoneNumberID"></br>
                             <input type="text" name="phoneNumberString" id="phoneNumberString"></br>
-                            <input type="text" name="oldPhoneNumber" id="oldPhoneNumber"></br>
+                            <input type="hidden" name="oldPhoneNumber" id="oldPhoneNumber"></br>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" form="modal-form" class="btn btn-success">Update</button>
+                    <button type="submit" form="modal-form-phone" class="btn btn-success">Update</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -133,16 +133,16 @@
                     <h4 class="modal-title">Edit Email Address</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="modal-form">
+                    <form id="modal-form-email">
                         <div style="text-align: center;">
-                            <input type="text" name="emailAddressID" id="emailAddressID"></br>
+                            <input type="hidden" name="emailAddressID" id="emailAddressID"></br>
                             <input type="text" name="emailAddressString" id="emailAddressString"></br>
-                            <input type="text" name="oldEmailAddress" id="oldEmailAddress"></br>
+                            <input type="hidden" name="oldEmailAddress" id="oldEmailAddress"></br>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" form="modal-form" class="btn btn-success">Update</button>
+                    <button type="submit" form="modal-form-email" class="btn btn-success">Update</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -274,8 +274,8 @@
             document.getElementById("numberOfRooms").value = row.dataset.numberofrooms;
             document.getElementById("managerID").value = row.dataset.managerid;
 
-            document.getElementById("modal-form").action = "update-hotel-controller.jsp";
-            document.getElementById("modal-form").method = "POST";
+            document.getElementById("modal-form-hotel").action = "update-hotel-controller.jsp";
+            document.getElementById("modal-form-hotel").method = "POST";
         }
     </script>
 
@@ -285,8 +285,8 @@
                 document.getElementById("phoneNumberString").value = row.dataset.phonenumberstring;
                 document.getElementById("oldPhoneNumber").value = row.dataset.oldphonenumber;
 
-                document.getElementById("modal-form").action = "update-hotel-phone-controller.jsp";
-                document.getElementById("modal-form").method = "POST";
+                document.getElementById("modal-form-phone").action = "update-hotel-phone-controller.jsp";
+                document.getElementById("modal-form-phone").method = "POST";
             }
     </script>
 
@@ -296,8 +296,8 @@
                 document.getElementById("emailAddressString").value = row.dataset.emailaddressstring;
                 document.getElementById("oldEmailAddress").value = row.dataset.oldemailaddress;
 
-                document.getElementById("modal-form").action = "update-hotel-email-controller.jsp";
-                document.getElementById("modal-form").method = "POST";
+                document.getElementById("modal-form-email").action = "update-hotel-email-controller.jsp";
+                document.getElementById("modal-form-email").method = "POST";
             }
     </script>
 

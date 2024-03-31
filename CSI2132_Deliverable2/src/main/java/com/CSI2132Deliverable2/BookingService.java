@@ -78,8 +78,8 @@ public class BookingService {
     public String createBooking(Booking booking) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO Booking (bookingID, roomID, customerID, startDate, endDate, bookingCost, bookingStatus, paymentMethod, isPaid)"
-                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Booking (roomID, customerID, startDate, endDate, bookingCost, bookingStatus, paymentMethod, isPaid)"
+                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -98,15 +98,14 @@ public class BookingService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholders ? of statement
-            st.setInt(1, booking.getBookingID());
-            st.setInt(2, booking.getRoomID());
-            st.setString(3, booking.getCustomerID());
-            st.setDate(4, new java.sql.Date(booking.getStartDate().getTime()));
-            st.setDate(5, new java.sql.Date(booking.getEndDate().getTime()));
-            st.setDouble(6, booking.getCost());
-            st.setString(7, booking.getBookingStatus().name());
-            st.setString(8, booking.getPaymentMethod());
-            st.setBoolean(9, booking.getIsPaid());
+            st.setInt(1, booking.getRoomID());
+            st.setString(2, booking.getCustomerID());
+            st.setDate(3, new java.sql.Date(booking.getStartDate().getTime()));
+            st.setDate(4, new java.sql.Date(booking.getEndDate().getTime()));
+            st.setDouble(5, booking.getCost());
+            st.setString(6, booking.getBookingStatus().name());
+            st.setString(7, booking.getPaymentMethod());
+            st.setBoolean(8, booking.getIsPaid());
 
             //Execute query
             int output = st.executeUpdate();
