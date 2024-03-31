@@ -85,22 +85,23 @@ CREATE TABLE HotelChainPhoneNumber (
 --TRIGGER 1:
 --Function for trigger to check if attempting to delete hotel chains with existing hotels
 CREATE FUNCTION check_hotelChain_has_hotels ()
-	RETURNS trigger AS
-	$BODY$
-	BEGIN
+	RETURNS TRIGGER AS
+$BODY$
+BEGIN
 	--Check if there exist hotels of the hotelChain
 	IF (SELECT COUNT (hotelID) FROM Hotel WHERE Hotel.hotelChainID = OLD.hotelChainID) > 0 THEN
 		RAISE EXCEPTION 'Cannot delete HotelChain with existing Hotels.';
 	END IF;
 	
-RETURN NEW;
+RETURN OLD;
 END
 $BODY$ LANGUAGE plpgsql;
 --Trigger for checking HotelChain before delete
 CREATE TRIGGER check_hotelChain_before_delete
 BEFORE DELETE ON HotelChain
-FOR EACH ROW
+FOR ROW
 EXECUTE PROCEDURE check_hotelChain_has_hotels();
+
 
 --TRIGGER 2:
 --Function for trigger to check if attempting to delete hotels with existing hotel rooms

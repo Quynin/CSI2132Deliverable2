@@ -217,44 +217,56 @@ public class HotelChainService {
      * @throws Exception when trying to connect to database
      */
     public String deleteHotelChain(String id) throws Exception {
-
+        System.out.println("AA");
         //SQL query with placeholder id
         String sql = "DELETE FROM HotelChain WHERE hotelChainID = ?";
+        System.out.println("A");
         //Connection to database
         Connection con = null;
+        System.out.println("B");
         //Database connection object
         ConnectionDB db = new ConnectionDB();
+        System.out.println("C");
         //String to return
         String message = "";
-
+        System.out.println("D");
         //Try to connect to the database; catch any exceptions
         try {
             con = db.getConnection();
-
+            System.out.println("E");
             //Prepare statement
             PreparedStatement st = con.prepareStatement(sql);
+            System.out.println("F");
 
             //Fill placeholder ? of statement
             st.setString(1, id);
+            System.out.println("G");
 
             //Execute query
-            st.executeQuery();
+            st.executeUpdate();
 
+            System.out.println("H");
             //Close the statement
             st.close();
+
+            System.out.println("I");
             //Close the connection
             db.close();
+            System.out.println("J");
 
         } catch (Exception e) {
             //Update the message if there was an error
             message = "Error while deleting hotel chain: " + e.getMessage();
+            System.out.println("K");
         } finally {
             //Close con if it is still open
             if (con != null) con.close();
+            System.out.println("L");
             //Update the message if delete was successful
             if (message.equals("")) message = "Hotel chain successfully deleted!";
+            System.out.println("M");
         }
-
+        System.out.println("N");
         //Return message
         return message;
     }
