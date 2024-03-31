@@ -89,7 +89,7 @@
                             <input type="text" name="hotelChainID" id="hotelChainID"></br>
                             <input type="text" name="addressOfCentralOffices" id="addressOfCentralOffices"></br>
                             <input type="text" name="numberOfHotels" id="numberOfHotels" readonly></br>
-                            <input type="hidden" name="oldID" id="oldID">
+                            <input type="hidden" name="oldID" id="oldID"></br>
                         </div>
                     </form>
                 </div>
@@ -335,7 +335,7 @@
             document.getElementById("hotelChainID").value = row.dataset.hotelchainid;
             document.getElementById("addressOfCentralOffices").value = row.dataset.hotelchainaddress;
             document.getElementById("numberOfHotels").value = row.dataset.numberofhotels;
-            document.getElementByID("oldID").value = row.dataset.oldid;
+            document.getElementById("oldID").value = row.dataset.oldid;
 
             document.getElementById("modal-form-hotel-chain").action = "update-hotel-chain-controller.jsp";
             document.getElementById("modal-form-hotel-chain").method = "POST";

@@ -12,10 +12,8 @@
     String hotelChainID = request.getParameter("hotelChainID");
     String address = request.getParameter("addressOfCentralOffices");
     String oldID = request.getParameter("oldID");
-    System.out.println("NEWID:"+hotelChainID +"\nOLDID:" + oldID);
 
     HotelChainService hs = new HotelChainService();
-
     // create hotelChain object
     //phoneNumberList and emailAddressList are not used in the HotelService method and can be left null
     HotelChain obj = new HotelChain(hotelChainID, address, -1, null, null);
