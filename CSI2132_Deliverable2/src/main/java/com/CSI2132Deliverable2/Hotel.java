@@ -19,6 +19,15 @@ public class Hotel {
     /*
      * CONSTRUCTORS
      */
+    public Hotel(String hcID, int rating, String address, String mID, List<HotelPhoneNumber> hPNL, List<HotelEmailAddress> hEAL) {
+        setHotelChainID(hcID);
+        setRating(rating);
+        setHotelAddress(address);
+        setManagerID(mID);
+        setHotelPhoneNumberList(hPNL);
+        setHotelEmailAddressList(hEAL);
+    }
+
     public Hotel(int hID, String hcID, int rating, String address, int nOR, String mID, List<HotelPhoneNumber> hPNL, List<HotelEmailAddress> hEAL) {
         setHotelID(hID);
         setHotelChainID(hcID);

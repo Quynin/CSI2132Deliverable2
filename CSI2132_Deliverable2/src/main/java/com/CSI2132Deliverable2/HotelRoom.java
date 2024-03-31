@@ -17,6 +17,17 @@ public class HotelRoom {
     /*
      * CONSTRUCTORS
      */
+
+    public HotelRoom(int hID, double price, String amenities, int cOR, String vFR, boolean iE, String pOD) {
+        setHotelID(hID);
+        setPrice(price);
+        setAmenties(amenities);
+        setCapacityOfRoom(cOR);
+        setViewFromRoom(vFR);
+        setIsExtendable(iE);
+        setProblemsOrDamages(pOD);
+    }
+
     public HotelRoom(int rID, int hID, double price, String amenities, int cOR, String vFR, boolean iE, String pOD) {
         setRoomID(rID);
         setHotelID(hID);

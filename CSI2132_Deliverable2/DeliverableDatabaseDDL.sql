@@ -143,12 +143,14 @@ BEFORE INSERT ON Booking
 FOR EACH ROW
 EXECUTE PROCEDURE check_booking_creates_conflict();
 
+
 --INDEXES
 
 --INDEX 1
 --INDEX is over Booking.roomID, Booking.customerID, Booking.bookingStatus
 --This index speeds up the checks on Booking of bookingStatus and roomID
 CREATE INDEX ON Booking (roomID, customerID, bookingStatus);
+
 
 
 --VIEWS

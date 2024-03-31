@@ -205,8 +205,8 @@ public class HotelRoomService {
     public String createHotelRoom(HotelRoom hotelRoom) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO HotelRoom (roomID, hotelID, price, amenities, capacityOfRoom, viewFromRoom, isExtendable, problemsOrDamages)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO HotelRoom (hotelID, price, amenities, capacityOfRoom, viewFromRoom, isExtendable, problemsOrDamages)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?)";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -225,14 +225,13 @@ public class HotelRoomService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholders ? of statement
-            st.setInt(1, hotelRoom.getRoomID());
-            st.setInt(2, hotelRoom.getHotelID());
-            st.setDouble(3, hotelRoom.getPrice());
-            st.setString(4, hotelRoom.getAmenities());
-            st.setInt(5, hotelRoom.getCapacityOfRoom());
-            st.setString(6, hotelRoom.getViewFromRoom());
-            st.setBoolean(7, hotelRoom.getIsExtendable());
-            st.setString(8, hotelRoom.getProblemsOrDamages());
+            st.setInt(1, hotelRoom.getHotelID());
+            st.setDouble(2, hotelRoom.getPrice());
+            st.setString(3, hotelRoom.getAmenities());
+            st.setInt(4, hotelRoom.getCapacityOfRoom());
+            st.setString(5, hotelRoom.getViewFromRoom());
+            st.setBoolean(6, hotelRoom.getIsExtendable());
+            st.setString(7, hotelRoom.getProblemsOrDamages());
 
             //Execute query
             int output = st.executeUpdate();

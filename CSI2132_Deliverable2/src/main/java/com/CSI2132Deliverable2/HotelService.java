@@ -295,8 +295,8 @@ public class HotelService {
     public String createHotel(Hotel hotel) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO Hotel (hotelID, hotelChainID, rating, hotelAddress, managerID)"
-                + " VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Hotel (hotelChainID, rating, hotelAddress, managerID)"
+                + " VALUES (?, ?, ?, ?)";
         //Connection to database
         Connection con = null;
         //Database connection object
@@ -315,11 +315,10 @@ public class HotelService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholders ? of statement
-            st.setInt(1, hotel.getHotelID());
-            st.setString(2, hotel.getHotelChainID());
-            st.setInt(3, hotel.getRating());
-            st.setString(4, hotel.getHotelAddress());
-            st.setString(5, hotel.getManagerID());
+            st.setString(1, hotel.getHotelChainID());
+            st.setInt(2, hotel.getRating());
+            st.setString(3, hotel.getHotelAddress());
+            st.setString(4, hotel.getManagerID());
 
             //Execute query
             int output = st.executeUpdate();

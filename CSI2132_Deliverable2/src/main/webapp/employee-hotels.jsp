@@ -319,6 +319,18 @@
                             </table>
                         </div>
                         <% } %>
+                        <h4 class="card-title">Insert New Hotel</h4>
+                             <form id="modal-form" method="POST" action="insert-hotel-controller.jsp">
+                                 <div style="text-align: center;">
+                                     <input type="text" class="form-control" name="hotel-chain-id" id="hotel-chain-id" placeholder="Enter Hotel Chain">
+                                     </br>
+                                     <input type="text" class="form-control" name="rating" id="rating" placeholder="Enter Rating">
+                                     </br>
+                                     <input type="text" class="form-control" name="address" id="address" placeholder="Enter Hotel Address">
+                                     </br>
+                                     <button class="btn btn-primary" id="show-btn">Submit</button>
+                                 </div>
+                             </form>
                     </div>
                 </div>
             </div>
