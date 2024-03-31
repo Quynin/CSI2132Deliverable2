@@ -44,7 +44,7 @@ CREATE TABLE Booking (
     startDate DATE check(startDate < endDate),
     endDate DATE check(endDate > startDate),
     bookingCost non_neg_double NOT NULL, 
-    bookingStatus VARCHAR(20) check (bookingStatus IN ('Booking', 'Renting', 'Archived')),
+    bookingStatus VARCHAR(20) check (bookingStatus IN ('BOOKING', 'RENTING', 'ARCHIVED')),
     paymentMethod VARCHAR(20) check (paymentMethod IN ('Credit Card', 'Debit Card', 'In-Person')),
     isPaid BOOLEAN 
 );
@@ -143,6 +143,12 @@ BEFORE INSERT ON Booking
 FOR EACH ROW
 EXECUTE PROCEDURE check_booking_creates_conflict();
 
+--INDEXES
+
+--INDEX 1
+--INDEX is over Booking.roomID, Booking.customerID, Booking.bookingStatus
+--This index speeds up the checks on Booking of bookingStatus and roomID
+CREATE INDEX ON Booking (roomID, customerID, bookingStatus);
 
 
 --VIEWS

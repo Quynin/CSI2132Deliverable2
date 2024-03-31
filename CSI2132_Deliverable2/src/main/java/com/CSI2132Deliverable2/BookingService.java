@@ -78,7 +78,7 @@ public class BookingService {
     public String createBooking(Booking booking) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "INSERT INTO Booking (bookingID, roomID, customerID, startDate, endDate, cost, bookingStatus, paymentMethod, isPaid)"
+        String sql = "INSERT INTO Booking (bookingID, roomID, customerID, startDate, endDate, bookingCost, bookingStatus, paymentMethod, isPaid)"
                         + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         //Connection to database
         Connection con = null;
@@ -126,6 +126,7 @@ public class BookingService {
             //Update the message if delete was successful
             if (message.equals("")) message = "Booking successfully inserted!";
         }
+        System.out.println(message);
 
         //Return message
         return message;

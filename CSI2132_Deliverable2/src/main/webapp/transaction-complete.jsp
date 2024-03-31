@@ -33,7 +33,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title> Login Page </title>
+    <title> Transaction Complete </title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -47,6 +47,8 @@
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
     <h4 class="card-title">Transaction complete page!!!!</h4>
+
+    <a class="btn btn-primary" id="login-btn" href="customer-homepage.jsp">Return to Available Hotels</a>
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/jquery.min.js"></script>
