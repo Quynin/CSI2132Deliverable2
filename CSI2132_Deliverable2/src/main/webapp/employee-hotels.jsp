@@ -32,8 +32,13 @@
     String displayError = "";
     if (msgField.contains("Cannot delete Hotel with existing Rooms."))
         displayError += "Cannot delete Hotel with existing Rooms.";
-    else if (msgField.contains("Error while updating hotel"))
-        displayError += "Not an accepted Manager ID.";
+    else if (msgField.contains("violates check constraint hotel_rating_check"))
+        displayError += "Not an accepted rating. Accepted ratings are 1, 2, 3, 4, and 5.";
+    else if (msgField.contains("violates foreign key constraint hotel_managerid_fkey"))
+            displayError += "Not an accepted Manager ID.";
+    else if (msgField.contains("violates foreign key constraint hotel_hotelchainid_fkey"))
+                displayError += "Not an accepted Hotel Chain.";
+
 
     // empty session messages
     session.setAttribute("messages", new ArrayList<Message>());
@@ -85,7 +90,7 @@
                             <input type="text" name="hotelChainID" id="hotelChainID"></br>
                             <input type="text" name="rating" id="rating"></br>
                             <input type="text" name="hotelAddress" id="hotelAddress"></br>
-                            <input type="text" name="numberOfRooms" id="numberOfRooms"></br>
+                            <input type="text" name="numberOfRooms" id="numberOfRooms" readonly></br>
                             <input type="text" name="managerID" id="managerID"></br>
                         </div>
                     </form>

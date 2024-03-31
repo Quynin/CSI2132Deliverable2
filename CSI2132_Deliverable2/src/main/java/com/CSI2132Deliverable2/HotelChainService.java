@@ -159,11 +159,11 @@ public class HotelChainService {
      * @return String returned that states if the HotelChain was created or not
      * @throws Exception when trying to connect to database
      */
-    public String updateHotelChain(HotelChain hotelChain) throws Exception {
+    public String updateHotelChain(HotelChain hotelChain, String oldID) throws Exception {
 
         //SQL query with placeholder of all attributes
         String sql = "UPDATE HotelChain "
-                + "SET addressOfCentralOffices=? "
+                + "SET hotelChainID=?, addressOfCentralOffices=? "
                 + "WHERE hotelChainID=?";
         //Connection to database
         Connection con = null;
@@ -183,8 +183,9 @@ public class HotelChainService {
             PreparedStatement st = con.prepareStatement(sql);
 
             //Fill placeholders ? of statement
-            st.setString(1, hotelChain.getAddressOfCentralOffices());
-            st.setString(2, hotelChain.getHotelChainID());
+            st.setString(1, hotelChain.getHotelChainID());
+            st.setString(2, hotelChain.getAddressOfCentralOffices());
+            st.setString(3, oldID);
 
             //Execute query
             st.executeUpdate();
