@@ -377,7 +377,11 @@ public class HotelService {
             st.setString(1, hotel.getHotelChainID());
             st.setInt(2, hotel.getRating());
             st.setString(3, hotel.getHotelAddress());
-            st.setString(4, hotel.getManagerID());
+            if (hotel.getManagerID().equals("null")) {
+                st.setString(4, null);
+            } else {
+                st.setString(4, hotel.getManagerID());
+            }
             st.setInt(5, hotel.getHotelID());
 
 

@@ -114,7 +114,7 @@
                 -->
 
                 <% if (employee.getRole().replace(" ", "").equals("Manager")) {%>
-
+                <br>
                 <div class="col-md-4">
                     <div class="card" id="card-container-layout">
                         <div class="card-body" id="card">

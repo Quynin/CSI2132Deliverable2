@@ -114,7 +114,7 @@ CREATE FUNCTION check_hotel_has_rooms ()
 		RAISE EXCEPTION 'Cannot delete Hotel with existing Rooms.';
 	END IF;
 	
-RETURN NEW;
+RETURN OLD;
 END
 $BODY$ LANGUAGE plpgsql;
 --Trigger for checking Hotel before delete
