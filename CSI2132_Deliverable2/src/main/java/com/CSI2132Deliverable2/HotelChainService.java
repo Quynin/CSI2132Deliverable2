@@ -233,38 +233,29 @@ public class HotelChainService {
         //Try to connect to the database; catch any exceptions
         try {
             con = db.getConnection();
-            System.out.println("E");
             //Prepare statement
             PreparedStatement st = con.prepareStatement(sql);
-            System.out.println("F");
 
             //Fill placeholder ? of statement
             st.setString(1, id);
-            System.out.println("G");
 
             //Execute query
             st.executeUpdate();
 
-            System.out.println("H");
             //Close the statement
             st.close();
 
-            System.out.println("I");
             //Close the connection
             db.close();
-            System.out.println("J");
 
         } catch (Exception e) {
             //Update the message if there was an error
             message = "Error while deleting hotel chain: " + e.getMessage();
-            System.out.println("K");
         } finally {
             //Close con if it is still open
             if (con != null) con.close();
-            System.out.println("L");
             //Update the message if delete was successful
             if (message.equals("")) message = "Hotel chain successfully deleted!";
-            System.out.println("M");
         }
         System.out.println("N");
         //Return message

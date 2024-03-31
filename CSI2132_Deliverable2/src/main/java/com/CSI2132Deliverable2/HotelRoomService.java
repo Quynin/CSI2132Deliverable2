@@ -349,7 +349,7 @@ public class HotelRoomService {
             st.setInt(2, hID);
 
             //Execute query
-            st.executeQuery();
+            st.executeUpdate();
 
             //Close the statement
             st.close();

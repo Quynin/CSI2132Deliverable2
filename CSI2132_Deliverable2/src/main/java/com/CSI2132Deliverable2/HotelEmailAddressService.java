@@ -203,7 +203,7 @@ public class HotelEmailAddressService {
             st.setString(2, hEA.getEmailAddressString());
 
             //Execute query
-            st.executeQuery();
+            st.executeUpdate();
 
             //Close the statement
             st.close();

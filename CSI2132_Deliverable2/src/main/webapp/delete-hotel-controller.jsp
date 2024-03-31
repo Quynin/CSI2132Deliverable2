@@ -15,6 +15,7 @@
         HotelService hs = new HotelService();
         // save the message returned from trying to delete an hotel
         String value = hs.deleteHotel(id);
+        System.out.println(value);
         // in case the value contains error/Error then this message is an error
         if (value.contains("Error") || value.contains("error")) msg = new Message("error", value);
         // else the hotel was successfully deleted

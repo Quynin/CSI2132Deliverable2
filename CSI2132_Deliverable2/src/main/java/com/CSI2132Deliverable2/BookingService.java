@@ -223,7 +223,7 @@ public class BookingService {
             st.setInt(1, id);
 
             //Execute query
-            st.executeQuery();
+            st.executeUpdate();
 
             //Close the statement
             st.close();

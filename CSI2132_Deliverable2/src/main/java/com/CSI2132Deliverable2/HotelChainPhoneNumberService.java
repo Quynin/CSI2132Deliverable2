@@ -203,7 +203,7 @@ public class HotelChainPhoneNumberService {
             st.setString(2, hCPN.getPhoneNumberString());
 
             //Execute query
-            st.executeQuery();
+            st.executeUpdate();
 
             //Close the statement
             st.close();
