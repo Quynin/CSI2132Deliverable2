@@ -8,7 +8,8 @@
 <%@ page import="com.CSI2132Deliverable2.HotelRoom" %>
 <%@ page import="com.CSI2132Deliverable2.HotelRoomService" %>
 <%@ page import="java.util.ArrayList" %>
-
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <%
     ArrayList<Message> messages;
@@ -65,7 +66,7 @@
                                      <input type="date" id="start-date" name="start-date">
                                      </br>
                                      <label for="end-date">Choose End Date:</label>
-                                     <input type="date" id="end-date" name="end-date">
+                                     <input type="date" id="end-date" name="end-date" disabled>
                                      </br>
                                      <p id="price" name="price"> Price: <%= hotelRoom.getPrice()%>$ </p>
                                      </br>
@@ -93,15 +94,54 @@
 
     <script>
         $(document).ready(function() {
-            $('.startDate input').on('change', function(){
-                // use start date value or blank if start date is not set
-                // adjust the MM/DD/YYYY portion if you're using different formatting in your field
-                // the YYYY-MM-DD needs to stay the same because that's how the min/max are set
-                var minDate = $(this).val() != '' ? moment($(this).val(),'MM/DD/YYYY').format('YYYY-MM-DD') : '';
-                // set min date and revalidate field
-                $('.endDate input').attr('min', minDate).parsley().validate();
-              });
+         let startDate = document.getElementById('start-date');
+          let endDate = document.getElementById('end-date');
 
+          // Enable endDate if startDate is filled, as well as set minimum dates
+          let currentDate = new Date();
+          let dd = currentDate.getDate();
+          let mm = currentDate.getMonth() + 1; // January is [0] so I added 1 to get the right month.
+          let yy = currentDate.getFullYear();
+
+          if(dd < 10) {
+            dd = "0" + dd.toString();
+          };
+
+          if(mm < 10) {
+            mm = "0" + mm.toString();
+          };
+
+          let today = yy + '-' + mm + '-' + dd;
+
+          startDate.setAttribute("min", today);
+
+          startDate.oninput = () => {
+            if (startDate.value.length > 0) {
+              endDate.disabled = false;
+
+              let fullSelectedDate = new Date(startDate.value);
+              fullSelectedDate.setDate(fullSelectedDate.getDate() + 2);
+
+              let selectedDd = fullSelectedDate.getDate();
+              let selectedMm = fullSelectedDate.getMonth() + 1;
+              let selectedYy = fullSelectedDate.getFullYear();
+
+              if(selectedDd < 10) {
+                selectedDd = "0" + selectedDd.toString();
+              };
+
+              if(selectedMm < 10) {
+                selectedMm = "0" + selectedMm.toString();
+              };
+
+              let nextDay = selectedYy + '-' + selectedMm + '-' + selectedDd;
+
+              endDate.setAttribute("min", nextDay);
+
+            } else {
+              endDate.disabled = true;
+            }
+          };
             toastr.options = {
                 "closeButton": true,
                 "positionClass": "toast-bottom-right",
