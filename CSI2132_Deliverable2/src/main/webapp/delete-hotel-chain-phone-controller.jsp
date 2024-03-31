@@ -1,34 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ page import="com.CSI2132Deliverable2.HotelService" %>
-<%@ page import="com.CSI2132Deliverable2.Hotel" %>
+<%@ page import="com.CSI2132Deliverable2.HotelChainPhoneNumberService" %>
+<%@ page import="com.CSI2132Deliverable2.HotelChainPhoneNumber" %>
 <%@ page import="com.CSI2132Deliverable2.Message" %>
 <%@ page import="java.util.ArrayList" %>
-
+<%@ page import="java.util.List" %>
 <%
-    String id = request.getParameter("hotel-chain-id");
-    String address = request.getParameter("address");
-    int rating = Integer.parseInt(request.getParameter("rating"));
+    // get phone number info from the request
+    String phoneNumberID = request.getParameter("phoneNumberID");
+    String phoneNumberString = request.getParameter("phoneNumberString");
 
+    HotelChainPhoneNumberService service = new HotelChainPhoneNumberService();
 
-    //Get the manager from the session
-    //Employee manager = (Employee) request.getSession().getAttribute("createdEmployee");
-
-    HotelService service = new HotelService();
-    // create new employee object
-    Hotel obj = new Hotel(id, rating, address, null, null, null);
+    // create HotelChainPhoneNumber object
+    HotelChainPhoneNumber obj = new HotelChainPhoneNumber(phoneNumberID, phoneNumberString);
 
     Message msg;
-    // try to create a new hotel
+    // try to delete a hotelChainPhoneNumber
     try {
-
-        String value = service.createHotel(obj);
+        String value = service.deletePhoneNumber(obj);
         System.out.println(value);
-
-        //if the value contains duplicate key then this is an error message
         // if the value contains error/Error then this is an error message
         if (value.contains("Error") || value.contains("error")) msg = new Message("error", value);
-        // else the hotel was successfully created
+        // else the phone number was successfully deleted
         else msg = new Message("success", value);
     } catch (Exception e) {
         e.printStackTrace();
@@ -41,5 +35,6 @@
 
     // set session attribute named messages to messages value
     session.setAttribute("messages", messages);
-    response.sendRedirect("employee-hotels.jsp");
+    // redirect to employee-hotel-chains page
+    response.sendRedirect("employee-hotel-chains.jsp");
 %>
