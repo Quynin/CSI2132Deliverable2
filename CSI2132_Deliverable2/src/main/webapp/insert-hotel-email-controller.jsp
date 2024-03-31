@@ -1,29 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%@ page import="com.CSI2132Deliverable2.HotelPhoneNumberService" %>
-<%@ page import="com.CSI2132Deliverable2.HotelPhoneNumber" %>
+<%@ page import="com.CSI2132Deliverable2.HotelEmailAddressService" %>
+<%@ page import="com.CSI2132Deliverable2.HotelEmailAddress" %>
 <%@ page import="com.CSI2132Deliverable2.Message" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%
-    int id = Integer.parseInt(request.getParameter("phoneNumberIDToInsert"));
-    String string = request.getParameter("phoneNumberStringToInsert");
+    int id = Integer.parseInt(request.getParameter("emailAddressIDToInsert"));
+    String string = request.getParameter("emailAddressStringToInsert");
 
-    HotelPhoneNumberService service = new HotelPhoneNumberService();
-    // create new phone number object
-    HotelPhoneNumber obj = new HotelPhoneNumber(id, string);
+    HotelEmailAddressService service = new HotelEmailAddressService();
+    // create new email address object
+    HotelEmailAddress obj = new HotelEmailAddress(id, string);
 
     Message msg;
-    // try to create a new phone number
+    // try to create a new email address
     try {
 
-        String value = service.createPhoneNumber(obj);
+        String value = service.createEmailAddress(obj);
         System.out.println(value);
 
         //if the value contains duplicate key then this is an error message
         // if the value contains error/Error then this is an error message
         if (value.contains("Error") || value.contains("error")) msg = new Message("error", value);
-        // else the phonenumber was successfully created
+        // else the emailaddress was successfully created
         else msg = new Message("success", value);
     } catch (Exception e) {
         e.printStackTrace();

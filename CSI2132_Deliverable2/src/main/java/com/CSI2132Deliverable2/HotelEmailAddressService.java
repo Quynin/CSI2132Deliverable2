@@ -126,7 +126,7 @@ public class HotelEmailAddressService {
     public String updateEmailAddress(HotelEmailAddress emailAddress, String oldEmailAddress) throws Exception {
 
         //SQL query with placeholder of all attributes
-        String sql = "UPDATE EmailAddress "
+        String sql = "UPDATE HotelEmailAddress "
                 + "SET emailAddressString=? "
                 + "WHERE emailAddressID=? AND emailAddressString=?";
         //Connection to database
@@ -137,7 +137,7 @@ public class HotelEmailAddressService {
         String message = "";
 
         //Print Booking to console
-        System.out.println("UPDATE: " + emailAddress);
+        System.out.println("UPDATE:" + emailAddress + ". OLD STRING:" + oldEmailAddress);
 
         //Try to connect to the database; catch any exceptions
         try {
@@ -149,6 +149,7 @@ public class HotelEmailAddressService {
             //Fill placeholders ? of statement
             st.setString(1, emailAddress.getEmailAddressString());
             st.setInt(2, emailAddress.getEmailAddressID());
+            st.setString(3, oldEmailAddress);
 
             //Execute query
             st.executeUpdate();
