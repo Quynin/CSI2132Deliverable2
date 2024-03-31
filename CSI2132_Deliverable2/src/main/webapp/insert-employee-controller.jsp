@@ -16,7 +16,7 @@
     //Get the manager from the sesseion
     Employee manager = (Employee) request.getSession().getAttribute("createdEmployee");
 
-    EmployeeService customerService = new CustomerService();
+    EmployeeService employeeService = new EmployeeService();
     // create new employee object
     Employee employee = new Employee(id, idType, name, address, manager.getHotelID(), role);
 
