@@ -6,7 +6,7 @@
 <%@ page import="java.util.ArrayList" %>
 
 <%
-    int id = Integer.parseInt(request.getParameter("phoneNumberIDToInsert"));
+    String id = request.getParameter("phoneNumberIDToInsert");
     String string = request.getParameter("phoneNumberStringToInsert");
 
     HotelChainPhoneNumberService service = new HotelChainPhoneNumberService();
