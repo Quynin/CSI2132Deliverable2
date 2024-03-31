@@ -134,16 +134,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="card" id="card-container-layout">
-                        <div class="card-body" id="card">
-                            <h4 class="card-title">Add Employees</h4>
-                            <p class="card-text" id="paragraph">Insert new employees to database<br></p>
-                            <a class="btn btn-primary" id="show-btn" href="insert-employee.jsp">Show</a>
-                        </div>
-                    </div>
-                </div>
                 <% } %>
 
             </div>

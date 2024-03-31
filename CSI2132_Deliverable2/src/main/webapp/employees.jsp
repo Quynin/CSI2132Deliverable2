@@ -149,6 +149,22 @@
                             </table>
                         </div>
                         <% } %>
+                        <h4 class="card-title">Insert New Employee</h4>
+                         <form id="modal-form" method="POST" action="insert-employee-controller.jsp">
+                             <div style="text-align: center;">
+                                 <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID value">
+                                 </br>
+                                 <input type="text" class="form-control" name="id-type" id="id-type" placeholder="Enter ID Type">
+                                 </br>
+                                 <input type="text" class="form-control" name="full-name" id="full-name" placeholder="Enter Full Name">
+                                 </br>
+                                 <input type="text" class="form-control" name="address" id="address" placeholder="Enter address">
+                                 </br>
+                                 <input type="text" class="form-control" name="role" id="role" placeholder="Enter employee role">
+                                 </br>
+                                 <button class="btn btn-primary" id="show-btn">Submit</button>
+                             </div>
+                         </form>
                     </div>
                 </div>
             </div>
