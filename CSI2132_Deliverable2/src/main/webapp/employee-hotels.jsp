@@ -110,9 +110,9 @@
                 <div class="modal-body">
                     <form id="modal-form">
                         <div style="text-align: center;">
-                            <input type="hidden" name="phoneNumberID" id="phoneNumberID"></br>
+                            <input type="text" name="phoneNumberID" id="phoneNumberID"></br>
                             <input type="text" name="phoneNumberString" id="phoneNumberString"></br>
-                            <input type="hidden" name="oldPhoneNumber" id="oldPhoneNumber"></br>
+                            <input type="text" name="oldPhoneNumber" id="oldPhoneNumber"></br>
                         </div>
                     </form>
                 </div>
@@ -125,29 +125,29 @@
     </div>
 
     <div id="editModalEmail" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+        <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Email Address</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form id="modal-form">
-                            <div style="text-align: center;">
-                                <input type="hidden" name="emailAddressID" id="emailAddressID"></br>
-                                <input type="text" name="emailAddressString" id="emailAddressString"></br>
-                                <input type="hidden" name="oldEmailAddress" id="oldEmailAddress"></br>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" form="modal-form" class="btn btn-success">Update</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Email Address</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="modal-form">
+                        <div style="text-align: center;">
+                            <input type="text" name="emailAddressID" id="emailAddressID"></br>
+                            <input type="text" name="emailAddressString" id="emailAddressString"></br>
+                            <input type="text" name="oldEmailAddress" id="oldEmailAddress"></br>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" form="modal-form" class="btn btn-success">Update</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
+    </div>
 
     <jsp:include page="navbar.jsp"/>
 
@@ -202,8 +202,8 @@
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <form method="POST" action="delete-hotel-phone-controller.jsp">
-                                                        <input type="hidden" value="<%= pn.getPhoneNumberID() %>" name="id" />
-                                                        <input type="hidden" value="<%= pn.getPhoneNumberString() %>" name="string" />
+                                                        <input type="hidden" value="<%= pn.getPhoneNumberID() %>" name="phoneNumberID" />
+                                                        <input type="hidden" value="<%= pn.getPhoneNumberString() %>" name="phoneNumberString" />
                                                         <button style="all: unset; cursor: pointer;" type="submit"><i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </li>
@@ -225,8 +225,8 @@
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <form method="POST" action="delete-hotel-email-controller.jsp">
-                                                        <input type="hidden" value="<%= ea.getEmailAddressID() %>" name="id" />
-                                                        <input type="hidden" value="<%= ea.getEmailAddressString() %>" name="string" />
+                                                        <input type="hidden" value="<%= ea.getEmailAddressID() %>" name="emailAddressID" />
+                                                        <input type="hidden" value="<%= ea.getEmailAddressString() %>" name="emailAddressString" />
                                                         <button style="all: unset; cursor: pointer;" type="submit"><i class="fa fa-trash"></i></button>
                                                     </form>
                                                 </li>
@@ -293,7 +293,7 @@
     <script>
             function setModalFieldsEmail(row) {
                 document.getElementById("emailAddressID").value = row.dataset.emailaddressid;
-                document.getElementById("emailAddressString").value = row.dataset.emaildaddressstring;
+                document.getElementById("emailAddressString").value = row.dataset.emailaddressstring;
                 document.getElementById("oldEmailAddress").value = row.dataset.oldemailaddress;
 
                 document.getElementById("modal-form").action = "update-hotel-email-controller.jsp";

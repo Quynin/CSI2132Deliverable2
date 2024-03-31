@@ -18,13 +18,9 @@
 
     HotelService hs = new HotelService();
 
-    //Dummy variables to make constructor accept values
-    List<HotelPhoneNumber> null1 = null;
-    List<HotelEmailAddress> null2 = null;
-
     // create hotel object
     //phoneNumberList and emailAddressList are not used in the HotelService method and can be left null
-    Hotel h = new Hotel(hotelID, hotelChainID, rating, hotelAddress, numberOfRooms, managerID, null1, null2);
+    Hotel h = new Hotel(hotelID, hotelChainID, rating, hotelAddress, numberOfRooms, managerID, null, null);
 
     Message msg;
     // try to update a hotel

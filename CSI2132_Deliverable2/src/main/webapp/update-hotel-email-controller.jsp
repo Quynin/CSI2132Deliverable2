@@ -7,6 +7,8 @@
 <%@ page import="java.util.List" %>
 <%
     // get email address info from the request
+    System.out.println("EMAIL: " + request.getParameter("emailAddressID"));
+    System.out.println("HOTEL?: " + request.getParameter("emailAddressID"));
     int emailAddressID = Integer.parseInt(request.getParameter("emailAddressID"));
     String emailAddressString = request.getParameter("emailAddressString");
     String oldEmailAddress = request.getParameter("oldEmailAddress");
