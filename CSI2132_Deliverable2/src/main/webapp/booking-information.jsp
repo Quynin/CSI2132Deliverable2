@@ -61,19 +61,11 @@
                              <h4 class="card-title">Fill Booking information</h4>
                              <form id="modal-form" method="POST" action="booking-information-controller.jsp">
                                  <div style="text-align: center;">
-                                     <script>
-                                       var now = new Date();
-                                       var datetime = now.toLocaleString();
-                                       document.getElementById("start-date").min = datetime;
-                                     </script>
                                      <label for="start-date">Choose Start Date:</label>
                                      <input type="date" id="start-date" name="start-date">
                                      </br>
-                                     <script>
-                                       document.getElementById("end-date").min = document.getElementById("start-date").value;
-                                     </script>
                                      <label for="end-date">Choose End Date:</label>
-                                     <input type="date" min= id="end-date" name="end-date">
+                                     <input type="date" id="end-date" name="end-date">
                                      </br>
                                      <p id="price" name="price"> Price: <%= hotelRoom.getPrice()%>$ </p>
                                      </br>
@@ -101,6 +93,15 @@
 
     <script>
         $(document).ready(function() {
+            $('.startDate input').on('change', function(){
+                // use start date value or blank if start date is not set
+                // adjust the MM/DD/YYYY portion if you're using different formatting in your field
+                // the YYYY-MM-DD needs to stay the same because that's how the min/max are set
+                var minDate = $(this).val() != '' ? moment($(this).val(),'MM/DD/YYYY').format('YYYY-MM-DD') : '';
+                // set min date and revalidate field
+                $('.endDate input').attr('min', minDate).parsley().validate();
+              });
+
             toastr.options = {
                 "closeButton": true,
                 "positionClass": "toast-bottom-right",
