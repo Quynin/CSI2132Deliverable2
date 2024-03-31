@@ -123,22 +123,23 @@
 
                                     <% if (b.getBookingStatus() != BookingStatus.ARCHIVED) { %>
                                     <td>
-                                        <form method="POST" action="update-booking-controller.jsp"
-                                            data-toggle="modal"
-                                            <input type="hidden" value="<%= b.getBookingID() %>" name="bID"/>
-                                            <input type="hidden" value="<%= b.getRoomID() %>" name="rID"/>
-                                            <input type="hidden" value="<%= b.getCustomerID() %>" name="cID"/>
-                                            <input type="hidden" value="<%= b.getStartDate() %>" name="startDate"/>
-                                            <input type="hidden" value="<%= b.getEndDate() %>" name="endDate"/>
-                                            <input type="hidden" value="<%= b.getCost() %>" name="cost"/>
-                                            <input type="hidden" value="<%= b.getBookingStatus() %>" name="bookingStatus"/>
-                                            <input type="hidden" value="<%= b.getPaymentMethod() %>" name="paymentMethod"/>
-                                            <input type="hidden" value="<%= b.getIsPaid() %>" name="isPaid"/>
-                                            <%if (b.getBookingStatus() == BookingStatus.BOOKING) { %>
-                                                <button style="all: unset; cursor: pointer;" type="submit">Check-in (Set to RENTING)</button>
-                                            <% } else if (b.getBookingStatus() == BookingStatus.RENTING) { %>
-                                                <button style="all: unset; cursor: pointer;" type="submit">Check-out (Set to ARCHIVE)</button>
-                                            <% } %>
+                                        <form method="POST" action="update-booking-controller.jsp">
+                                            <td>
+                                                <input type="hidden" value="<%= b.getBookingID() %>" name="bID"/>
+                                                <input type="hidden" value="<%= b.getRoomID() %>" name="rID"/>
+                                                <input type="hidden" value="<%= b.getCustomerID() %>" name="cID"/>
+                                                <input type="hidden" value="<%= b.getStartDate() %>" name="startDate"/>
+                                                <input type="hidden" value="<%= b.getEndDate() %>" name="endDate"/>
+                                                <input type="hidden" value="<%= b.getCost() %>" name="cost"/>
+                                                <input type="hidden" value="<%= b.getBookingStatus() %>" name="bookingStatus"/>
+                                                <input type="hidden" value="<%= b.getPaymentMethod() %>" name="paymentMethod"/>
+                                                <input type="hidden" value="<%= b.getIsPaid() %>" name="isPaid"/>
+                                                <%if (b.getBookingStatus() == BookingStatus.BOOKING) { %>
+                                                    <button style="all: unset; cursor: pointer;" type="submit">Check-in (Set to RENTING)</button>
+                                                <% } else if (b.getBookingStatus() == BookingStatus.RENTING) { %>
+                                                    <button style="all: unset; cursor: pointer;" type="submit">Check-out (Set to ARCHIVE)</button>
+                                                <% } %>
+                                            </td>
                                         </form>
                                     </td>
                                     <form method="POST" action="delete-booking-controller.jsp">
