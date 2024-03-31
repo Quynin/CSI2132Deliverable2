@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ page import="com.CSI2132Deliverable2.HotelChainPhoneNumberService" %>
-<%@ page import="com.CSI2132Deliverable2.HotelPhoneNumber" %>
+<%@ page import="com.CSI2132Deliverable2.HotelChainPhoneNumber" %>
 <%@ page import="com.CSI2132Deliverable2.Message" %>
 <%@ page import="java.util.ArrayList" %>
 
