@@ -4,6 +4,10 @@
 <%@ page import="com.CSI2132Deliverable2.BookingService" %>
 <%@ page import="com.CSI2132Deliverable2.Booking" %>
 <%@ page import="com.CSI2132Deliverable2.BookingStatus" %>
+<%@ page import="com.CSI2132Deliverable2.Hotel" %>
+<%@ page import="com.CSI2132Deliverable2.HotelService" %>
+<%@ page import="com.CSI2132Deliverable2.Room" %>
+<%@ page import="com.CSI2132Deliverable2.RoomService" %>
 <%@ page import="com.CSI2132Deliverable2.Message" %>
 <%@ page import="java.util.ArrayList" %>
 
@@ -37,8 +41,16 @@
     }
 
     //Get logged-in employee from session
-    //Employee currentEmployee = (Employee) request.getSession().getAttribute("createdEmployee");
-    //System.out.println(currentEmployee.getFullName());
+    Employee currentEmployee = (Employee) request.getSession().getAttribute("createdEmployee");
+    System.out.println(currentEmployee.getFullName());
+
+    //Get hotel of logged-in employee
+    HotelService hService = new HotelService();
+    Hotel h = hService.getHotel(currentEmployee.getHotelID());
+
+    //Get available rooms of current hotel
+    HotelRoomService hRService = new HotelRoomService();
+    List<HotelRoom> roomList = hRService.getAvailableRoomsOfHotel(h.getHotelID());
 %>
 
 <!DOCTYPE html>
@@ -155,6 +167,28 @@
                             </table>
                         </div>
                         <% } %>
+                        <h4 class="card-title">Insert Customer Booking</h4>
+                         <form id="modal-form" method="POST" action="insert-booking-controller.jsp">
+                             <div style="text-align: center;">
+                                 <input type="text" class="form-control" name="rID" id="rID" placeholder="Enter Room ID">
+                                 </br>
+                                 <input type="text" class="form-control" name="cID" id="cID" placeholder="Enter Customer ID">
+                                 </br>
+                                 <label for="start-date">Choose Start Date:</label>
+                                 <input type="date" id="start-date" name="start-date">
+                                 </br>
+                                 <label for="end-date">Choose End Date:</label>
+                                 <input type="date" id="end-date" name="end-date" disabled>
+                                 </br>
+                                 <p id="price" name="price"> Price: <%= hotelRoom.getPrice()%>$ </p>
+                                 </br>
+
+                                 </br>
+                                 <input type="text" class="form-control" name="role" id="role" placeholder="Enter employee role">
+                                 </br>
+                                 <button class="btn btn-primary" id="show-btn">Submit</button>
+                             </div>
+                         </form>
                     </div>
                 </div>
             </div>
