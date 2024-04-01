@@ -6,9 +6,11 @@
 <%@ page import="com.CSI2132Deliverable2.BookingStatus" %>
 <%@ page import="com.CSI2132Deliverable2.Hotel" %>
 <%@ page import="com.CSI2132Deliverable2.HotelService" %>
-<%@ page import="com.CSI2132Deliverable2.Room" %>
-<%@ page import="com.CSI2132Deliverable2.RoomService" %>
+<%@ page import="com.CSI2132Deliverable2.HotelRoom" %>
+<%@ page import="com.CSI2132Deliverable2.HotelRoomService" %>
 <%@ page import="com.CSI2132Deliverable2.Message" %>
+<%@ page import="com.CSI2132Deliverable2.Employee" %>
+<%@ page import="com.CSI2132Deliverable2.EmployeeService" %>
 <%@ page import="java.util.ArrayList" %>
 
 
@@ -167,28 +169,67 @@
                             </table>
                         </div>
                         <% } %>
+                        <% if (roomList.size() == 0) { %>
+                        <h1 style="margin-top: 5rem;">No Available rooms at <%= h.getHotelName() %>!</h1>
+                        <% } else { %>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Room ID</th>
+                                    <th>Price</th>
+                                    <th>Amenities</th>
+                                    <th>Capacity of Room</th>
+                                    <th>View from Room</th>
+                                    <th>Is Extendable</th>
+                                    <th>Problems or Damages</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <%
+                                for (HotelRoom r : roomList) { %>
+                                <tr>
+                                    <td><%= r.getRoomID() %></td>
+                                    <td><%= r.getPrice() %></td>
+                                    <td><%= r.getAmenities() %></td>
+                                    <td><%= r.getCapacityOfRoom() %></td>
+                                    <td><%= r.getViewFromRoom() %></td>
+                                    <td><%= r.getIsExtendable() %></td>
+                                    <td><%= r.getProblemsOrDamages() %></td>
+                                </tr>
+                                <% } %>
+                                </tbody>
+                            </table>
+                        </div>
                         <h4 class="card-title">Insert Customer Booking</h4>
                          <form id="modal-form" method="POST" action="insert-booking-controller.jsp">
                              <div style="text-align: center;">
-                                 <input type="text" class="form-control" name="rID" id="rID" placeholder="Enter Room ID">
+                                 <label for="startDate">RoomID:</label>
+                                 <input type="text" class="form-control" name="rID" id="rID" placeholder="Enter Room ID"/>
                                  </br>
-                                 <input type="text" class="form-control" name="cID" id="cID" placeholder="Enter Customer ID">
+                                 <label for="startDate">CustomerID:</label>
+                                 <input type="text" class="form-control" name="cID" id="cID" placeholder="Enter Customer ID"/>
                                  </br>
-                                 <label for="start-date">Choose Start Date:</label>
-                                 <input type="date" id="start-date" name="start-date">
+                                 <label for="startDate">Choose Start Date:</label>
+                                 <input type="date" id="startDate" name="startDate"/>
                                  </br>
-                                 <label for="end-date">Choose End Date:</label>
-                                 <input type="date" id="end-date" name="end-date" disabled>
+                                 <label for="endDate">Choose End Date:</label>
+                                 <input type="date" id="endDate" name="endDate"/>
                                  </br>
-                                 <p id="price" name="price"> Price: <%= hotelRoom.getPrice()%>$ </p>
+                                 <label for="startDate">Cost:</label>
+                                 <input type="text" id="cost" name="cost"/>
                                  </br>
-
-                                 </br>
-                                 <input type="text" class="form-control" name="role" id="role" placeholder="Enter employee role">
-                                 </br>
-                                 <button class="btn btn-primary" id="show-btn">Submit</button>
+                                 <label for="payment-method">Which payment method does the customer use:</label>
+                                  <select name="paymentMethod" id="paymentMethod">
+                                      <option value="Credit Card">Credit Card</option>
+                                      <option value="Debit Card">Debit Card</option>
+                                      <option value="In-Person">Cash</option>
+                                  </select>
+                                 <button class="btn btn-primary" id="show-btn">Create Booking</button>
+                                 <br>
                              </div>
                          </form>
+                        <% } %>
                     </div>
                 </div>
             </div>

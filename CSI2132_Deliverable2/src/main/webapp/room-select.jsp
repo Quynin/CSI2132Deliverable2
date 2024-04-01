@@ -89,7 +89,7 @@
                         <div class="card-body" id="card">
                             <h1 style="font-size:2.5vw">  Hotel Rooms in <%= hotel.getHotelName()%> </h1>
                             <% if (hotelRooms.size() == 0) { %>
-                            <h1 style="margin-top: 5rem;">No Available Hotels found!</h1>
+                            <h1 style="margin-top: 5rem;">No Available HotelRooms found!</h1>
                             <% } else { %>
                             <div class="table-responsive">
                                 <table class="table">
