@@ -152,6 +152,26 @@ EXECUTE PROCEDURE check_booking_creates_conflict();
 --This index speeds up the checks on Booking of bookingStatus and roomID
 CREATE INDEX ON Booking (roomID, customerID, bookingStatus);
 
+--INDEX 2
+--INDEX is over Person.personID
+--The Person relations is queried (as the parent of Customer and Employee)
+--far more often than it is updated by Customer or Employee creation or deletion
+CREATE INDEX ON Person (personID);
+
+--INDEX 3
+--INDEX is over Customer.customerID
+--The Customer relation is queried (primarily during login and sign-up)
+--far more often than it is updated by Customer creation or deletion
+CREATE INDEX ON Customer (customerID);
+
+--INDEX 4
+--INDEX is over Employee.employeeID
+--The Employee relation is queried (primarily during login and sign-up)
+--far more often than it is updated by Employee creation or deletion
+CREATE INDEX ON Employee (employeeID);
+
+
+
 
 
 --VIEWS
