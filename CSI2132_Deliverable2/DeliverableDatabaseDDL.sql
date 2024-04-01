@@ -82,6 +82,7 @@ CREATE TABLE HotelChainPhoneNumber (
 	PRIMARY KEY(phoneNumberID, phoneNumberString)
 );
 
+--TRIGGERS
 --TRIGGER 1:
 --Function for trigger to check if attempting to delete hotel chains with existing hotels
 CREATE FUNCTION check_hotelChain_has_hotels ()
@@ -102,7 +103,6 @@ BEFORE DELETE ON HotelChain
 FOR ROW
 EXECUTE PROCEDURE check_hotelChain_has_hotels();
 
-
 --TRIGGER 2:
 --Function for trigger to check if attempting to delete hotels with existing hotel rooms
 CREATE FUNCTION check_hotel_has_rooms ()
@@ -122,7 +122,6 @@ CREATE TRIGGER check_hotel_before_delete
 BEFORE DELETE ON Hotel
 FOR EACH ROW
 EXECUTE PROCEDURE check_hotel_has_rooms();
-
 
 --TRIGGER 3
 --Function for trigger to check if a booking is attempting to book an currently used room
@@ -169,9 +168,6 @@ CREATE INDEX ON Customer (customerID);
 --The Employee relation is queried (primarily during login and sign-up)
 --far more often than it is updated by Employee creation or deletion
 CREATE INDEX ON Employee (employeeID);
-
-
-
 
 
 --VIEWS

@@ -3,23 +3,6 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-/CSI2132Deliverable2/CSI2132_Deliverable2/src/main/java/com/CSI2132Deliverable2/ConnectionDB.java
-CSI2132Deliverable2/CSI2132_Deliverable2/src/main/java/com/CSI2132Deliverable2/ConnectionDB.java
-/CSI2132_Deliverable2/src/main/java/com/CSI2132Deliverable2/ConnectionDB.java
-CSI2132_Deliverable2/src/main/java/com/CSI2132Deliverable2/ConnectionDB.java
-/src/main/java/com/CSI2132Deliverable2/ConnectionDB.java
-src/main/java/com/CSI2132Deliverable2/ConnectionDB.java
-/main/java/com/CSI2132Deliverable2/ConnectionDB.java
-main/java/com/CSI2132Deliverable2/ConnectionDB.java
-/java/com/CSI2132Deliverable2/ConnectionDB.java
-java/com/CSI2132Deliverable2/ConnectionDB.java
-/com/CSI2132Deliverable2/ConnectionDB.java
-com/CSI2132Deliverable2/ConnectionDB.java
-/CSI2132Deliverable2/ConnectionDB.java
-CSI2132Deliverable2/ConnectionDB.java
-/ConnectionDB.java
-ConnectionDB.java
-
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
