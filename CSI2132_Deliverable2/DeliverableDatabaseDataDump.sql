@@ -685,3 +685,50 @@ VALUES
 (145, '211-111-116', '2024-04-05', '2024-04-19', 9089.99, 'RENTING', 'In-Person', true),
 (146, '211-111-114', '2024-04-01', '2024-04-02', 9059.99, 'RENTING', 'In-Person', true),
 (147, '211-111-112', '2024-04-03', '2024-04-12', 9129.99, 'BOOKING', 'In-Person', true);
+
+
+UPDATE Hotel SET managerID = '111-111-111' WHERE hotelID = 1;
+UPDATE Hotel SET managerID = '111-111-112' WHERE hotelID = 2;
+UPDATE Hotel SET managerID = '111-111-113' WHERE hotelID = 3;
+UPDATE Hotel SET managerID = '111-111-114' WHERE hotelID = 4;
+UPDATE Hotel SET managerID = '111-111-115' WHERE hotelID = 5;
+UPDATE Hotel SET managerID = '111-111-116' WHERE hotelID = 6;
+UPDATE Hotel SET managerID = '111-111-117' WHERE hotelID = 7;
+UPDATE Hotel SET managerID = '111-111-118' WHERE hotelID = 8;
+UPDATE Hotel SET managerID = '111-111-119' WHERE hotelID = 9;
+UPDATE Hotel SET managerID = '111-111-120' WHERE hotelID = 10;
+UPDATE Hotel SET managerID = '111-111-121' WHERE hotelID = 11;
+UPDATE Hotel SET managerID = '111-111-122' WHERE hotelID = 12;
+UPDATE Hotel SET managerID = '111-111-123' WHERE hotelID = 13;
+UPDATE Hotel SET managerID = '111-111-124' WHERE hotelID = 14;
+UPDATE Hotel SET managerID = '111-111-125' WHERE hotelID = 15;
+UPDATE Hotel SET managerID = '111-111-126' WHERE hotelID = 16;
+UPDATE Hotel SET managerID = '111-111-127' WHERE hotelID = 17;
+UPDATE Hotel SET managerID = '111-111-128' WHERE hotelID = 18;
+UPDATE Hotel SET managerID = '111-111-129' WHERE hotelID = 19;
+UPDATE Hotel SET managerID = '111-111-130' WHERE hotelID = 20;
+UPDATE Hotel SET managerID = '111-111-131' WHERE hotelID = 21;
+UPDATE Hotel SET managerID = '111-111-132' WHERE hotelID = 22;
+UPDATE Hotel SET managerID = '111-111-133' WHERE hotelID = 23;
+UPDATE Hotel SET managerID = '111-111-134' WHERE hotelID = 24;
+UPDATE Hotel SET managerID = '111-111-135' WHERE hotelID = 25;
+UPDATE Hotel SET managerID = '111-111-136' WHERE hotelID = 26;
+UPDATE Hotel SET managerID = '111-111-137' WHERE hotelID = 27;
+UPDATE Hotel SET managerID = '111-111-138' WHERE hotelID = 28;
+UPDATE Hotel SET managerID = '111-111-139' WHERE hotelID = 29;
+UPDATE Hotel SET managerID = '111-111-140' WHERE hotelID = 30;
+UPDATE Hotel SET managerID = '111-111-141' WHERE hotelID = 31;
+UPDATE Hotel SET managerID = '111-111-142' WHERE hotelID = 32;
+UPDATE Hotel SET managerID = '111-111-143' WHERE hotelID = 33;
+UPDATE Hotel SET managerID = '111-111-144' WHERE hotelID = 34;
+UPDATE Hotel SET managerID = '111-111-145' WHERE hotelID = 35;
+UPDATE Hotel SET managerID = '111-111-146' WHERE hotelID = 36;
+UPDATE Hotel SET managerID = '111-111-147' WHERE hotelID = 37;
+UPDATE Hotel SET managerID = '111-111-148' WHERE hotelID = 38;
+UPDATE Hotel SET managerID = '111-111-149' WHERE hotelID = 39;
+UPDATE Hotel SET managerID = '111-111-150' WHERE hotelID = 40;
+UPDATE Hotel SET managerID = '111-111-151' WHERE hotelID = 41;
+UPDATE Hotel SET managerID = '111-111-152' WHERE hotelID = 42;
+UPDATE Hotel SET managerID = '111-111-153' WHERE hotelID = 43;
+
+
