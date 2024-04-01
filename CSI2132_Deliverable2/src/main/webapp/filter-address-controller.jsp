@@ -15,7 +15,7 @@
 
      // check where to redirect
      try {
-         request.getSession().setAttribute("addressFilteredHotels", availableHotels);
+         request.getSession().setAttribute("filteredHotels", availableHotels);
          response.sendRedirect("customer-homepage.jsp");
      } catch (Exception e) {
          e.printStackTrace();
