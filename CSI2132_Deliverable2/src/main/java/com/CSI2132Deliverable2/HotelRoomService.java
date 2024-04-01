@@ -143,7 +143,7 @@ public class HotelRoomService {
                 "AND roomID NOT IN( " +
                 "SELECT roomID " +
                 "FROM Booking " +
-                "WHERE Booking.bookingStatus != 'Archived' " +
+                "WHERE Booking.bookingStatus != 'ARCHIVED' " +
                 ");";
         //Database connection object
         ConnectionDB db = new ConnectionDB();
