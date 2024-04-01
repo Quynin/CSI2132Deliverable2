@@ -37,7 +37,13 @@
      HotelRoomService hotelRoomService = new HotelRoomService();
      List<HotelRoom> hotelRooms = null;
       try {
-          hotelRooms = hotelRoomService.getAvailableRoomsOfHotel(hotel.getHotelID());
+          //default situation. no address filter: all hotel with available rooms
+          if(request.getSession().getAttribute("filteredRooms") != null){
+              hotelRooms = (List<HotelRoom>) request.getSession().getAttribute("filteredRooms");
+          }
+          else{
+              hotelRooms = hotelRoomService.getAvailableRoomsOfHotel(hotel.getHotelID());
+          }
       } catch (Exception e) {
           e.printStackTrace();
       }
@@ -63,6 +69,18 @@
 
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
+    <form id="modal-form" method="POST" style="text-align:center;" action="filter-room-controller.jsp">
+            <h4 class="modal-title" style="text-align:center; margin-top:20px">Filter by Min Price</h4>
+            <input type="text" name="minPrice" id="minPrice" style="width:500px"></br>
+
+            <h4 class="modal-title" style="text-align:center; margin-top:20px">Filter by Room Capacity</h4>
+            <input type="text" name="capacity" id="capacity" style="width:500px"></br>
+
+            <input type="hidden" name="hotelID" id="hotelID" value="<%=hotel.getHotelID() %>"/>
+
+            <p style="font-size:1.25vw;">  Click update again to get the full list!  </p>
+            <button type="submit" form="modal-form" class="btn btn-success" >Update</button>
+    </form>
 
      <div class="container">
             <div class="row" id="row">
