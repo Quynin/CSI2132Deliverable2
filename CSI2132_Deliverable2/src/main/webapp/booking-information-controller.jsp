@@ -28,7 +28,7 @@
     HotelRoom hotelRoom = (HotelRoom) request.getSession().getAttribute("selectedRoom");
 
     boolean isPaid;
-     if(paymentMethod.equals("In-person")){
+     if(paymentMethod.equals("In-Person")){
          isPaid = false;
      }
      else{

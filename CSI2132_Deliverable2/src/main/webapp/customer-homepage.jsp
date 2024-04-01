@@ -44,11 +44,24 @@
 
     //get all available hotels from the database
     HotelService hotelService = new HotelService();
-    List<Hotel> availableHotels = null;
+    ArrayList<Hotel> availableHotels = null;
     try {
         //default situation. no address filter: all hotel with available rooms
-        if(request.getSession().getAttribute("filteredHotels") != null){
-            availableHotels = (List<Hotel>) request.getSession().getAttribute("filteredHotels");
+        if(request.getSession().getAttribute("addressFilteredHotels") != null){
+            availableHotels = (List<Hotel>) request.getSession().getAttribute("addressFilteredHotels");
+        }
+        else{
+            availableHotels = hotelService.getAvailableHotels("");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    //get all available hotels from the database
+    try {
+        //default situation. no Hotel Chain filter: all hotel with available rooms
+        if(request.getSession().getAttribute("hotelChainFilteredHotels") != null){
+            availableHotels = (List<Hotel>) request.getSession().getAttribute("hotelChainFilteredHotels");
         }
         else{
             availableHotels = hotelService.getAvailableHotels("");
@@ -78,19 +91,18 @@
 
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
-    <form id="modal-form" method="POST" action="filter-address-controller.jsp">
-        <div class="modal-header">
-            <h4 class="modal-title">Filter Address</h4>
-        </div>
-        <div class="modal-body">
-            <div style="text-align: center;">
-                <input type="text" name="address" id="address"></br>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <p style="font-size:1.25vw">  Click update again to get the full list!  </p>
+    <form id="modal-form" method="POST" style="text-align:center;" action="filter-address-controller.jsp">
+            <h4 class="modal-title" style="text-align:center; margin-top:20px">Filter Address</h4>
+            <input type="text" name="address" id="address" style="width:500px"></br>
+            <p style="font-size:1.25vw;">  Click update again to get the full list!  </p>
             <button type="submit" form="modal-form" class="btn btn-success" >Update</button>
-        </div>
+    </form>
+
+    <form id="modal-form2" method="POST" style="text-align:center;" action="filter-hotel-chain-controller.jsp">
+            <h4 class="modal-title" style="text-align:center; margin-top:20px">Filter From Hotel Chain Name</h4>
+            <input type="text" name="room-capacity" id="room-capacity" style="width:500px"></br>
+            <p style="font-size:1.25vw;">  Click update again to get the full list!  </p>
+            <button type="submit" form="modal-form2" class="btn btn-success" >Update</button>
     </form>
 
 

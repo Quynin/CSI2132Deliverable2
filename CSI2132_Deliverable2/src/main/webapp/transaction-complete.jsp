@@ -2,7 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.CSI2132Deliverable2.Employee" %>
-<%@ page import="com.CSI2132Deliverable2.EmployeeService" %>
+<%@ page import="com.CSI2132Deliverable2.Booking" %>
 <%@ page import="com.CSI2132Deliverable2.Customer" %>
 <%@ page import="com.CSI2132Deliverable2.CustomerService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -24,6 +24,8 @@
 
     // empty session messages
     session.setAttribute("messages", new ArrayList<Message>());
+
+    Booking booking = (Booking) request.getSession().getAttribute("createdBooking");
 %>
 
 <!DOCTYPE html>
@@ -46,9 +48,14 @@
 
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
-    <h4 class="card-title">Transaction complete page!!!!</h4>
-
-    <a class="btn btn-primary" id="login-btn" href="customer-homepage.jsp">Return to Available Hotels</a>
+    <div class="col-md-4 container" style="text-align: center; padding: 125px 0;">
+        <div class="row" id="row" style="text-align: center;">
+            <h4 class="card-title">Thank you for booking at Trevago Hotels Dot Com!!!!! Come back again for your next vacay location booking. </h4>
+            <p style="color:#008000"> You spent <%= booking.getCost()%>$ on your previous booking. Return to this page to buy more!!!</p>
+            <a class="btn btn-primary" id="login-btn" style="color:#800080" href="customer-homepage.jsp">Return to Available Hotels</a>
+            </div>
+        </div>
+    </div>
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/jquery.min.js"></script>

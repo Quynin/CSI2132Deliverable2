@@ -44,15 +44,14 @@
 
     <input type="hidden" name="message" id="message" value='<%=msgField%>' >
 
-
-    <div class="col-md-4">
+    <div class="col-md-4 container" style="text-align: center; padding: 125px 0;">
         <div class="row" id="row" style="text-align: center;">
-        <h4 class="card-title">Welcome to Hotel Trevago Bookings!!! Explore the wondrous hotel locations from all around the globe. </h4>
-        </div>
+            <h4 class="card-title">Welcome to Hotel Trevago Bookings!!! Explore the wondrous hotel locations from all around the globe. </h4>
+            </div>
 
-        <div class="row" id="row2">
-         <a class="btn btn-primary" id="login-btn" href="login.jsp">Login</a>
-         <a class="btn btn-primary" id="signup-btn" href="signup.jsp">Signup</a>
+            <div class="row" id="row2">
+             <a class="btn btn-primary" style='margin-bottom:16px' id="login-btn" href="login.jsp">Login</a>
+             <a class="btn btn-primary" id="signup-btn" href="signup.jsp">Customer Signup</a>
         </div>
     </div>
 
