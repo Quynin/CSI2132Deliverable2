@@ -29,10 +29,10 @@
 
     boolean isPaid;
      if(paymentMethod.equals("In-Person")){
-         isPaid = false;
+         isPaid = true;
      }
      else{
-         isPaid = true;
+         isPaid = false;
      }
 
     BookingStatus bookingStatus = BookingStatus.BOOKING;

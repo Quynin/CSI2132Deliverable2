@@ -144,8 +144,6 @@ BEFORE INSERT ON Booking
 FOR EACH ROW
 EXECUTE PROCEDURE check_booking_creates_conflict();
 
-DROP TRIGGER check_booking_creates_conflict ON Booking;
-DROP FUNCTION check_booking_creates_conflict
 
 --INDEXES
 

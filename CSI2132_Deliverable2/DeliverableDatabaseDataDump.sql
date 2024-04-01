@@ -652,4 +652,36 @@ VALUES
 ('111-111-196', 43, ' Clerk')
 ;
 
+INSERT INTO PERSON
+VALUES
+('211-111-111', 'SIN', 'Jasmine Hudson', '1 Life Street'),
+('211-111-112', 'SSN', 'Jerry HisFire', '2 Life Street'),
+('211-111-113', 'SIN', 'Sable Sitchkins', '3 Life Street'),
+('211-111-114', 'SSN', 'Fuerza Derinburg', '3 Brave Street'),
+('211-111-115', 'SIN', 'Jacko Lantern', '99 Sesame Street'),
+('211-111-116', 'SSN', 'Raj Nampak', '3 Salturn Avenue'),
+('211-111-117', 'SSN', 'Litch Luther', '29 Qwarry Townsend'),
+('211-111-118', 'SIN', 'Mindy Johnson', '12 Hillbilly Village'),
+('211-111-119', 'SSN', 'Lapso Judgement', '33 Navigator Street'),
+('211-111-120', 'SIN', 'Lemur Warsaw', '115 Freeze Avenue');
+INSERT INTO Customer
+VALUES
+('211-111-111', '2024-03-15'),
+('211-111-112', '2024-03-16'),
+('211-111-113', '2024-03-16'),
+('211-111-114', '2024-03-16'),
+('211-111-115', '2024-03-19'),
+('211-111-116', '2024-03-15'),
+('211-111-117', '2024-03-21'),
+('211-111-118', '2024-03-17'),
+('211-111-119', '2024-03-19'),
+('211-111-120', '2024-03-21');
 
+
+INSERT INTO Booking
+(roomid, customerid, startdate, enddate, bookingcost, bookingstatus, paymentmethod, ispaid)
+VALUES
+(144, '211-111-112', '2024-04-02', '2024-04-06', 9109.99, 'BOOKING', 'Debit Card', false),
+(145, '211-111-116', '2024-04-05', '2024-04-19', 9089.99, 'RENTING', 'In-Person', true),
+(146, '211-111-114', '2024-04-01', '2024-04-02', 9059.99, 'RENTING', 'In-Person', true),
+(147, '211-111-112', '2024-04-03', '2024-04-12', 9129.99, 'BOOKING', 'In-Person', true);
